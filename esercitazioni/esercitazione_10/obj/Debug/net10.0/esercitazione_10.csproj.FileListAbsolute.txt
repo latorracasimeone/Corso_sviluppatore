@@ -1,0 +1,15 @@
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\bin\Debug\net10.0\esercitazione_10.exe
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\bin\Debug\net10.0\esercitazione_10.deps.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\bin\Debug\net10.0\esercitazione_10.runtimeconfig.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\bin\Debug\net10.0\esercitazione_10.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\bin\Debug\net10.0\esercitazione_10.pdb
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\esercitazione_10.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\esercitazione_10.AssemblyInfoInputs.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\esercitazione_10.AssemblyInfo.cs
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\esercitazione_10.csproj.CoreCompileInputs.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\esercitazione_10.sourcelink.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\esercitazione_10.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\refint\esercitazione_10.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\esercitazione_10.pdb
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\esercitazione_10.genruntimeconfig.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni\esercitazione_10\obj\Debug\net10.0\ref\esercitazione_10.dll

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_8\\esercitazione_8.csproj",
+      "projectUniqueName": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_08\\esercitazione_8.csproj",
       "projectName": "esercitazione_8",
-      "projectPath": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_8\\esercitazione_8.csproj",
+      "projectPath": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_08\\esercitazione_8.csproj",
       "packagesPath": "C:\\Users\\wahab\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_8\\obj\\",
+      "outputPath": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_08\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wahab\\AppData\\Roaming\\NuGet\\NuGet.Config"
