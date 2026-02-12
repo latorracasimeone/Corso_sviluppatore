@@ -1,0 +1,15 @@
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\bin\Debug\net10.0\esercitazione_7.exe
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\bin\Debug\net10.0\esercitazione_7.deps.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\bin\Debug\net10.0\esercitazione_7.runtimeconfig.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\bin\Debug\net10.0\esercitazione_7.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\bin\Debug\net10.0\esercitazione_7.pdb
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\esercitazione_7.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\esercitazione_7.AssemblyInfoInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\esercitazione_7.AssemblyInfo.cs
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\esercitazione_7.csproj.CoreCompileInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\esercitazione_7.sourcelink.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\esercitazione_7.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\refint\esercitazione_7.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\esercitazione_7.pdb
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\esercitazione_7.genruntimeconfig.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni\esercitazione_7\obj\Debug\net10.0\ref\esercitazione_7.dll
