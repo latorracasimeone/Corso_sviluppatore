@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wahab\\desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_1\\esercitazione_1.csproj": {}
+    "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_01\\esercitazione_1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wahab\\desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_1\\esercitazione_1.csproj": {
+    "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_01\\esercitazione_1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wahab\\desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_1\\esercitazione_1.csproj",
+        "projectUniqueName": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_01\\esercitazione_1.csproj",
         "projectName": "esercitazione_1",
-        "projectPath": "C:\\Users\\wahab\\desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_1\\esercitazione_1.csproj",
+        "projectPath": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_01\\esercitazione_1.csproj",
         "packagesPath": "C:\\Users\\wahab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wahab\\desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_1\\obj\\",
+        "outputPath": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni\\esercitazione_01\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wahab\\AppData\\Roaming\\NuGet\\NuGet.Config"
