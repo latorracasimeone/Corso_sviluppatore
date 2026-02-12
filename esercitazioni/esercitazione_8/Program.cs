@@ -11,3 +11,4 @@ nomi.Add("Timone");
 Console.WriteLine(nomi[3]);// Creazione della lista di stringhe
 
 Console.WriteLine(nomi[0]);
+Console.WriteLine(nomi[2]);
