@@ -8,6 +8,6 @@ string mese = Console.ReadLine();
 
 Console.Write("Inserisci il tuo anno di nascita:");
 
-string anno = Console.ReadLine();
+string anno_Nascita = Console.ReadLine();
 
-Console.WriteLine($"Essio Anna Azzo Exy, t.  {giorno}/{mese}/{anno}!");
+Console.WriteLine($"Essio Anna Azzo Exy, t.  {giorno}/{mese}/{anno_Nascita}!");
