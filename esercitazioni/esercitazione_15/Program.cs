@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿// Dichiarazione e inizializzazione della lista
+List<int> numeri = new List<int> { 10, 20, 30 };
+
+// stampa il primo numero della lista
+Console.WriteLine(numeri[1]);
