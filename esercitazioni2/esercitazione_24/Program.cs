@@ -1,2 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿int x = 5;
+int y = 3;
+bool isEqua = (x == y); 
+bool isNotEqual = (x != y); 
+bool isGreater = (x > y); 
+bool isLess = (x < y); 
+bool isGreaterOrEqual = (x >= y); 
+bool isLessOrEqual = (x <= y); 
+Console.WriteLine("Dati X=5 e Y=3, sono vere o false le seguenti affermazioni:");
+Console.WriteLine($"X uguale a Y: {isEqua}");
+Console.WriteLine($"X diverso da Y: {isNotEqual}");
+Console.WriteLine($"X maggiore di Y: {isGreater}");
+Console.WriteLine($"X minore di Y: {isLess}");
+Console.WriteLine($"X maggiore o uguale di Y: {isGreaterOrEqual}");
+Console.WriteLine($"X minore o uguale di Y: {isLessOrEqual}");

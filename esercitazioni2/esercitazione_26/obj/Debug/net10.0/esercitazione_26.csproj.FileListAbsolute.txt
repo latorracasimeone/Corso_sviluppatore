@@ -1,0 +1,15 @@
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\bin\Debug\net10.0\esercitazione_26.exe
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\bin\Debug\net10.0\esercitazione_26.deps.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\bin\Debug\net10.0\esercitazione_26.runtimeconfig.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\bin\Debug\net10.0\esercitazione_26.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\bin\Debug\net10.0\esercitazione_26.pdb
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\esercitazione_26.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\esercitazione_26.AssemblyInfoInputs.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\esercitazione_26.AssemblyInfo.cs
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\esercitazione_26.csproj.CoreCompileInputs.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\esercitazione_26.sourcelink.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\esercitazione_26.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\refint\esercitazione_26.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\esercitazione_26.pdb
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\esercitazione_26.genruntimeconfig.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni2\esercitazione_26\obj\Debug\net10.0\ref\esercitazione_26.dll
