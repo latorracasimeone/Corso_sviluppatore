@@ -1,0 +1,15 @@
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\bin\Debug\net10.0\esercitazione_32.exe
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\bin\Debug\net10.0\esercitazione_32.deps.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\bin\Debug\net10.0\esercitazione_32.runtimeconfig.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\bin\Debug\net10.0\esercitazione_32.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\bin\Debug\net10.0\esercitazione_32.pdb
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\esercitazione_32.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\esercitazione_32.AssemblyInfoInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\esercitazione_32.AssemblyInfo.cs
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\esercitazione_32.csproj.CoreCompileInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\esercitazione_32.sourcelink.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\esercitazione_32.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\refint\esercitazione_32.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\esercitazione_32.pdb
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\esercitazione_32.genruntimeconfig.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni2\esercitazione_32\obj\Debug\net10.0\ref\esercitazione_32.dll
