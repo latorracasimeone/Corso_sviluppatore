@@ -2,7 +2,7 @@
 List <int> numeri = new List<int> {};
 do
 {
-    Console.WriteLine("Inserisca un numero:");
+    Console.WriteLine("Inserisca un numero (0 per terminare):");
     string input = Console.ReadLine();
     int numero = int.Parse(input);
     if ( numero == 0)
