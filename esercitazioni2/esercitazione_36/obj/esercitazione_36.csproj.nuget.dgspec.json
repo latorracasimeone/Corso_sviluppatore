@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\esercitazione_36.csproj": {}
+    "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\esercitazione_36.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\esercitazione_36.csproj": {
+    "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\esercitazione_36.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\esercitazione_36.csproj",
+        "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\esercitazione_36.csproj",
         "projectName": "esercitazione_36",
-        "projectPath": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\esercitazione_36.csproj",
-        "packagesPath": "C:\\Users\\wahab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wahab\\Desktop\\Corso_sviluppatore\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\obj\\",
+        "projectPath": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\esercitazione_36.csproj",
+        "packagesPath": "C:\\Users\\sviluppatore\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni2\\esercitazione_36\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\wahab\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\sviluppatore\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

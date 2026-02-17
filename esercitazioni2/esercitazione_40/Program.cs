@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿//crea dado digitale
+Random casuale = new Random{};
+int dado = casuale.Next(1, 7);
+Console.WriteLine($"è uscito {dado}");
