@@ -1,4 +1,4 @@
-﻿//Prima parte lezione 08
+﻿//Lezione 08 quasi completa
 string nome = "Simeone";
 int lunghezza = nome.Length; //.Length è il metodo di stringa che ci 
 //permette di vedere quanti caratteri compongono la stringa testuale

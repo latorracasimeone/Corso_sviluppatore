@@ -1,4 +1,5 @@
-﻿Random ra = new Random();
+﻿//Dado lanciato 5 Volte esercitazione finale 07 Random V4
+Random ra = new Random();
 List<int> tenuti = new List<int>();
 
 

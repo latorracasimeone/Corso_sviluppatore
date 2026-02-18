@@ -1,5 +1,5 @@
 ﻿//Esercitazione finale capitolo 08
-string nomi = "Timone, Burri, Carmè, Johnny, Thanos";
+string nomi = ("Timone, Burri, Carmè, Johnny, Thanos");
 string[] nomiArray = nomi.Split(", ");
 Console.WriteLine("Inserire una parte del nome da cercare:");
 string nomeDaCercare = Console.ReadLine();

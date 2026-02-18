@@ -1,0 +1,15 @@
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\bin\Debug\net10.0\esercitazione_47.exe
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\bin\Debug\net10.0\esercitazione_47.deps.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\bin\Debug\net10.0\esercitazione_47.runtimeconfig.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\bin\Debug\net10.0\esercitazione_47.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\bin\Debug\net10.0\esercitazione_47.pdb
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\esercitazione_47.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\esercitazione_47.AssemblyInfoInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\esercitazione_47.AssemblyInfo.cs
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\esercitazione_47.csproj.CoreCompileInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\esercitazione_47.sourcelink.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\esercitazione_47.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\refint\esercitazione_47.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\esercitazione_47.pdb
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\esercitazione_47.genruntimeconfig.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_47\obj\Debug\net10.0\ref\esercitazione_47.dll

@@ -1,0 +1,15 @@
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\bin\Debug\net10.0\esercitazione_48p.exe
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\bin\Debug\net10.0\esercitazione_48p.deps.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\bin\Debug\net10.0\esercitazione_48p.runtimeconfig.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\bin\Debug\net10.0\esercitazione_48p.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\bin\Debug\net10.0\esercitazione_48p.pdb
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\esercitazione_48p.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\esercitazione_48p.AssemblyInfoInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\esercitazione_48p.AssemblyInfo.cs
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\esercitazione_48p.csproj.CoreCompileInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\esercitazione_48p.sourcelink.json
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\esercitazione_48p.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\refint\esercitazione_48p.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\esercitazione_48p.pdb
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\esercitazione_48p.genruntimeconfig.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni3\esercitazione_48p\obj\Debug\net10.0\ref\esercitazione_48p.dll
