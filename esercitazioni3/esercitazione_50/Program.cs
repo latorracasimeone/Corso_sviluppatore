@@ -1,7 +1,4 @@
-﻿//IMPORTANTE?
-using System.Runtime.InteropServices;
-
-List<string> nomi = new List<string>();//creo la lista
+﻿List<string> nomi = new List<string>();//creo la lista
 string input;//creo l'acquisizione di input dell'utente per la lista appena creata
 Random nomiCas = new Random();//per generare numeri casuali
 while (true) //chiediamo all'utente di inserire nomi che verranno aggiunti alla lista finché non preme 0, dove passerà direttamente all'estrazione casuale dei nomi
