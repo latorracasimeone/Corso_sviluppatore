@@ -10,7 +10,7 @@ Dictionary<int, string> dizionario = new Dictionary<int, string>()
 dizionario.Add(4, "quattro");
 // se la chiave esiste già, il valore deve essere gestito in modo da essere aggiornato
 dizionario[1] = "uno aggiornato";//NON MI FUNZIONA MODIFICA CON
-//DIZIONARIO.ADD COME SCRITTO NELLE DISPENSE!!!!!!!!!!!!!
+//DIZIONARIO.ADD COME SCRITTO ALL'INIZIO NELLE DISPENSE!!!!!!!!!!!!!
 dizionario[5] = "cinque";
 
 Console.WriteLine(dizionario.Count); // output: 3
@@ -80,3 +80,71 @@ Console.WriteLine(dizionario[1]); // output: "uno modificato"
 Console.WriteLine(dizionario[2]);//STAMPO ELEMENTO DEL DIZIONARIO!
 
 Console.WriteLine(dizionarioString["chiave1"]);
+
+foreach (KeyValuePair<int, string> kvp in dizionario)//accesso a chiavi e valori presenti nel dizionario
+{
+    Console.WriteLine($"Chiave: {kvp.Key}, Valore: {kvp.Value}");
+}
+
+Console.WriteLine("3333333333333333333333");
+
+foreach (var kvp in dizionario)//prediligiamo var per semplificare la sintassi
+{
+    Console.WriteLine($"Chiave: {kvp.Key}, Valore: {kvp.Value}");
+}
+
+
+//COLLEZIONI:
+// dichiaro un dizionario int List<string>
+Dictionary<int, List<string>> dizionarioListe = new Dictionary<int, List<string>>()
+{
+    { 1, new List<string> { "nome", "prezzo" } },
+    { 2, new List<string> { "nome" } },
+    { 3, new List<string> { "nome", "prezzo", "quantita" } }
+};
+// aggiungo un elemento alla lista associata alla chiave 1
+dizionarioListe[1].Add("quantita");
+// posso aggiungere un elemento alla chiave 4
+dizionarioListe.Add(4, new List<string> { "nome", "prezzo", "quantita" });
+// stampo il dizionario
+foreach (var kvp in dizionarioListe)
+{
+    // qui abbiamo messo kvp per "key-value pair" che è una convenzione però possiamo usare quello che vogliamo
+    Console.WriteLine($"Chiave: {kvp.Key}, Valori: {string.Join(", ", kvp.Value)}");
+}
+// Output:
+// Chiave: 1, Valori: nome, prezzo, quantita
+// Chiave: 2, Valori: nome
+// Chiave: 3, Valori: nome, prezzo, quantita
+// Chiave: 4, Valori: nome, prezzo, quantita
+
+
+//COLLEZIONI: DIZIONARIO DI DIZIONARI
+
+// dichiaro un dizionario int Dictionary<string, string>
+Dictionary<int, Dictionary<string, string>> dizionarioDizionari = new Dictionary<int, Dictionary<string, string>>()
+{
+    { 1, new Dictionary<string, string> { { "nome", "prodotto1" }, { "prezzo", "10" } } },
+    { 2, new Dictionary<string, string> { { "nome", "prodotto2" }, { "prezzo", "20" } } },
+    { 3, new Dictionary<string, string> { { "nome", "prodotto3" }, { "prezzo", "30" } } }
+};
+// aggiungo un elemento al dizionario associato alla chiave 1
+dizionarioDizionari[1].Add("quantita", "100");
+// posso aggiungere un elemento alla chiave 4
+dizionarioDizionari.Add(4, new Dictionary<string, string> { { "nome", "prod4" }, { "prezzo", "4" }, { "quantita", "2" } } );
+// stampo il dizionario
+foreach (var kvp in dizionarioDizionari)
+{
+    Console.WriteLine($"Chiave: {kvp.Key}");
+    foreach (var kvpInterno in kvp.Value)
+    {
+        Console.WriteLine($"  Chiave interna: {kvpInterno.Key}, Valore interno: {kvpInterno.Value}");
+    }
+}
+// Output:
+// Chiave: 1
+//   Chiave interna: nome, Valore interno: prodotto1
+//   Chiave interna: prezzo, Valore interno: 10
+//   Chiave interna: quantita, Valore interno: 100
+
+
