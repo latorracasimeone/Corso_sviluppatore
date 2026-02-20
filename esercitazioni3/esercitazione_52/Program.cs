@@ -9,7 +9,8 @@ Dictionary<int, string> dizionario = new Dictionary<int, string>()
 // aggiungo un elemento al dizionario
 dizionario.Add(4, "quattro");
 // se la chiave esiste già, il valore deve essere gestito in modo da essere aggiornato
-dizionario[1] = "uno aggiornato";
+dizionario[1] = "uno aggiornato";//NON MI FUNZIONA MODIFICA CON
+//DIZIONARIO.ADD COME SCRITTO NELLE DISPENSE!!!!!!!!!!!!!
 dizionario[5] = "cinque";
 
 Console.WriteLine(dizionario.Count); // output: 3
@@ -53,3 +54,29 @@ else
 dizionario.Remove(2); // rimuove l'elemento con chiave 2
 // rimuovo l'elemento con chiave 6 (non esiste)
 dizionario.Remove(5); // non fa nulla
+
+// dichiaro un dizionario string string
+Dictionary<string, string> dizionarioString = new Dictionary<string, string>()
+{
+    { "chiave1", "valore1" },
+    { "chiave2", "valore2" },
+    { "chiave3", "valore3" }
+};
+// rimuovo l'elemento con chiave "chiave2"
+dizionarioString.Remove("chiave2"); // rimuove l'elemento con chiave "chiave2"
+
+// rimuovo tutti gli elementi dal dizionario
+dizionario.Clear(); // il dizionario è vuoto
+
+
+dizionario.Add(1, "Timone");
+dizionario.Add(2, "NOOOOOOO");
+
+Console.WriteLine("DAJEEEEEEEEEEEEEEEEEEEE");
+// modifico il valore associato alla chiave 1
+dizionario[1] = "uno modificato";
+Console.WriteLine(dizionario[1]); // output: "uno modificato"
+
+Console.WriteLine(dizionario[2]);//STAMPO ELEMENTO DEL DIZIONARIO!
+
+Console.WriteLine(dizionarioString["chiave1"]);
