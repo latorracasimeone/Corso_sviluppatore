@@ -1,4 +1,4 @@
-﻿//creo il dizionario prodotti
+﻿//creo il dizionario prodotti per ESERCITAZIONE V1 lezione 12
 using System.Diagnostics.Contracts;
 using System.Formats.Asn1;
 
@@ -19,7 +19,6 @@ while (true)
     prodotti[prodotto] = data;//aggiunge prodotto e data di scadenza nel dizionario
     DateTime oggi = DateTime.Today;
     TimeSpan mancanzaScadenza = data - oggi;
-    Console.WriteLine($"Alla scadenza del prodotto {prodotto} mancano {mancanzaScadenza.TotalDays} giorni");
     if (mancanzaScadenza.TotalDays > 3)
     {
         Console.WriteLine($"Prodotto {prodotto} ancora ampiamente utilizzabile. Mancano ancora {mancanzaScadenza.TotalDays} giorni alla scadenza.");
@@ -30,7 +29,8 @@ while (true)
     }
     else if (mancanzaScadenza.TotalDays <= 0)
     {
-        Console.WriteLine($"ATTENZIONE: il prodotto {prodotto} è scaduto da {mancanzaScadenza.TotalDays} giorni");
+        //Math.Abs() funge da VALORE ASSOLUTO per l'int fra parentesi
+        Console.WriteLine($"ATTENZIONE: il prodotto {prodotto} è scaduto da {Math.Abs(mancanzaScadenza.TotalDays)} giorni");
     }
     continue;
 }
