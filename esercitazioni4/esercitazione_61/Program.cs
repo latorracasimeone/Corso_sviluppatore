@@ -23,5 +23,5 @@ if (risultato != -1)
 }
 else
 {
-    Console.WriteLine("ERRORE: Il numero non è pari");//stampo un messaggio di errore se il risultato è -1
+    Console.WriteLine("ERRORE: Il numero non è pari, è dispari");//stampo un messaggio di errore se il risultato è -1
 }
