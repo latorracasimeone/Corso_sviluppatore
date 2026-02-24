@@ -1,4 +1,4 @@
-﻿//LEZIONE 14 Metodi Files Folder
+﻿//LEZIONE 14 Metodi Files e Folders
 
 
 // Esempio di percorso assoluto:   (quando scrivo //// significa che son barre di codice da esempio ma che non devono influire nel codice complessivo)
@@ -99,7 +99,20 @@ Console.WriteLine(info.DirectoryName); // percorso della directory che contiene 
 // Scrivere su un file
 //non è necessario riscrivere 'string path = @"test.txt";' perché la variabile 'path' è già stata dichiarata in precedenza e può essere riutilizzata, anche se il file è stato eliminato. La variabile 'path' contiene ancora il percorso del file, quindi puoi semplicemente chiamare nuovamente 'File.WriteAllText(path, "Sono Giapponese!");' per creare un nuovo file con lo stesso nome e scrivere il testo al suo interno.
 string content = "Calipari è il migliore!"; // Contenuto da scrivere nel file
-File.WriteAllText(path, content); // Scrive tutto il testo nel file, sovrascrivendo se esiste già
+////File.WriteAllText(path, content); // Scrive tutto il testo nel file, sovrascrivendo se esiste già
 // oppure
-////File.AppendAllText(path, content); // Aggiunge il testo alla fine del file, senza sovrascrivere il contenuto precedente
+File.AppendAllText(path, content); // Aggiunge il testo alla fine del file, senza sovrascrivere il contenuto precedente
+
+// Scrivere un elenco di stringhe su un file
+List<string> lines = new List<string> { "Timone", "Burri", "Sannara£" };
+File.WriteAllLines(newFileName, lines); // Scrive tutte le righe nel file, sovrascrivendo se esiste già
+// oppure
+////File.AppendAllLines(path, lines); // Aggiunge tutte le righe alla fine del file, senza sovrascrivere il contenuto precedente
+
+// Leggere un file riga per riga
+string[] linee = File.ReadAllLines(newFileName); // Legge tutte le righe del file e le restituisce come array di stringhe
+foreach (string line in linee)
+{
+    Console.WriteLine(line); // Stampa ogni riga del file
+}
 
