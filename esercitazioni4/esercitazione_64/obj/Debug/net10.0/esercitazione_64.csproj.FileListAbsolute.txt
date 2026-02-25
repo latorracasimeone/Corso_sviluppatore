@@ -1,0 +1,15 @@
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\bin\Debug\net10.0\esercitazione_64.exe
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\bin\Debug\net10.0\esercitazione_64.deps.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\bin\Debug\net10.0\esercitazione_64.runtimeconfig.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\bin\Debug\net10.0\esercitazione_64.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\bin\Debug\net10.0\esercitazione_64.pdb
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\esercitazione_64.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\esercitazione_64.AssemblyInfoInputs.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\esercitazione_64.AssemblyInfo.cs
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\esercitazione_64.csproj.CoreCompileInputs.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\esercitazione_64.sourcelink.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\esercitazione_64.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\refint\esercitazione_64.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\esercitazione_64.pdb
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\esercitazione_64.genruntimeconfig.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_64\obj\Debug\net10.0\ref\esercitazione_64.dll

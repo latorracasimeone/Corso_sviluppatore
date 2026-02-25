@@ -116,3 +116,47 @@ foreach (string line in linee)
     Console.WriteLine(line); // Stampa ogni riga del file
 }
 
+
+
+//FOLDERS
+//Creare una directory
+string dir = @"test";
+Directory.CreateDirectory(dir);
+
+
+
+// verificare se una directory esiste
+if (Directory.Exists(dir))
+{
+    Console.WriteLine("Directory exists");
+}
+
+// Eliminare una directory
+if (Directory.Exists(dir))
+{
+    Directory.Delete(dir); // Elimina la directory
+}
+else
+{
+    Console.WriteLine("La directory non esiste.");
+}
+
+//ricreazione di una directory
+Console.WriteLine("Creare una cartella?");
+string risposta = Console.ReadLine();
+if (risposta.ToLower() == "sì" || risposta.ToLower() == "si")
+{
+    Directory.CreateDirectory(dir); // Crea una directory chiamata "NuovaCartella"
+}
+else
+{
+    Console.WriteLine("Non è stata creata la cartella.");
+}
+
+// ottenere informazioni su una directory
+DirectoryInfo inf = new DirectoryInfo(dir);
+Console.WriteLine(inf.CreationTime); // data di creazione della directory
+Console.WriteLine(inf.LastWriteTime); // data dell'ultima modifica della directory
+Console.WriteLine(inf.Name); // nome della directory
+Console.WriteLine(inf.FullName); // percorso completo della directory
+
