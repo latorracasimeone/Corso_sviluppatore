@@ -160,3 +160,60 @@ Console.WriteLine(inf.LastWriteTime); // data dell'ultima modifica della directo
 Console.WriteLine(inf.Name); // nome della directory
 Console.WriteLine(inf.FullName); // percorso completo della directory
 
+// Elencare i file in una directory
+if (Directory.Exists(dir))
+{
+    string[] files = Directory.GetFiles(dir); // Ottiene un array di stringhe con i percorsi dei file nella directory
+    foreach (string file in files)
+    {
+        Console.WriteLine(file); // Stampa il percorso di ogni file
+    }
+}
+else
+{
+    Console.WriteLine("La directory non esiste.");
+}
+
+// Elencare le sottodirectory in una directory
+if (Directory.Exists(dir))
+{
+    string[] subdirs = Directory.GetDirectories(dir); // Ottiene un array di stringhe con i percorsi delle sottodirectory nella directory
+    foreach (string subdir in subdirs)
+    {
+        Console.WriteLine(subdir); // Stampa il percorso di ogni sottodirectory
+    }
+}
+else
+{
+    Console.WriteLine("La directory non esiste.");
+}
+
+
+
+if (File.Exists(path))
+{
+    using (StreamReader reader = new StreamReader(path))
+    {
+        string content1using = reader.ReadToEnd();
+        Console.WriteLine(content1using);
+    }
+    // Il file viene chiuso automaticamente al termine del blocco using
+}
+else
+{
+    Console.WriteLine("Il file non esiste.");
+}
+
+
+try
+{    using (StreamReader reader = new StreamReader(path))
+    {
+        string content2using = reader.ReadToEnd();
+        Console.WriteLine(content2using);
+    }
+}
+catch (IOException ex)
+{
+    Console.WriteLine("Il file è in uso da un altro processo. Dettagli: " + ex.Message);
+}
+
