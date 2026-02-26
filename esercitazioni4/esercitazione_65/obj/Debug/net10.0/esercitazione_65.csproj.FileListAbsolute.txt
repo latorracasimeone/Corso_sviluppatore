@@ -1,0 +1,6 @@
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_65\obj\Debug\net10.0\esercitazione_65.csproj.AssemblyReference.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_65\obj\Debug\net10.0\esercitazione_65.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_65\obj\Debug\net10.0\esercitazione_65.AssemblyInfoInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_65\obj\Debug\net10.0\esercitazione_65.AssemblyInfo.cs
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_65\obj\Debug\net10.0\esercitazione_65.csproj.CoreCompileInputs.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_65\obj\Debug\net10.0\esercitazione_65.sourcelink.json

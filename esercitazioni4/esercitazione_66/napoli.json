@@ -1,0 +1,11 @@
+{
+  "nome": "Cannavacciuolo",
+  "eta": 45,
+  "presente": true,
+  "interessi": [
+    "mangiare",
+    "pattoni",
+    "cucina",
+    "napoli"
+  ]
+}

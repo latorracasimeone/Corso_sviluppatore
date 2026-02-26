@@ -1,4 +1,6 @@
-﻿Console.WriteLine("Scrivi il nome di una cartella contenuta in Data:");
+﻿//esercitazione copiata
+
+Console.WriteLine("Scrivi il nome di una cartella contenuta in Data:");
 string selectedFolder = Console.ReadLine();
 
 string dataPath = Path.Combine(Directory.GetCurrentDirectory(), "Data");
