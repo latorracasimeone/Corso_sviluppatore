@@ -13,3 +13,12 @@ C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\eserc
 C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.pdb
 C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.genruntimeconfig.cache
 C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\ref\esercitazione_73.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.csproj.AssemblyReference.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.AssemblyInfoInputs.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.AssemblyInfo.cs
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.csproj.CoreCompileInputs.cache
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.sourcelink.json
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\refint\esercitazione_73.dll
+C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.pdb
