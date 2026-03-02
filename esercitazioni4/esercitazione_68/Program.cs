@@ -13,7 +13,8 @@ string nome = Console.ReadLine();
 Console.Write("Inserisca l'età: ");
 int eta = int.Parse(Console.ReadLine());
 Console.Write("Presenza (true/false): ");
-bool presenza = Console.ReadLine();
+string presente = Console.ReadLine();
+bool presenza = bool.Parse(presente);
 
 var partecipante = new
 { //es: '"nome": nome,' nel .json, quando lo crei è '"nome" = nome,'

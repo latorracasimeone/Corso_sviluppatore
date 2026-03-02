@@ -31,6 +31,7 @@ foreach (var contatto in contatti)
     }
 }
 
+
 //le classi vanno in fondo (come le funzioni???)
 public class Identificatore
 {
