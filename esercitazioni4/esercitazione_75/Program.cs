@@ -5,7 +5,7 @@ var lastIdController = new LastIdController();
 int nextId = lastIdController.GetNextId();
 Console.WriteLine($"Il nuovo ID è: {nextId}");
 
-// 1. LA CLASSE MANCANTE
+
 public class LastId 
 {
     public int Id { get; set; }
