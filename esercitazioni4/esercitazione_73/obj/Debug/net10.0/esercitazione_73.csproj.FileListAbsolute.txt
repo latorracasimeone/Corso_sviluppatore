@@ -22,3 +22,6 @@ C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\eser
 C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.dll
 C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\refint\esercitazione_73.dll
 C:\Users\wahab\Desktop\Corso_sviluppatore\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.pdb
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercitazione_73.csproj.AssemblyReference.cache
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_73\bin\Debug\net10.0\Newtonsoft.Json.dll
+C:\Users\sviluppatore\Documents\projects\Corso_sviluppatore\esercitazioni4\esercitazione_73\obj\Debug\net10.0\esercita.BE4A377B.Up2Date

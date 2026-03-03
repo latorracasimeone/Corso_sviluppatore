@@ -1,6 +1,13 @@
 ﻿//LEZIONE 17 CLASSI CONTATTO
 using Newtonsoft.Json;
 
+
+// devo creare un'istanza della classe LastIdController per poter utilizzare il metodo GetNextId, che è un metodo di istanza
+var lastIdController = new LastIdController();
+int nextId = lastIdController.GetNextId();
+Console.WriteLine($"Il prossimo ID è: {nextId}");
+
+
 // indico public per rendere la classe accessibile da altre parti del programma
 public class LastIdController
 {
@@ -46,7 +53,6 @@ public class LastId
 {
     public int Id { get; set; }
 }
-
 
 
 
@@ -177,6 +183,7 @@ public class ContattiController
 
 
 
+
 public class Contatto
 {
     public int Id { get; set; }
@@ -187,3 +194,4 @@ public class Contatto
     // proprieta lista di interessi
     public List<string> Interessi { get; set; } = new();
 }
+
