@@ -137,3 +137,7 @@ using RubricaTelefonica.Controllers;
 using RubricaTelefonica.Models;
 
 //inserire class program...
+
+
+
+//i namespaces possono essere utilizzati sia con le parentesi graffe che con il ; 
