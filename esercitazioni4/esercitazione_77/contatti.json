@@ -1,0 +1,12 @@
+{
+  "Id": 1,
+  "Nome": "Simeone",
+  "Cognome": "Pippo",
+  "Telefono": "800900313",
+  "Presente": true,
+  "Interessi": [
+    "Junior di DragonBall",
+    "Defilippis",
+    "Espresso Timonato"
+  ]
+}

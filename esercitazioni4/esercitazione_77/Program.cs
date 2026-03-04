@@ -1,30 +1,55 @@
-﻿//LEZIONE 20 DECORATORS
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
-//I decoratori sono un modo di modificare il comportamento di una classe o di un metodo senza modificare il codice originale.
-//In C#, i decoratori sono implementati utilizzando gli attributi. Per usarli:
-using Newtonsoft.Json;
+// devo creare un'istanza della classe LastIdController per poter utilizzare il metodo GetNextId, che è un metodo di ISTANZA!!!!!!
+var lastIdController = new LastIdController();
+int nextId = lastIdController.GetNextId();
+Console.WriteLine($"Il nuovo ID è: {nextId}");
 
-//Tramite i decorators possiamo validare i dati di input di una classe, ad esempio in un modello di dati, o in un controller. Ad esempio le classi della rubrica, cioè:
-public class LastId
+
+public class LastId 
 {
+    [Range(0, int.MaxValue, ErrrorMessage = "L'Id deve essere un numero intero positivo")]
     public int Id { get; set; }
 }
-public class Contatto
+
+public static class JsonHelper 
 {
-    public int Id { get; set; }
-    public string Nome { get; set; }
-    public string Cognome { get; set; }
-    public string Email { get; set; }
-    public string Telefono { get; set; }
-    public List<string> Interessi { get; set; }
+    public static void Salva(string path, object obj)
+    {
+        string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+        File.WriteAllText(path, json);
+    }
+
+    public static T Leggi<T>(string path)
+    {
+        // ATTENZIONE: Qui avevi un errore logico! 
+        // Se il file ESISTE, devi leggerlo, non ritornare default.
+        if (!File.Exists(path)) 
+        {
+            return default(T);
+        }
+        string json = File.ReadAllText(path);
+        return JsonConvert.DeserializeObject<T>(json);
+    }
 }
 
-//nella classe LastId, ad esempio, possiamo usare un decorator per accettare il dato solamente se è un intero positivo
-public class lastId
+public class LastIdController 
 {
-    [Range(0, int.MaxValue, ErrorMessage ="L'Id dev'essere un numero naturale intero positivo.")]
-    public int Id { get; set; }
+    private readonly string path = "lastId.json";
+    private LastId lastIdObj;
+
+    public LastIdController()
+    {
+        // Sintassi corretta per l'inizializzazione: { Id = 0 }
+        lastIdObj = JsonHelper.Leggi<LastId>(path) ?? new LastId { Id = 0 };
+    }
+
+    public int GetNextId()
+    {
+        lastIdObj.Id++;
+        JsonHelper.Salva(path, lastIdObj);
+        return lastIdObj.Id;
+    }
 }
-//questo significa che la classe non accetterà valori negativi per l'ID e restituirà un messaggio di errore se si tenta di assegnare un valore non valido.
-//il messaggio di errore può essere stampato in console così:
 
