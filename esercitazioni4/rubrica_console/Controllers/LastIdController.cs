@@ -28,4 +28,4 @@ public class LastIdController
         string json = JsonConvert.SerializeObject(lastIdObj, Formatting.Indented);
         File.WriteAllText(path, json);
     }
-}
+}  
