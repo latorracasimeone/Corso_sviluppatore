@@ -13,3 +13,4 @@ C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubri
 C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubrica_console\obj\Debug\net10.0\rubrica_console.pdb
 C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubrica_console\obj\Debug\net10.0\rubrica_console.genruntimeconfig.cache
 C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubrica_console\obj\Debug\net10.0\ref\rubrica_console.dll
+C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubrica_console\obj\Debug\net10.0\rubrica_console.csproj.AssemblyReference.cache
