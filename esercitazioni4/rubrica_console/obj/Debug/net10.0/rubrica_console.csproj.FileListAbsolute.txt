@@ -14,3 +14,5 @@ C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubri
 C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubrica_console\obj\Debug\net10.0\rubrica_console.genruntimeconfig.cache
 C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubrica_console\obj\Debug\net10.0\ref\rubrica_console.dll
 C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubrica_console\obj\Debug\net10.0\rubrica_console.csproj.AssemblyReference.cache
+C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubrica_console\bin\Debug\net10.0\Newtonsoft.Json.dll
+C:\Users\sviluppatore\Documents\Projects\Corso_sviluppatore\esercitazioni4\rubrica_console\obj\Debug\net10.0\rubrica_.12A01ECF.Up2Date

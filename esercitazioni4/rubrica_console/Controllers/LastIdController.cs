@@ -8,13 +8,13 @@ public class LastIdController
     {
         if (!File.Exists(path))
         {
-            lastIdObj = new LastId { IdentifierCase = 0 };
+            lastIdObj = new LastId { Id = 0 };
             Salva();
         }
         else
         {
             string json = File.ReadAllText(path);
-            lastIdObj = JsonConvert.DeserializeObject<LastId>(json) ?? new LastId { IdentifierCase = 0 };
+            lastIdObj = JsonConvert.DeserializeObject<LastId>(json) ?? new LastId { Id = 0 };
         }
     }
     public int GetNextId()
