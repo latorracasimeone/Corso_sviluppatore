@@ -19,8 +19,7 @@ Console.WriteLine($"Il nuovo ID è: {nextId}");
 /// 
 /// 
 /// 
-/// 
-/// 
+
 /// 
 /// 
 /// 
