@@ -9,16 +9,7 @@ public class ContattiController
     public ContattiController()
     {
         lastIdController = new LastIdController();
-        if(!File.Exists(path))
-        {
-            contatti = new List<Contatto>();
-            Salva();
-        }
-        else
-        {
-            string json = File.ReadAllText(path);
-            contatti = JsonConvert.DeserializeObject<List<Contatto>>(json) ?? new List<Contatto>();
-        }
+        contatti = JsonHelper.Leggi<List<Contatto>>(path) ?? new List<Contatto>();
             
     }
 
@@ -29,8 +20,7 @@ public class ContattiController
 
     private void Salva()
     {
-        string json = JsonConvert.SerializeObject(contatti, Formatting.Indented);
-        File.WriteAllText(path, json);
+        JsonHelper.Salva(path, contatti);
     }
 
     public void AggiungiContatto (int id, string nome, string cognome, string email, string telefono, bool presente, List<string> interessi )

@@ -6,16 +6,7 @@ public class LastIdController
 
     public LastIdController()
     {
-        if (!File.Exists(path))
-        {
-            lastIdObj = new LastId { Id = 0 };
-            Salva();
-        }
-        else
-        {
-            string json = File.ReadAllText(path);
-            lastIdObj = JsonConvert.DeserializeObject<LastId>(json) ?? new LastId { Id = 0 };
-        }
+        lastIdObj = JsonHelper.Leggi<LastId>(path) ?? new LastId { Id = 0 };
     }
     public int GetNextId()
     {

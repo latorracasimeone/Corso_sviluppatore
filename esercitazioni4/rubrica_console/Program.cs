@@ -18,15 +18,19 @@ Console.WriteLine($"Il nuovo ID è: {nextId}");
 /// -utilizzo di una classe statica JSONHelper per semplificare la lettura e scrittura dei file Json
 /// 
 /// 
-/// 
-
-/// 
-/// 
-/// 
-/// 
-/// 
-/// 
+///
 /// -validazione dei dati di input tramite decoratori
+/// 
+/// 
+/// 
+/// 
+/// 
+/// 
+/// 
+/// 
+/// 
+/// 
+/// 
 /// Il focus di questo programma è sull'organizzazione del codice e sull'utilizzo dei decoratori per validare i dati di input
 /// La suddivisione completa delle responsabilità delleclassi modello, controller e helper permette di mantenere il codice pulito, modulare e facilmente manutentibile
 /// 
