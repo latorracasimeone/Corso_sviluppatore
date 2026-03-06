@@ -1,5 +1,3 @@
-using Newtonsoft.Json;
-
 public class ContattiController
 {
     private readonly string path = "contatti.json";

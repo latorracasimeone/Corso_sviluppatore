@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 public class Contatto
 {
     public int Id { get; set; }

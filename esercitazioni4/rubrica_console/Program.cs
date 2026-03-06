@@ -27,8 +27,9 @@ class Program
         Console.WriteLine("Il contatto è presente? (s/n):");
         bool presente = Console.ReadLine().ToLower() == "s";
         Console.WriteLine("Inserisci gli interessi del contatto (separati da virgola):");
-        List<string> interessi = Console.ReadLine().Split(',').Select(i => i.Trim()).ToList();
-
+        List<string> interessi = Console.ReadLine().Split(", ");//possiamo effettuare lo splitto direttamente dopo il ReadLine con .Split e fra parentesi il carattere divisore desiderato  
+        ContattiController contattiController = new ContattiController();
+        
     }
 }
 

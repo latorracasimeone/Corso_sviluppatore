@@ -4,7 +4,7 @@ Dictionary<string, string> rubrica = new Dictionary<string, string>();
 
 while (true)
 {
-    Console.WriteLine("Inserisci un nome (oppure, digitare: 'exit' per uscire, 'canc' per eliminare un contatto, 'mod' per modificarlo):");
+    Console.WriteLine("Inserisci un comando: \n'exit' per uscire, \n'agg' per aggiungere contatti, \n'canc' per eliminare un contatto, \n'mod' per modificarlo \n'stamp' per visionare i contatti esistenti:");
     string nome = Console.ReadLine();
 
     if (nome.ToLower() == "exit")// esce dal ciclo e termina il programma se l'utente digita "exit"
@@ -13,46 +13,19 @@ while (true)
     }
     else if (nome.ToLower() == "canc")// se l'utente digita "canc", mostra i contatti attuali e chiede quale contatto eliminare
     {
-        Console.WriteLine("Contatti attuali:");
-        foreach (var contatto in rubrica)// scorro tutti i contatti nella rubrica prima di chiedere quale contatto eliminare
-        {
-            Console.WriteLine($"Nome: {contatto.Key}, Numero: {contatto.Value}");
-        }
+        Stampa();
         Console.WriteLine("Inserisci il nome del contatto da eliminare:");
         string nomeDaEliminare = Console.ReadLine();
-
-        if (rubrica.Remove(nomeDaEliminare))
-        {
-            Console.WriteLine($"Contatto '{nomeDaEliminare}' eliminato.");
-        }
-        else
-        {
-            Console.WriteLine($"ERRORE: Contatto '{nomeDaEliminare}' non trovato.");
-        }
-        continue; 
+        Elimina(nomeDaEliminare);
+        continue;
         // Torna all'inizio del ciclo per chiedere un nuovo nome
     }
     else if (nome.ToLower() == "mod")// se l'utente digita "mod", mostra i contatti attuali e chiede quale contatto modificare
     {
-        Console.WriteLine("Contatti attuali:");
-        foreach (var contatto in rubrica)
-        {
-            Console.WriteLine($"Nome: {contatto.Key}, Numero: {contatto.Value}");
-        }
+        Stampa();
         Console.WriteLine("Inserisci il nome del contatto da modificare:");
         string nomeDaModificare = Console.ReadLine();
-
-        if (rubrica.ContainsKey(nomeDaModificare))
-        {
-            Console.WriteLine("Inserisci il nuovo numero di telefono:");
-            string nuovoNumero = Console.ReadLine();
-            rubrica[nomeDaModificare] = nuovoNumero;
-            Console.WriteLine($"Contatto '{nomeDaModificare}' modificato con il nuovo numero '{nuovoNumero}'.");
-        }
-        else
-        {
-            Console.WriteLine($"ERRORE: Contatto '{nomeDaModificare}' non trovato.");
-        }
+        Modifica(nomeDaModificare);
         continue; // Torna all'inizio del ciclo per chiedere un nuovo nome
     }
     else if (rubrica.ContainsKey(nome))// se il nome inserito esiste già nella rubrica, chiede se si vuole sovrascrivere il numero esistente
@@ -72,7 +45,17 @@ while (true)
             Console.WriteLine($"Contatto '{nome}' aggiornato con il nuovo numero '{nuovoNumero}'.");
             continue; // Torna all'inizio del ciclo per chiedere un nuovo nome
         }
-        
+
+    }
+    else if (nome.ToLower() == "stamp")
+    {
+        Stampa();
+        continue;
+    }
+    else if (nome.ToLower() == "agg")
+    {
+        Aggiungi();
+        continue;
     }
 
     Console.WriteLine("Inserisci un numero di telefono:");
@@ -85,4 +68,58 @@ Console.WriteLine("Rubrica finale:");
 foreach (var contatto in rubrica)// scorro tutti i contatti nella rubrica
 {
     Console.WriteLine($"Nome: {contatto.Key}, Numero: {contatto.Value}");
+}
+
+//qui inserirò le funzioni
+void Stampa()
+{
+    Console.WriteLine("Contatti attuali:");
+    foreach (var contatto in rubrica)// scorro tutti i contatti nella rubrica prima di chiedere quale contatto eliminare
+    {
+        Console.WriteLine($"Nome: {contatto.Key}, Numero: {contatto.Value}");
+    }
+}
+
+void Elimina(string nome)
+{
+    if (rubrica.Remove(nome))
+        {
+            Console.WriteLine($"Contatto '{nome}' eliminato.");
+        }
+        else
+        {
+            Console.WriteLine($"ERRORE: Contatto '{nome}' non trovato.");
+        }
+}
+
+void Modifica(string nome)
+{
+    if (rubrica.ContainsKey(nome))
+        {
+            Console.WriteLine("Inserisci il nuovo numero di telefono:");
+            string nuovoNumero = Console.ReadLine();
+            rubrica[nome] = nuovoNumero;
+            Console.WriteLine($"Contatto '{nome}' modificato con il nuovo numero '{nuovoNumero}'.");
+        }
+        else
+        {
+            Console.WriteLine($"ERRORE: Contatto '{nome}' non trovato.");
+        }
+}
+
+void Aggiungi()
+{
+    while (true)
+    {
+        Console.WriteLine("Inserire un nome:");
+        string nome = Console.ReadLine();
+        Console.WriteLine("Insererire il numero di telefono:");
+        string telefono = Console.ReadLine();
+        rubrica.Add(nome, telefono);
+        Console.WriteLine("Vuoi aggiungere un altro contatto? (N per uscire)");
+        if (Console.ReadLine() == "n")
+        {
+            break;//esce dal ciclo della funzione Aggiungi();
+        }
+    }    
 }
