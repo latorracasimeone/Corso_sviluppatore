@@ -116,7 +116,7 @@ void Aggiungi()
         Console.WriteLine("Insererire il numero di telefono:");
         string telefono = Console.ReadLine();
         rubrica.Add(nome, telefono);
-        Console.WriteLine("Vuoi aggiungere un altro contatto? (N per uscire)");
+        Console.WriteLine("Vuoi aggiungere un altro contatto? (n per uscire)");
         if (Console.ReadLine() == "n")
         {
             break;//esce dal ciclo della funzione Aggiungi();
