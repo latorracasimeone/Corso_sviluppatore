@@ -26,7 +26,7 @@ class Program //questo serve per gestire l'interazione con l'utente, chiedendo i
 
             if (nome.ToLower() == "exit")
             {
-                rubricaController.StampaRubrica();
+                rubricaController.StampaRubrica(); //funzione per stampare la rubrica prima di uscire dal programma, in modo da mostrare all'utente lo stato finale della rubrica dopo tutte le operazioni eseguite durante l'esecuzione del programma
                 break;
             }
             else if (nome.ToLower() == "canc")
