@@ -63,7 +63,7 @@ I controller sono classi che ereditano da ControllerBase e sono decorati con l'a
 per indicare il tipo di richiesta che gestisce.
 
 Controller base:
-```bash
+```c#
 [ApiController]
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
@@ -87,7 +87,7 @@ Di solito le richieste vengono inoltrate attraverso comandi CURL o clint HTTP co
 I modelli rappresentano le entità del dominio e sono mappati a tabelle del database.
 
 Ad esempio, un modello Contatto potrebbe essere:
-```bash
+```c#
 public class Contatto
 {
     public int Id { get; set; }
@@ -104,7 +104,7 @@ quando usiamo Entity Framework Core, diventano tabelle.
 
 Servono per non esporre direttamente i models.
 Ad esempio, potremmo avere un ContattoDto che contiene solo alcune proprietà:
-```bash
+```c#
 public class ContattoDto
 {
     public int Id { get; set; }
@@ -118,7 +118,7 @@ Qui mettiamo la logica di business, tipo le operazioni CRUD e altre logiche comp
 
 Ad esempio, un ContattoService potrebbe avere metodi come:
 ` (INSERIRE NELL'APP) `
-```bash
+```c#
 public class ContattoService
 {
     public List<Contatto>> GetAll()
