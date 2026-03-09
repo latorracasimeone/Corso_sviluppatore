@@ -27,7 +27,7 @@ Rubrica.Api
 └─ appsettings.json
 ```
 
-##Cartelle principali:
+## Cartelle principali:
 - Controllers: Contiene i controller che gestiscono le richieste HTTP e restituiscono risposte.
 
 - Models: Contiene le classi che rappresentano i dati e le entità del Dominio.
@@ -132,3 +132,39 @@ public class ContattoService
 }
 ```
 Il service viene poi iniettato nei controller per essere usato negli endpoint(?).
+
+## Repositories
+
+Accesso ai dati/database.
+Ad esempio, un ContattoRepository potrebbe usare Entity Framework per interagire con il database:
+```c#
+public class ContattoRepository
+{
+    private readonly ApplicationDbContext _context; 
+    //mettiamo l'underscore prima dal costruttore quando è privato, mettiamo solo uno spazio prima quando è pubblica (??)
+    public ContattoRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+    public List<Contatto> GetAll()
+    {
+        return _context.Contatti.ToList();
+    }
+}
+```
+separa database dalla logica.
+
+## Data
+
+Contiene il DbContext (è qualcosa che appartiene già all'applicazione ma lo vado a sovvrascrivere facendo un override dicendogli qualcosa ??).
+
+Ad esempio, ApplicationDbContext potrebbe essere:
+```c#
+public class AppDbContext : DbContext
+{
+    public DbSet<User> Users { get; set; }
+}
+```
+
+il DbContext è la classe principale di Entity Framework che gestisce la connessione al database e le operazioni CRUD che vengono eseguite sulle entità dai services dell'applicazione.
+
