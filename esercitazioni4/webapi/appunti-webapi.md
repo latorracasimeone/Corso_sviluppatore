@@ -34,8 +34,8 @@ Rubrica.Api
 
 `CRUD sono i metodi di creazione, lettura, modifica ed eliminazione`
 
--Data: Contiene il contesto del database (il contesto del database contiene i percorsi per pescare i driver, NOI utilizziamo driver sqlight) e le classi di accesso dati.
--Dtos: Contiene le classi Data Transfer Object, che sono altri modelli specifici per il trasferimento dei dati tra client e server, spesso usati per evitare di esporre direttamente le entità del dominio. (cosa significherebbe esporre tutti i modelli???????)
+- Data: Contiene il contesto del database (il contesto del database contiene i percorsi per pescare i driver, NOI utilizziamo driver sqlight) e le classi di accesso dati.
+- Dtos: Contiene le classi Data Transfer Object, che sono altri modelli specifici per il trasferimento dei dati tra client e server, spesso usati per evitare di esporre direttamente le entità del dominio. (cosa significherebbe esporre tutti i modelli???????)
 
 -Migrations: Contiene le migrazioni di Entity Framework (?) per gestire le modifiche al database quando viene modificato un modello.
 - Middleware: Contiene componenti middleware personalizzati per gestire richieste e risposte HTTP, ad esempio per la gestione degli errori o l'autenticazione.
