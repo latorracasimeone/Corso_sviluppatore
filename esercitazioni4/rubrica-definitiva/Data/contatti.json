@@ -7,17 +7,36 @@
     "Interessi": null
   },
   {
-    "Id": 4,
-    "Nome": "fff",
-    "Numero": "2357",
-    "Presente": false,
-    "Interessi": null
-  },
-  {
     "Id": 5,
     "Nome": "fabio",
     "Numero": "567",
     "Presente": false,
     "Interessi": null
+  },
+  {
+    "Id": 0,
+    "Nome": "Essio Anna",
+    "Numero": "10091999",
+    "Presente": true,
+    "Interessi": [
+      "Azzo",
+      "Exy",
+      "t",
+      "Sannannarannannara",
+      "titititititi"
+    ]
+  },
+  {
+    "Id": 1,
+    "Nome": "Brancatisano",
+    "Numero": "0000000000000000",
+    "Presente": false,
+    "Interessi": [
+      "dottorato",
+      "figa",
+      "soldi",
+      "casa",
+      "produttore musicale"
+    ]
   }
 ]

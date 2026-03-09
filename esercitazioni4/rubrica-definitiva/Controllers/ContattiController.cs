@@ -7,12 +7,12 @@ public class ContattiController
     {
         lastIdController = new LastIdController();
         contatti = new List<Contatto>();
-        contatti = JSONHelper.LeggiContatti() ?? new List<Contatto>();
+        contatti = JSONHelper.LeggiContatti() ?? new List<Contatto>(); //questo serve per leggere i dati dei contatti dal file JSON tramite il JSONHelper, e se il file non esiste o è vuoto, inizializzare la contatti come una lista vuota. Cosi via dicendo per la lettura del lastId.
     }
 
-    public void AggiungiContatto(string nome, string numero, bool presente, List<string> Interessi) //questo serve per aggiungere un nuovo contatto alla contatti, incrementando il lastIdController e salvando i dati aggiornati nei file JSON tramite il JSONHelper. Cosi via dicendo per le altre funzioni di eliminazione, modifica e stampa della contatti
+    public void AggiungiContatto(string nome, string numero, bool presente, List<string> interessi) //questo serve per aggiungere un nuovo contatto alla contatti, incrementando il lastIdController e salvando i dati aggiornati nei file JSON tramite il JSONHelper. Cosi via dicendo per le altre funzioni di eliminazione, modifica e stampa della contatti
     {
-        Contatto nuovoContatto = new Contatto { Id = ++lastIdController, Nome = nome, Numero = numero, Interessi = interessi };
+        Contatto nuovoContatto = new Contatto { Id = lastIdController.GetNextId(), Nome = nome, Numero = numero, Presente = presente, Interessi = interessi };
         contatti.Add(nuovoContatto);
         JSONHelper.ScriviContatti(contatti);
     }
@@ -33,7 +33,7 @@ public class ContattiController
 
     public void ModificaContatto(int id, string nome, string numero, bool presente, List<string> interessi )
     {
-        Contatto contattoDaModificare = contatti.FirstOrDefault(c => c.Id == id); //
+        Contatto contattoDaModificare = contatti.FirstOrDefault(c => c.Id == id); //questo serve per trovare il contatto da modificare nella contatti in base all'ID fornito, e se trovato, aggiornare i suoi dati con i nuovi valori forniti e salvare i dati aggiornati nei file JSON tramite il JSONHelper. Se il contatto non viene trovato, viene stampato un messaggio di errore. Cosi via dicendo per la modifica degli interessi del contatto.
         if (contattoDaModificare != null)
         {
             contattoDaModificare.Nome = nome;
@@ -62,7 +62,7 @@ public class ContattiController
         Console.WriteLine("Rubrica attuale:");
         foreach (var contatto in contatti)
         {
-            Console.WriteLine($"ID: {contatto.Id}, Nome: {contatto.Nome}, Numero: {contatto.Numero}");
+            Console.WriteLine($"ID: {contatto.Id}, Nome: {contatto.Nome}, Numero: {contatto.Numero}, Presenza: {contatto.Presente}");
         }
     }
 }

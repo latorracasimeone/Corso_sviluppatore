@@ -56,7 +56,7 @@ class Program //questo serve per gestire l'interazione con l'utente, chiedendo i
                     Console.WriteLine("Inserisci true o false per la presenza:");
                     bool presenza = bool.Parse(Console.ReadLine());
                     Console.WriteLine("Inserisci gli interessi del contatto:");
-                    List<string> interessi = Console.ReadLine().Split(", ");
+                    List<string> interessi = Console.ReadLine().Split(", ").ToList(); //questo serve per leggere gli interessi del contatto come una stringa separata da virgole, e poi convertirla in una lista di stringhe utilizzando il metodo Split per dividere la stringa in base alla virgola e al successivo spazio, e il metodo ToList per convertire l'array risultante in una lista. Cosi via dicendo per la modifica degli interessi del contatto.
                     contattoController.ModificaContatto(idDaModificare, nuovoNome, nuovoNumero, presenza, interessi); //MODIFICAAAAAAAAAAAAAA
                 }
                 else
@@ -78,7 +78,11 @@ class Program //questo serve per gestire l'interazione con l'utente, chiedendo i
                     string nomeDaAggiungere = Console.ReadLine();
                     Console.WriteLine("Inserisci il numero di telefono:");
                     string numero = Console.ReadLine();
-                    contattoController.AggiungiContatto(nomeDaAggiungere, numero);
+                    Console.WriteLine("Il contatto è presente? (true/false):");
+                    bool presente = bool.Parse(Console.ReadLine());//questo serve per leggere la presenza del contatto come una stringa "true" o "false", e poi convertirla in un valore booleano utilizzando il metodo bool.Parse. Cosi via dicendo per la modifica della presenza del contatto.
+                    Console.WriteLine("Inserisci gli interessi del contatto (separati da virgola):");
+                    List<string> interessi = Console.ReadLine().Split(", ").ToList(); //questo serve per leggere gli interessi del contatto da aggiungere come una stringa separata da virgole, e poi convertirla in una lista di stringhe utilizzando il metodo Split per dividere la stringa in base alla virgola e al successivo spazio, e il metodo ToList per convertire l'array risultante in una lista. Cosi via dicendo per la modifica degli interessi del contatto.
+                    contattoController.AggiungiContatto(nomeDaAggiungere, numero, presente, interessi);
                     Console.WriteLine("Contatto aggiunto. Vuoi aggiungere un altro contatto? (n per uscire)");
                     if (Console.ReadLine().ToLower() == "n") //ToLower perché vogliamo accettare sia "n" che "N" come risposta per uscire dal ciclo di aggiunta dei contatti
                     {
