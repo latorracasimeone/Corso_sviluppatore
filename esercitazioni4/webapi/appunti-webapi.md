@@ -12,19 +12,19 @@ dotnet new webapi -o "Rubrica.Api"
 
 ```bash
 Rubrica.Api
-├ Controllers
-├ Models
-├ Services
-├ Repositories
-├ Data
-├ Dtos
-├ Migrations
-├ Middleware
-├ Helpers
-├ Properties
-│└ launchSettings.json
-├ Program.cs
-└ appsettings.json
+├─ Controllers
+├─ Models
+├─ Services
+├─ Repositories
+├─ Data
+├─ Dtos
+├─ Migrations
+├─ Middleware
+├─ Helpers
+├─ Properties
+│  └─ launchSettings.json
+├─ Program.cs
+└─ appsettings.json
 ```
 
 ##Cartelle principali:
