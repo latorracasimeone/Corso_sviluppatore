@@ -16,7 +16,7 @@ class Program //questo serve per gestire l'interazione con l'utente, chiedendo i
 {
     static void Main(string[] args) //questo è il modo FISSO di creare il Main.
     {
-        RubricaController rubricaController = new RubricaController();
+        ContattiController contattoController = new ContattiController();
         LastIdController lastIdController = new LastIdController();
 
         while (true)
@@ -26,16 +26,16 @@ class Program //questo serve per gestire l'interazione con l'utente, chiedendo i
 
             if (nome.ToLower() == "exit")
             {
-                rubricaController.StampaRubrica(); //funzione per stampare la rubrica prima di uscire dal programma, in modo da mostrare all'utente lo stato finale della rubrica dopo tutte le operazioni eseguite durante l'esecuzione del programma
+                contattoController.StampaRubrica(); //funzione per stampare la rubrica prima di uscire dal programma, in modo da mostrare all'utente lo stato finale della rubrica dopo tutte le operazioni eseguite durante l'esecuzione del programma
                 break;
             }
             else if (nome.ToLower() == "canc")
             {
-                rubricaController.StampaRubrica();
+                contattoController.StampaRubrica();
                 Console.WriteLine("Inserisci l'ID del contatto da eliminare:");
                 if (int.TryParse(Console.ReadLine(), out int idDaEliminare))
                 {
-                    rubricaController.EliminaContatto(idDaEliminare);
+                    contattoController.EliminaContatto(idDaEliminare);
                 }
                 else
                 {
@@ -45,7 +45,7 @@ class Program //questo serve per gestire l'interazione con l'utente, chiedendo i
             }
             else if (nome.ToLower() == "mod")
             {
-                rubricaController.StampaRubrica();
+                contattoController.StampaRubrica();
                 Console.WriteLine("Inserisci l'ID del contatto da modificare:");
                 if (int.TryParse(Console.ReadLine(), out int idDaModificare))
                 {
@@ -53,7 +53,11 @@ class Program //questo serve per gestire l'interazione con l'utente, chiedendo i
                     string nuovoNome = Console.ReadLine();
                     Console.WriteLine("Inserisci il nuovo numero di telefono:");
                     string nuovoNumero = Console.ReadLine();
-                    rubricaController.ModificaContatto(idDaModificare, nuovoNome, nuovoNumero);
+                    Console.WriteLine("Inserisci true o false per la presenza:");
+                    bool presenza = bool.Parse(Console.ReadLine());
+                    Console.WriteLine("Inserisci gli interessi del contatto:");
+                    List<string> interessi = Console.ReadLine().Split(", ");
+                    contattoController.ModificaContatto(idDaModificare, nuovoNome, nuovoNumero, presenza, interessi); //MODIFICAAAAAAAAAAAAAA
                 }
                 else
                 {
@@ -63,7 +67,7 @@ class Program //questo serve per gestire l'interazione con l'utente, chiedendo i
             }
             else if (nome.ToLower() == "stamp")
             {
-                rubricaController.StampaRubrica();
+                contattoController.StampaRubrica();
                 continue; // Torna all'inizio del ciclo per chiedere un nuovo comando
             }
             else if (nome.ToLower() == "agg")
@@ -74,7 +78,7 @@ class Program //questo serve per gestire l'interazione con l'utente, chiedendo i
                     string nomeDaAggiungere = Console.ReadLine();
                     Console.WriteLine("Inserisci il numero di telefono:");
                     string numero = Console.ReadLine();
-                    rubricaController.AggiungiContatto(nomeDaAggiungere, numero);
+                    contattoController.AggiungiContatto(nomeDaAggiungere, numero);
                     Console.WriteLine("Contatto aggiunto. Vuoi aggiungere un altro contatto? (n per uscire)");
                     if (Console.ReadLine().ToLower() == "n") //ToLower perché vogliamo accettare sia "n" che "N" come risposta per uscire dal ciclo di aggiunta dei contatti
                     {

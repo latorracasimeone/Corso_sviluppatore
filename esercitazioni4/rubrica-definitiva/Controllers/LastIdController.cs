@@ -9,7 +9,7 @@ public class LastIdController //questo serve per gestire la logica di business r
 
     public int GetNextId()
     {
-        return ++lastId;
+        return lastId++;
     }
 
     public void SaveLastId() //questo serve per salvare l'ultimo ID utilizzato nel file JSON tramite il JSONHelper

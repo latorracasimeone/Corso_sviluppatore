@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 2,
+    "Nome": "s",
+    "Numero": "2",
+    "Presente": false,
+    "Interessi": null
+  },
+  {
+    "Id": 4,
+    "Nome": "fff",
+    "Numero": "2357",
+    "Presente": false,
+    "Interessi": null
+  },
+  {
+    "Id": 5,
+    "Nome": "fabio",
+    "Numero": "567",
+    "Presente": false,
+    "Interessi": null
+  }
+]

@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 public static class JSONHelper
 {
-    private static string contattiFilePath = "contatti.json"; //questo serve per definire il percorso del file JSON che conterrà i dati dei contatti e del lastId, permettendo di leggere e scrivere i dati in modo semplice e centralizzato
-    private static string lastIdFilePath = "lastId.json";
+    private static string contattiFilePath = "Data/contatti.json"; //questo serve per definire il percorso del file JSON che conterrà i dati dei contatti e del lastId, permettendo di leggere e scrivere i dati in modo semplice e centralizzato
+    private static string lastIdFilePath = "Data/lastId.json";
 
     public static List<Contatto> LeggiContatti() //questo serve per leggere i dati dei contatti dal file JSON, deserializzarli in una lista di oggetti Contatto e restituirli al chiamante. Se il file non esiste, restituisce una lista vuota. Cosi via dicendo per la lettura e scrittura del lastId e per la scrittura dei contatti nel file JSON
     {
@@ -20,19 +20,5 @@ public static class JSONHelper
         File.WriteAllText(contattiFilePath, json);
     }
 
-    public static int LeggiLastId()
-    {
-        if (File.Exists(lastIdFilePath))
-        {
-            string json = File.ReadAllText(lastIdFilePath);
-            return JsonConvert.DeserializeObject<int>(json);
-        }
-        return 0;
-    }
-
-    public static void ScriviLastId(int lastId)
-    {
-        string json = JsonConvert.SerializeObject(lastId, Formatting.Indented);
-        File.WriteAllText(lastIdFilePath, json);
-    }
+    
 }
