@@ -15,15 +15,16 @@ Rubrica.Api
 ├ Controllers
 ├ Models
 ├ Services
+├ Repositories
 ├ Data
 ├ Dtos
 ├ Migrations
 ├ Middleware
 ├ Helpers
-├ Program.cs
-├ appsettings.json
 ├ Properties
-│  └ launchSettings.json
+│└ launchSettings.json
+├ Program.cs
+└ appsettings.json
 ```
 
 ##Cartelle principali:
@@ -81,3 +82,53 @@ GET /api/users
 ```
 
 Di solito le richieste vengono inoltrate attraverso comandi CURL o clint HTTP come Postman, oppure da un frontend Angular che consuma l'API.
+
+## Models
+I modelli rappresentano le entità del dominio e sono mappati a tabelle del database.
+
+Ad esempio, un modello Contatto potrebbe essere:
+```bash
+public class Contatto
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Cognome { get; set; }
+    public string Email { get; set; }
+    public string Telefono { get; set; }
+    public List<ContattoInteresse> Interessi { get; set; }
+}
+```
+quando usiamo Entity Framework Core, diventano tabelle.
+
+## DTOs (Data Transfer Objects)
+
+Servono per non esporre direttamente i models.
+Ad esempio, potremmo avere un ContattoDto che contiene solo alcune proprietà:
+```bash
+public class ContattoDto
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Cognome { get; set; }
+}
+```
+Utile per sicurezza e controllo dati.
+## Services
+Qui mettiamo la logica di business, tipo le operazioni CRUD e altre logiche complesse. (quello che l'applicazione deve fare, essenzialmente.)
+
+Ad esempio, un ContattoService potrebbe avere metodi come:
+` (INSERIRE NELL'APP) `
+```bash
+public class ContattoService
+{
+    public List<Contatto>> GetAll()
+    {
+        ...
+    }
+    public Contatto GetById(int id)
+    {
+        ...
+    }
+}
+```
+Il service viene poi iniettato nei controller per essere usato negli endpoint(?).
