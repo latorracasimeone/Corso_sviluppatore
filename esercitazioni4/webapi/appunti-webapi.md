@@ -168,3 +168,75 @@ public class AppDbContext : DbContext
 
 il DbContext è la classe principale di Entity Framework che gestisce la connessione al database e le operazioni CRUD che vengono eseguite sulle entità dai services dell'applicazione.
 
+## Migrations
+
+Le Migrations vengono generate automaticamente da Entity Framework con un comando nel terminale console:
+```bash
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+gestiscono modifiche schema database. (tutti i comandi legati ad Entity Framework avranno dopo il dotnet la sigla ef)
+
+## Middleware
+
+Per intercettare richieste globali:
+- logging
+- auth
+- error handling
+
+Ad esempio, un Middleware per gestire eccezioni globali:
+```c#
+public class ExceptionMiddleware
+{
+    .......
+}
+```
+
+## Helpers
+
+Funzioni utility.
+
+Esempio:
+
+- JWT generator
+
+- Date formatter
+
+- Hashing password
+
+Nello specifico JWT sarà quello che si usa per autenticare i client Angular.
+
+
+
+
+
+
+
+
+# Esempio pratico
+
+Contatto
+
+richiesta:
+
+```bash
+POST /api/contatto/5/
+```
+
+## Flusso generico delle informazioni:
+
+- Controller riceve richiesta
+
+- Controller chiama ContattoService
+
+- ContattoService chiama ContattoRepository
+
+- ContattoRepository legge il Db e restituisce dati
+
+- I dati vengono ritornati al Model e poi al Controller
+
+- Controller restituisce risposta HTTP al client Angular passando attraverso un DTO (per non esporre direttamente il Model)
+
+- response in JSON a Angular
+
+```c#
