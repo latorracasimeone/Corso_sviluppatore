@@ -1,4 +1,4 @@
-#WEB API
+# WEB API
 L'archetipo web api è un progetto ASP.NET Core che espone endpoint HTTP per consentire a client frontend come Angular di interagire con i dati prodotti dal backend.
 
 Il comando per creare un'applicazione web API è:
@@ -8,7 +8,7 @@ dotnet new webapi -o "Rubrica.Api"
 ```
 (o senza virgolette nel caso non ci fossero spazi vuoti, il .Api per differenziarlo dagli altri tipi di file simili, rubriche in questo caso.)
 
-##Struttura tipica di una web API
+## Struttura tipica di una web API
 
 ```bash
 Rubrica.Api
@@ -51,7 +51,7 @@ Rubrica.Api
 
 - appsettings.json: il file di configurazione principale dell'applicazione, dove vengono definiti parametri come stringhe di connessione al database, chiavi API e altre impostazioni.
 
-##Controllers
+## Controllers
 
 I controller sono classi che ereditano da ControllerBase e sono decorati con l'attributo [ApiController]. Ogni metodo all'interno di un controller rappresenta un endpoint HTTP e viene decorato con attributi come:
 -[HttpGet]
