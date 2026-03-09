@@ -24,6 +24,7 @@ Rubrica.Api
 ├ appsettings.json
 ├ Properties
 │  └ launchSettings.json
+```
 
 ##Cartelle principali:
 - Controllers: Contiene i controller che gestiscono le richieste HTTP e restituiscono risposte.
@@ -45,3 +46,27 @@ Rubrica.Api
 -Program.cs: il punto d'ingresso dell'applicazione, dove viene configurato il pipeline (fatto a step, comandi in sequenza?) di esecuzione e i servizi.
 
 -appsettings.json: il file di configurazione principale dell'applicazione, dove vengono definiti parametri come stringhe di connessione al database, chiavi API e altre impostazioni.
+
+##Controllers
+I controller sono classi che ereditano da ControllerBase e sono decorati con l'attributo [ApiController]. Ogni metodo all'interno di un controller rappresenta un endpoint HTTP e viene decorato con attributi come:
+-[HttpGet]
+-[HttpPost]
+-[HttpPut]
+-[HttpDelete]
+
+per indicare il tipo di richiesta che gestisce.
+
+Controller base:
+```bash
+[ApiController]
+[Route("api/[controller]")]
+public class UsersController : ControllerBase
+{
+    [HttpGet]
+    public IActionResult GetUsers()
+    {
+        return Ok();
+    }
+}
+```
+
