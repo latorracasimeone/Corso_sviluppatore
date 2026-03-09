@@ -52,6 +52,7 @@ Rubrica.Api
 - appsettings.json: il file di configurazione principale dell'applicazione, dove vengono definiti parametri come stringhe di connessione al database, chiavi API e altre impostazioni.
 
 ##Controllers
+
 I controller sono classi che ereditano da ControllerBase e sono decorati con l'attributo [ApiController]. Ogni metodo all'interno di un controller rappresenta un endpoint HTTP e viene decorato con attributi come:
 -[HttpGet]
 -[HttpPost]
@@ -74,3 +75,9 @@ public class UsersController : ControllerBase
 }
 ```
 
+il controller riceve richieste tipo:
+```bash
+GET /api/users
+```
+
+Di solito le richieste vengono inoltrate attraverso comandi CURL o clint HTTP come Postman, oppure da un frontend Angular che consuma l'API.
