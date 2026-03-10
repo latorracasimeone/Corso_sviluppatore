@@ -421,3 +421,36 @@ public class User
     public string Ruolo { get; set; }
 }
 ```
+
+# Creazione DTOs:
+
+I DTOs (Data Transfer Objects) servono per non esporre direttamente i Models e per controllare quali dati vengono trasferiti tra client e server. (è quello che vede la pagina)
+
+- File ContattoDto.cs in \Dtos:
+```c#
+public class ContattoDto
+{
+    public string NomeCompleto { get; set; }
+    public string Telefono { get; set; }
+    public List<string> Competenze { get; set; }
+}
+```
+
+- File UserDto.cs in \Dtos:
+```c#
+public class UserDto
+{
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public string Ruolo { get; set; }
+}
+```
+
+- File LoginDto.cs in \Dtos:
+```c#
+public class LoginDto
+{
+    public string Username { get; set; }
+    public string Password { get; set; }
+}
+```
