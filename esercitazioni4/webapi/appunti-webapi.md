@@ -467,32 +467,111 @@ public class User
 
 I DTOs (Data Transfer Objects) servono per non esporre direttamente i Models e per controllare quali dati vengono trasferiti tra client e server. (è quello che vede la pagina)
 
+## DTOs:
+- ContattoDto (contiene solo le proprietà che vogliamo esporre al frontend)
+- UserDto (contiene solo username e ruolo senza esporre le password)
+`IMPORTANTE: Gli altri DTO che servono dobbiamo ancora farli e saranno:`
+- ContattoCreateDto.cs (le competenze possono essere vuote ma non null)
+- ContattoUpdateDto.cs
+- RegisterUserDto.cs (se non passiamo il ruolo diventa User di default)
+- LoginDto.cs
+- AuthResponseDto.cs (DTO che torniamo al frontend dopo il login)
+
 - File ContattoDto.cs in \Dtos:
 ```c#
+
+
+namespace Rubrica.Api.Dtos;
+
 public class ContattoDto
 {
-    public string NomeCompleto { get; set; }
-    public string Telefono { get; set; }
-    public List<string> Competenze { get; set; }
+    //DTO di risposta: è quello che rimandiamo al frontend
+    public int Id { get; set; }
+    public string NomeCompleto { get; set; } = string.Empty;
+    public string Telefono { get; set; } = string.Empty;
+    public List<string> Competenze { get; set; } = new(); 
+    public bool IsActive { get; set; } 
+    public DateTime CreatedAt { get; set; }
 }
 ```
 
 - File UserDto.cs in \Dtos:
 ```c#
+namespace Rubrica.Api.Dtos;
 public class UserDto
 {
-    public string Username { get; set; }
-    public string Password { get; set; }
-    public string Ruolo { get; set; }
+    //DTO sicuro di risposta: non contiene PasswrodHash(?)
+    public int Id { get; set; }
+    public string Username { get; set; } = string.Empty;
+    public string Ruolo { get; set; } = string.Empty;
 }
 ```
 
-- File LoginDto.cs in \Dtos:
+# Configurazione in Program.cs
+Il program.cs è il punto d'ingresso dell'applicazione, dove viene configurato il pipeline d'esecuzione e i servizi. Qui configuriamo Entity Framework, JWT e registriamo i servizi e repository.
+
+OPZIONALE: possiamo configurare un seed (meglio se su un file separato dove viene preso l'admin di default e 3 utenti uno per ogni ruolo)
+
+- File Program.cs (Main?):
 ```c#
-public class LoginDto
-{
-    public string Username { get; set; }
-    public string Password { get; set; }
-}
-```
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNeyCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Rubrica.Api.Data;
+using Rubrica.APi.Dtos;
+using Rubrica.Api.Helpers;
+using Rubrica.Api.Middleware;
+using Rubrica.Api.Models;
+using Rubrica.Api.Repositories;
+using Rubrica.Api.Services;
 
+
+var builder = WebApplication.CreateBuilder(args);//
+
+//aggiunge i controller
+builder.Services.AddControllers();
+
+//configura il DbContext con Sqlite
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//configura CORS per permettere ad Angular in locale di chiamare l'API
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
+//leggiamo la chiave JWT da appsettings
+var jwtKey = builder.Configuration["Jwt:Key"]
+             ?? throw new Exception("Jwt:Key mancante in appsettings.json"); //questo serve
+
+//Configurazione autenticazione JWT
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            //Controlla che il token sia stato emesso dall'issuer corretto
+            ValidateIssuer = true,
+
+            //Controlla che il token sia destinato all'audience corretta
+            ValidateAudience = true,
+
+            //Controlla che il token non sia scaduto
+            ValidateLifetime = true,
+
+            //Controlla la firma del token
+            ValidateIssuerSigningKey = true,
+
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+        };
+    });
+```
