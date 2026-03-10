@@ -346,7 +346,21 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 ```
 - JWT e autenticazione:
 ```bash
-dotnet add package Microsoft.AspNetCore.Authentication.JwrBearer
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 dotnet add package System.IdentityModel.Tokens.Jwt
 dotnet add package Microsoft.IdentityModel.Tokens
 ```
+VERIFICARE INSTALLAZIONI SU FILE .CSPROJ
+
+# Passaggi per l'installazione di Variabili di ambiente:
+- Sito SQLite (o almeno in questo caso)
+- Sezione Download
+- Scaricare sqlite-dll-win-x64-3520000.zip
+- Estrarre il file .dll
+- Cercare "variabili" nella ricerca Windows
+- Aprire il programma ed andare su "Variabili d'ambiente..."
+- Andare sotto "Variabili di Sistema" ed aprire "Path"
+- Spostare il file .dll in una cartella in Programs denominata Sqlite
+- Vedere il percorso del file .dll appena spostato tramite le Proprietà
+- Copiare il percorso nella sezione PAth aggiungendo una nuova riga es:`C:\Program Files\Sqlite
+- Riavviare il PC
