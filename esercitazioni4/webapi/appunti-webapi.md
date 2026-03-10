@@ -320,3 +320,33 @@ La web api app rubrica userà JWT per autenticare i client Angular, e avrà:
 ---
 ## Migrations:
 - Migrazioni per creare le tabelle Contatti e Users nel database usando Entity Framework Core
+
+
+
+
+
+
+# CREAZIONE PROGETTO E COMANDI
+Creazione archetipo webapi
+```bash
+dotnet new webapi -o "Rubrica.Api"
+```
+
+Installazione librerie:
+
+- Entity Framework Core e SQLite:
+```bash
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+```
+- Strumenti per migrazioni:
+```bash
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+```
+- JWT e autenticazione:
+```bash
+dotnet add package Microsoft.AspNetCore.Authentication.JwrBearer
+dotnet add package System.IdentityModel.Tokens.Jwt
+dotnet add package Microsoft.IdentityModel.Tokens
+```
