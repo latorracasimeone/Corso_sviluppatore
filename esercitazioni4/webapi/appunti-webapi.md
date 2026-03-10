@@ -352,6 +352,8 @@ dotnet add package Microsoft.IdentityModel.Tokens
 ```
 VERIFICARE INSTALLAZIONI SU FILE .CSPROJ
 
+
+
 # Passaggi per l'installazione di Variabili di ambiente:
 - Sito SQLite (o almeno in questo caso)
 - Sezione Download
@@ -364,3 +366,29 @@ VERIFICARE INSTALLAZIONI SU FILE .CSPROJ
 - Vedere il percorso del file .dll appena spostato tramite le Proprietà
 - Copiare il percorso nella sezione PAth aggiungendo una nuova riga es:`C:\Program Files\Sqlite
 - Riavviare il PC
+
+
+
+## IMPORTANTE
+Per usare Sqlite bisogna installare la .dll dal sito SQLite e completare la procedura di aggiunta precedentemente scritta.
+
+# Creazione DbContext
+Il DbContext è la classe principale di Entity Framework che gestisce la connessione al database e le operazioni CRUD che vengono eseguite sulle entità dei services dell'applicazione.
+
+Creazione DbContext:
+- File ApplicationDbContext.cs in /Data:
+```c#
+public class ApplicationDbContext : DbContext
+{
+    //Costruttore che accetta le opzioni di configurazione del dbcontext
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+        //qui non serve aggiungere niente, il costruttore base si occupa di configurare il dbcontext con le opzioni fornite in Programs
+    }
+
+    //DbSet per la tabella contatti
+    public DbSet<Contatto> Contatti { get; set; }
+    //DbSet per la tabella Users
+    public DbSet<User> Users { get; set; }
+}
+```
