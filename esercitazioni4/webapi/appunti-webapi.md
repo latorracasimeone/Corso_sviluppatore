@@ -259,15 +259,17 @@ POST /api/contatto/5/
 # WEBAPI RUBRICA COMPLETA
 
 La web api app rubrica userà JWT per autenticare i client Angular, e avrà:
-
+## Modelli:
 - Un modello Contatto con proprietà come Id, Nome Completo, Telefono, stato attivo, una lista di competenze e data di creazione.
 
 - Un modello User con Id, Username, PasswordHash e Ruolo per gestire l'autenticazione e autorizzazione e il collegamento con i contatti.
 ---
+DTOs:
 - Un DTO ContattoDto con solo alcune proprietà per esporre i dati in modo sicuro, potrebbe esporre solo Id, Nome completo e Telefono
 
 - Un altro DTO UserDto per esporre solo Username e Ruolo senza esporre la password o altri dati sensibili.
 ---
+Controllers:
 - Un controller ContattoController con endpoint CRUD per gestire i contatti
 
 - Un controller UserController per gestire la registrazione e gestione degli utenti
@@ -291,3 +293,13 @@ La web api app rubrica userà JWT per autenticare i client Angular, e avrà:
 - Middleware per gestire l'autenticazione JWT e proteggere gli endpoint
 
 - Configurazione in Program.cs per registrare i servizi, configurare Entity Framework e abilitare l'autenticazione JWT.
+
+---
+
+- Un Helper JwtHelper per generare e validare i token JWT
+
+- Un helper PasswordHelper per gestire l'hashing e la verifica delle password
+
+---
+
+- Migrazioni per creare le tabelle Contatti e Users nel database usando Entity Framework Core
