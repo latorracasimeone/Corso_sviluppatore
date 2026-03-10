@@ -398,27 +398,68 @@ public class ApplicationDbContext : DbContext
 # Creazione Modelli:
 I modelli rappresentano le entità del dominio e sono mappati a tabelle del database. In questo caso, abbiamo un modello Contatto e un modello User.
 
--File Contatto.cs in \Models:
+-File Contatto.cs in \Models: (con aggiunta di decorators)
 ```c#
+using System.ComponentModel.DataAnnotations;
+
+namespace Rubrica.Api.Models;
+
 public class Contatto
 {
+    //chiave primaria della tabella
     public int Id { get; set; }
-    public string NomeCompleto { get; set; }
-    public string Telefono { get; set; }
-    public List<string> Competenze { get; set; }
-    public bool IsActive { get; set; }
-    public DateTime CreatedAt { get; set; }
+    
+    [Required]
+    [StringLength(100)]
+    public string NomeCompleto { get; set; } = string.Empty;
+    
+    [Required]
+    [StringLength(30)]
+    public string Telefono { get; set; } = string.Empty;
+    
+    //lista delle comptenze del contatto
+    //in SQLite la salveremo come testo JSON nel DbContext
+    public List<string> Competenze { get; set; } = new();
+
+    public bool IsActive { get; set; } = true;
+    
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow; //orario attuale col fuso orario londinese
+
+    //Foreign key: ogni contatto appartiene a un utente
+    public int UserId { get; set; }
+
+    //proprità di navigazione: EF Core usa questa proprità
+    //per collegare il contatto al suo utente
+    public User User { get; set; } = null!; //ti serve l'oggetto User per arrivare allo User ID
 }
 ```
 
 - File User.cs in \Models:
 ```c#
+using System.ComponentModel.DataAnnotations;
+
+namespace Rubrica.Api.Models;
+
 public class User
 {
+    //chiave primaria
     public int Id { get; set; }
-    public string Username { get; set; }
-    public string PasswordHash { get; set; }
-    public string Ruolo { get; set; }
+    
+    [Required]
+    [StringLength(50)]
+    public string Username { get; set; } = string.Empty;
+    
+    //qui NON salviamo la password in chiaro
+    //salviamo solo l'hash creato dal PasswordHasher
+    [Required]
+    public string PasswordHash { get; set; } = string.Empty;
+    
+    [Required]
+    [StringLength(20)]
+    public string Ruolo { get; set; } = "User";
+
+    //un utente può avere molti contatti
+    public List<Contatto> Contatti { get; set; } = new();
 }
 ```
 
@@ -454,3 +495,4 @@ public class LoginDto
     public string Password { get; set; }
 }
 ```
+
