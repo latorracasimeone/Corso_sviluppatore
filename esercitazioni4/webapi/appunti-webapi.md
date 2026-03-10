@@ -254,6 +254,40 @@ POST /api/contatto/5/
 
 - Controller restituisce risposta HTTP al client Angular passando attraverso un DTO (per non esporre direttamente il Model)
 
-- response in JSON a Angular
+- Viene generata response in JSON a Angular
 
-```c#
+# WEBAPI RUBRICA COMPLETA
+
+La web api app rubrica userà JWT per autenticare i client Angular, e avrà:
+
+- Un modello Contatto con proprietà come Id, Nome Completo, Telefono, stato attivo, una lista di competenze e data di creazione.
+
+- Un modello User con Id, Username, PasswordHash e Ruolo per gestire l'autenticazione e autorizzazione e il collegamento con i contatti.
+---
+- Un DTO ContattoDto con solo alcune proprietà per esporre i dati in modo sicuro, potrebbe esporre solo Id, Nome completo e Telefono
+
+-Un altro DTO UserDto per esporre solo Username e Ruolo senza esporre la password o altri dati sensibili.
+---
+- Un controller ContattoController con endpoint CRUD per gestire i contatti
+
+- Un controller UserController per gestire la registrazione e gestione degli utenti
+
+- Un controller AuthController per gestire l'autenticazione e la generazione di token JWT
+---
+- Un servizio ContattoService che contiene la logica di business per i contatti
+
+- Un servizio UserService per la logica di gestione degli utenti e delle credenziali
+
+- Un servizio AuthService per la logica di autenticazione e gestione dei token JWT
+---
+- Un repository ContattoRepository che interagisce con il database usando Entity Framework Core
+
+- Un repository UserRepository per gestire gli utenti e le credenziali di autenticazione
+
+- Un repository AuthRepository per gestire la logica di autenticazione e validazione delle credenziali
+---
+- Un DbContext ApplicationDbContext che rappresenta il database e contiene un `DbSet<Contatto>` e un `DbSet<User>`
+
+- Middleware per gestire l'autenticazione JWT e proteggere gli endpoint
+
+- Configurazione in Program.cs per registrare i servizi, configurare Entity Framework e abilitare l'autenticazione JWT.
