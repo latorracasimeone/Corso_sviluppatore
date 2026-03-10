@@ -394,3 +394,30 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users { get; set; }
 }
 ```
+
+# Creazione Modelli:
+I modelli rappresentano le entità del dominio e sono mappati a tabelle del database. In questo caso, abbiamo un modello Contatto e un modello User.
+
+-File Contatto.cs in \Models:
+```c#
+public class Contatto
+{
+    public int Id { get; set; }
+    public string NomeCompleto { get; set; }
+    public string Telefono { get; set; }
+    public List<string> Competenze { get; set; }
+    public bool IsActive { get; set; }
+    public DateTime CreatedAt { get; set; }
+}
+```
+
+- File User.cs in \Models:
+```c#
+public class User
+{
+    public int Id { get; set; }
+    public string Username { get; set; }
+    public string PasswordHash { get; set; }
+    public string Ruolo { get; set; }
+}
+```
