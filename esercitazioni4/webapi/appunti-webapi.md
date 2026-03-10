@@ -378,6 +378,8 @@ Il DbContext è la classe principale di Entity Framework che gestisce la conness
 Creazione DbContext:
 - File ApplicationDbContext.cs in /Data:
 ```c#
+using Microsoft.EntityFrameworkCore;
+
 public class ApplicationDbContext : DbContext
 {
     //Costruttore che accetta le opzioni di configurazione del dbcontext
