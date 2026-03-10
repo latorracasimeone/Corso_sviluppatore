@@ -256,6 +256,8 @@ POST /api/contatto/5/
 
 - Viene generata response in JSON a Angular
 
+
+
 # WEBAPI RUBRICA COMPLETA
 
 La web api app rubrica userà JWT per autenticare i client Angular, e avrà:
@@ -263,31 +265,36 @@ La web api app rubrica userà JWT per autenticare i client Angular, e avrà:
 - Un modello Contatto con proprietà come Id, Nome Completo, Telefono, stato attivo, una lista di competenze e data di creazione.
 
 - Un modello User con Id, Username, PasswordHash e Ruolo per gestire l'autenticazione e autorizzazione e il collegamento con i contatti.
+
+- Data annotations e decorators per validazione e sicurezza, ad esempio `[Required], [StringLength]`
 ---
-DTOs:
+## DTOs:
 - Un DTO ContattoDto con solo alcune proprietà per esporre i dati in modo sicuro, potrebbe esporre solo Id, Nome completo e Telefono
 
 - Un altro DTO UserDto per esporre solo Username e Ruolo senza esporre la password o altri dati sensibili.
 ---
-Controllers:
+## Controllers:
 - Un controller ContattoController con endpoint CRUD per gestire i contatti
 
 - Un controller UserController per gestire la registrazione e gestione degli utenti
 
 - Un controller AuthController per gestire l'autenticazione e la generazione di token JWT
 ---
+## Services:
 - Un servizio ContattoService che contiene la logica di business per i contatti
 
 - Un servizio UserService per la logica di gestione degli utenti e delle credenziali
 
 - Un servizio AuthService per la logica di autenticazione e gestione dei token JWT
 ---
+## Repositories:
 - Un repository ContattoRepository che interagisce con il database usando Entity Framework Core
 
 - Un repository UserRepository per gestire gli utenti e le credenziali di autenticazione
 
 - Un repository AuthRepository per gestire la logica di autenticazione e validazione delle credenziali
 ---
+## Data:
 - Un DbContext ApplicationDbContext che rappresenta il database e contiene un `DbSet<Contatto>` e un `DbSet<User>`
 
 - Middleware per gestire l'autenticazione JWT e proteggere gli endpoint
@@ -295,11 +302,21 @@ Controllers:
 - Configurazione in Program.cs per registrare i servizi, configurare Entity Framework e abilitare l'autenticazione JWT.
 
 ---
+## Middleware
 
+- Un middleware JwtMiddleware per intercettare le richieste e validare i token JWT, assicurando che solo utenti autenticati possano accedere agli endpoint protetti.
+
+- Un middleware di gestione degli errori per catturare eccezioni globali e restituire risposte HTTP appropriate in caso di errori.
+---
+## Helpers:
 - Un Helper JwtHelper per generare e validare i token JWT
 
 - Un helper PasswordHelper per gestire l'hashing e la verifica delle password
 
 ---
+## Configurazione in Program.cs
 
+- La configurazione del Db con Entity Framework ed i JWT 
+---
+## Migrations:
 - Migrazioni per creare le tabelle Contatti e Users nel database usando Entity Framework Core
