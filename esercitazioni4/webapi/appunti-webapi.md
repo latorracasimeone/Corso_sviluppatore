@@ -266,7 +266,7 @@ La web api app rubrica userà JWT per autenticare i client Angular, e avrà:
 ---
 - Un DTO ContattoDto con solo alcune proprietà per esporre i dati in modo sicuro, potrebbe esporre solo Id, Nome completo e Telefono
 
--Un altro DTO UserDto per esporre solo Username e Ruolo senza esporre la password o altri dati sensibili.
+- Un altro DTO UserDto per esporre solo Username e Ruolo senza esporre la password o altri dati sensibili.
 ---
 - Un controller ContattoController con endpoint CRUD per gestire i contatti
 
