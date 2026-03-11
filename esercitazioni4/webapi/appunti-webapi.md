@@ -258,7 +258,7 @@ POST /api/contatto/5/
 
 
 
-# WEBAPI RUBRICA COMPLETA
+# WEBAPI RUBRICA COMPLETA V1    
 
 La web api app rubrica userà JWT per autenticare i client Angular, e avrà:
 ## Modelli:
