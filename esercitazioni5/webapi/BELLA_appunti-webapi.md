@@ -63,7 +63,7 @@ CERCARE Chocolatey
 
 VERIFICARE INSTALLAZIONI SU FILE .CSPROJ
 
-
+# Struttura
 
 - ApplicationUser che estende IdentityUser
 - Tabella Interest collegata all'utente
