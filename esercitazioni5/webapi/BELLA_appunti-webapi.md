@@ -1,7 +1,51 @@
-(RICOLLEGATI A RIGA 261 DELL'ALTRO DOCUMENTO DI APPUNTI
-E SCARICA ESTENSIONE SQLITE VIEWER)
+SCARICA ESTENSIONE SQLITE VIEWER
 
 # WEBAPI RUBRICA COMPLETA V1
+
+# Pacchetti da installare
+Creazione archetipo webapi
+```bash
+dotnet new webapi -o "Rubrica.Api"
+```
+## Installazione globale di EF:
+- Se non hai dotnet ef
+```bash
+dotnet tool install --global dotnet-ef
+```
+
+## Pacchetti neccessari per il progetto:
+- Entity Framework Core e SQLite:
+```bash
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+```
+- Strumenti per migrazioni:
+```bash
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+```
+- Per identity con EF Core:
+```bash
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+```
+- JWT e autenticazione:
+```bash
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package System.IdentityModel.Tokens.Jwt
+```
+## Migrazioni:
+Le Migrations vengono generate automaticamente da Entity Framework con un comando nel terminale console:
+```bash
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+gestiscono modifiche schema database. (tutti i comandi legati ad Entity Framework avranno dopo il dotnet la sigla ef)
+
+CERCARE Chocolatey
+
+VERIFICARE INSTALLAZIONI SU FILE .CSPROJ
+
+
 
 - ApplicationUser che estende IdentityUser
 - Tabella Interest collegata all'utente
@@ -942,45 +986,3 @@ public static class DataSeeder
 }
 ```
 
-# Pacchetti da installare
-Creazione archetipo webapi
-```bash
-dotnet new webapi -o "Rubrica.Api"
-```
-## Installazione globale di EF:
-- Se non hai dotnet ef
-```bash
-dotnet tool install --global dotnet-ef
-```
-
-## Pacchetti neccessari per il progetto:
-- Entity Framework Core e SQLite:
-```bash
-dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.Sqlite
-```
-- Strumenti per migrazioni:
-```bash
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-```
-- Per identity con EF Core:
-```bash
-dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
-```
-- JWT e autenticazione:
-```bash
-dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
-dotnet add package System.IdentityModel.Tokens.Jwt
-```
-## Migrazioni:
-Le Migrations vengono generate automaticamente da Entity Framework con un comando nel terminale console:
-```bash
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-gestiscono modifiche schema database. (tutti i comandi legati ad Entity Framework avranno dopo il dotnet la sigla ef)
-
-CERCARE Chocolatey
-
-VERIFICARE INSTALLAZIONI SU FILE .CSPROJ
