@@ -2,6 +2,24 @@ SCARICA ESTENSIONE SQLITE VIEWER
 
 # WEBAPI RUBRICA COMPLETA V1
 
+# Passaggi per l'installazione di Variabili di ambiente:
+- Sito SQLite (o almeno in questo caso)
+- Sezione Download
+- Scaricare sqlite-dll-win-x64-3520000.zip
+- Estrarre il file .dll
+- Cercare "variabili" nella ricerca Windows
+- Aprire il programma ed andare su "Variabili d'ambiente..."
+- Andare sotto "Variabili di Sistema" ed aprire "Path"
+- Spostare il file .dll in una cartella in Programs denominata Sqlite
+- Vedere il percorso del file .dll appena spostato tramite le Proprietà
+- Copiare il percorso nella sezione PAth aggiungendo una nuova riga es:`C:\Program Files\Sqlite
+- Riavviare il PC
+
+
+
+## IMPORTANTE
+Per usare Sqlite bisogna installare la .dll dal sito SQLite e completare la procedura di aggiunta precedentemente scritta.
+
 # Pacchetti da installare
 Creazione archetipo webapi
 ```bash
