@@ -982,4 +982,5 @@ dotnet ef database update
 gestiscono modifiche schema database. (tutti i comandi legati ad Entity Framework avranno dopo il dotnet la sigla ef)
 
 CERCARE Chocolatey
+
 VERIFICARE INSTALLAZIONI SU FILE .CSPROJ
