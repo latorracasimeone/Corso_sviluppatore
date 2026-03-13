@@ -1,4 +1,4 @@
-SCARICA ESTENSIONE SQLITE VIEWER
+SCARICA ESTENSIONE SQLITE VIEWER estensione e AGGIORNA PROGRAMMI BASH DOPO AVERLI TESTATI IN RUBRICA.API!!!!
 
 # WEBAPI RUBRICA COMPLETA V1
 
@@ -52,7 +52,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 dotnet add package System.IdentityModel.Tokens.Jwt
 ```
 ## Migrazioni:
-Le Migrations vengono generate automaticamente da Entity Framework con un comando nel terminale console:
+Le Migrations vengono generate automaticamente da Entity Framework con un comando nel terminale console (FORSE DA USARE DOPO AVERCREATO I DbContext!!!!!!!):
 ```bash
 dotnet ef migrations add InitialCreate
 dotnet ef database update
@@ -95,6 +95,9 @@ Rubrica.Api
 │  ├ ApplicationUser.cs
 │  └ Interest.cs
 │
+├ Seed
+│  └ DataSeeder.cs
+│
 ├ Services
 │  ├ AuthService.cs
 │  └ InterestService.cs
@@ -113,11 +116,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rubrica.Api.Models;
 
-[Table("Users")] //decorator che ci permette di segnalare che è una tabella User (la tabella di apparteneneza della classe)
-public class ApplicationUser : IdentityUser // rapporto "figlio : padre", difatti ciò che contiene IdentityUser viene inserito automaticamente in ApplicationUser per ereditarietà!!!!!!!
+[Table("Users")]
+public class ApplicationUser : IdentityUser
 {
-    //IdentityUser ha gia:
-    // Id, Username, Email, PasswordHash, PhoneNumber, ecc.
+    // IdentityUser ha già:
+    // Id, UserName, Email, PasswordHash, PhoneNumber, ecc.
 
     [Required]
     [StringLength(100)]
@@ -125,8 +128,8 @@ public class ApplicationUser : IdentityUser // rapporto "figlio : padre", difatt
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    //un utente può avere molteplici interessi
-    public List<Interest> Interests { get; set; } = new List<Interest>(); //lista di oggetti
+    // Un utente può avere molti interessi
+    public List<Interest> Interests { get; set; } = new List<Interest>();
 }
 ```
 
@@ -141,19 +144,19 @@ namespace Rubrica.Api.Models;
 [Table("Interests")]
 public class Interest
 {
-    public int id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [StringLength(100)]
     public string Nome { get; set; } = string.Empty;
 
-    //con identity l'id utente è string poiché un codice alfanumerico molto lungo (e quindi più sicuro)
+    // Con Identity l'id utente è string
     [Required]
     public string UserId { get; set; } = string.Empty;
 
-    //collegamento all'utente
+    // Collegamento all'utente
     [ForeignKey("UserId")]
-    public ApplicationUser? User { get; set; } //il punto di domanda serve per dare possibile valore null e togliere gli errori, come ti aveva fatto fare Spazzo
+    public ApplicationUser? User { get; set; }
 }
 ```
 
@@ -210,9 +213,9 @@ Serve per restituire i dati di risposta dopo una registrazione o un login riusci
 ```c#
 namespace Rubrica.Api.Dtos;
 
-public class AuthResponseDto //risponde a seconda del logindto
+public class AuthResponseDto
 {
-    public string Nome { get; set; } = string.Empty;
+    public string Token { get; set; } = string.Empty;
     public string UserId { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string NomeCompleto { get; set; } = string.Empty;
@@ -237,11 +240,11 @@ public class InterestCreateDto
 - InterestDto.cs:
 Serve per restituire i dati di un interesse. Contiene l'id e il nome dell'interesse. Viene usato come output per gli endpoint di lettura degli interessi nell'InterestController.
 ```c#
-namespace Rubrica.Api.Dtos
+namespace Rubrica.Api.Dtos;
 
 public class InterestDto
 {
-    public int id { get; set; }
+    public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
 }
 ```
@@ -254,18 +257,29 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Rubrica.Api.Models;
 
-namespace Ribrica.Api.Data;
+namespace Rubrica.Api.Data;
 
 public class ApplicationDbContext : IdentityUserContext<ApplicationUser>
 {
-    //questo DbContext usa Identity solo per gli utenti
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-        //qui non serve aggiungere niente, il costruttore base si occupa di configurare il dbcontext con le opzioni fornite in Programs
     }
 
-    //e in più aggiunge gli interessi
     public DbSet<Interest> Interests { get; set; }
+
+    // Configura le relazioni tra tabelle
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        // Prima lasciamo a Identity configurare le sue tabelle standard
+        base.OnModelCreating(builder);
+
+        // Configura il collegamento tra utente e interessi
+        builder.Entity<Interest>()
+            .HasOne(i => i.User)
+            .WithMany(u => u.Interests)
+            .HasForeignKey(i => i.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+    }
 }
 ```
 
@@ -289,17 +303,17 @@ public class JwtHelper
 
     public JwtHelper(IConfiguration configuration)
     {
-        _configuration = configuration; //come in php, è una convenzione per vedere a prima vista qual è la variabile privata (quindi con l'underscore _prima) e quale la pubblica (senza underscore prima)
+        _configuration = configuration;
     }
 
     public string GenerateToken(ApplicationUser user)
     {
-        //leggiamo i dati del file appsettings.json
+        // Leggiamo i dati dal file appsettings.json
         string? key = _configuration["Jwt:Key"];
         string? issuer = _configuration["Jwt:Issuer"];
         string? audience = _configuration["Jwt:Audience"];
 
-        if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(issuer) || string.IsNullOrEmpty(audience)) //il || si fa con il tasto prima dell'uno nella tastiera e significa OR, OPPURE
+        if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(issuer) || string.IsNullOrEmpty(audience))
         {
             throw new Exception("Configurazione JWT mancante.");
         }
@@ -312,14 +326,14 @@ public class JwtHelper
             new Claim(ClaimTypes.Email, user.Email ?? "")
         };
 
-        SymmetricSecurityKey securityKey = new SymetricSecurityKey(Encoding.UTF8.GetBytes(key));//UTF8 è la famiglia di caratteri
-        SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.Hmac5ha256);//Il token viene firmato con HMAC SHA256 per garantire la sicurezza.
+        SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+        SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         JwtSecurityToken token = new JwtSecurityToken(
-            issuer : issuer,
-            audience : audience,
+            issuer: issuer,
+            audience: audience,
             claims: claims,
-            expires: DateTime.UtcNow.AddHours(1), //scadenza semplificata
+            expires: DateTime.UtcNow.AddHours(1),
             signingCredentials: credentials
         );
 
@@ -350,19 +364,19 @@ public class AuthService
         SignInManager<ApplicationUser> signInManager,
         JwtHelper jwtHelper)
     {
-        _usermanager = usermanager;
+        _userManager = userManager;
         _signInManager = signInManager;
         _jwtHelper = jwtHelper;
     }
-    
-    ///questo è un metodo asincrono che restituisce un IdentityResult, che indica se la registrazione è riuscita o no
-    /// e contiene eventuali errori e un metodo asincrono che è un metodo che può essere eseguito in modo non bloccante
-    /// cioè può fare operazioni che richiedono tempo (come accedere al database)
-    /// senza bloccare il thread principale dell'applicazione
+    // questo è un metodo asincrono che restituisce un IdentityResult, che indica se la registrazione è riuscita o no
+    // e contiene eventuali errori e un metodo asincrono che è un metodo che può essere eseguito in modo non bloccante
+    // cioè può fare operazioni che richiedono tempo (come accedere al database)
+    // senza bloccare il thread principale dell'applicazione
     public async Task<IdentityResult> RegisterAsync(RegisterDto dto)
     {
-        //controlliamo se esiste già un utente con questa email
-        ApplicationUser? existingUser = await _userManager.FindByEmailAsync(dto.Email); //await fa restare in attesa il thread finché l'operazione non è completa, sono da usare insieme await e async
+        // Controlliamo se esiste già un utente con questa email
+        // await fa restare in attesa il thread finché l'operazione non è completata, ma senza bloccarlo
+        ApplicationUser? existingUser = await _userManager.FindByEmailAsync(dto.Email);
 
         if (existingUser != null)
         {
@@ -375,22 +389,24 @@ public class AuthService
             return IdentityResult.Failed(errors.ToArray());
         }
 
-        //Creiamo il nuovo utente
+        // Creiamo il nuovo utente
         ApplicationUser user = new ApplicationUser();
-        user.UserName = dto.Email; //usiamo la mail anche come username, come fanno molti siti
+        user.UserName = dto.Email;      // usiamo la mail anche come username
         user.Email = dto.Email;
         user.NomeCompleto = dto.NomeCompleto;
         user.PhoneNumber = dto.PhoneNumber;
         user.CreatedAt = DateTime.UtcNow;
 
-        //identity salva l'utente e crea l'hash sicuro della password
+        // Identity salva l'utente e crea l'hash sicuro della password
+        // await fa restare in attesa il thread finché l'operazione non è completata, ma senza bloccarlo
         IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
 
         return result;
     }
+
     public async Task<AuthResponseDto?> LoginAsync(LoginDto dto)
     {
-        //cerchiamo l'utente per email
+        // Cerchiamo l'utente per email
         ApplicationUser? user = await _userManager.FindByEmailAsync(dto.Email);
 
         if (user == null)
@@ -398,22 +414,22 @@ public class AuthService
             return null;
         }
 
-        //Controlliamo se la password è giusta
-        SignInResult result = await _userManager.CheckPasswordSignInAsync(user, dto.Password, false);
-        
+        // Controlliamo se la password è giusta
+        SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
+
         if (!result.Succeeded)
         {
             return null;
         }
 
-        //se tutto va bene creiamo il token
+        // Se tutto va bene creiamo il token
         string token = _jwtHelper.GenerateToken(user);
 
         AuthResponseDto response = new AuthResponseDto();
         response.Token = token;
         response.UserId = user.Id;
         response.Email = user.Email ?? "";
-        response.NomeCompleto = user.NomeCOmpleto;
+        response.NomeCompleto = user.NomeCompleto;
 
         return response;
     }
@@ -441,10 +457,10 @@ public class InterestService
     {
         List<InterestDto> result = new List<InterestDto>();
 
-        //prendiamo tutti gli interessi dal database
+        // Prendiamo tutti gli interessi dal database
         List<Interest> allInterests = _context.Interests.ToList();
 
-        //filtriamo a mano solo quelli dell'utente loggato
+        // Filtriamo a mano solo quelli dell'utente loggato
         for (int i = 0; i < allInterests.Count; i++)
         {
             Interest currentInterest = allInterests[i];
@@ -458,8 +474,10 @@ public class InterestService
                 result.Add(dto);
             }
         }
+
         return await Task.FromResult(result);
     }
+
     public async Task<InterestDto?> GetByIdAsync(int id, string userId)
     {
         Interest? interest = await _context.Interests.FindAsync(id);
@@ -469,31 +487,34 @@ public class InterestService
             return null;
         }
 
-        //Controlliamo che l'interesse appartenga all'utente giusto
-        if (Interest.UserId != userId)
+        // Controlliamo che l'interesse appartenga all'utente giusto
+        if (interest.UserId != userId)
         {
             return null;
         }
 
         InterestDto dto = new InterestDto();
-        dto.Id = Interest.Id;
-        dto.Nome = Interest.Nome;
+        dto.Id = interest.Id;
+        dto.Nome = interest.Nome;
 
         return dto;
     }
 
     public async Task<InterestDto?> CreateAsync(InterestCreateDto dto, string userId)
     {
-        //controllo semplice per evitare doppioni
+        // Controllo semplice per evitare doppioni
         List<Interest> allInterests = _context.Interests.ToList();
+
         for (int i = 0; i < allInterests.Count; i++)
         {
             Interest currentInterest = allInterests[i];
+
             if (currentInterest.UserId == userId && currentInterest.Nome == dto.Nome)
             {
                 return null;
             }
         }
+
         Interest interest = new Interest();
         interest.Nome = dto.Nome;
         interest.UserId = userId;
@@ -516,15 +537,20 @@ public class InterestService
         {
             return null;
         }
+
         if (interest.UserId != userId)
         {
             return null;
         }
+
         interest.Nome = dto.Nome;
+
         await _context.SaveChangesAsync();
+
         InterestDto result = new InterestDto();
         result.Id = interest.Id;
         result.Nome = interest.Nome;
+
         return result;
     }
 
@@ -536,13 +562,14 @@ public class InterestService
         {
             return false;
         }
+
         if (interest.UserId != userId)
         {
             return false;
         }
 
         _context.Interests.Remove(interest);
-        await :context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
         return true;
     }
@@ -646,7 +673,7 @@ public class InterestsController : ControllerBase
 
         if (interest == null)
         {
-            return NotFound(new { message = "Interesse non trovato."});
+            return NotFound(new { message = "Interesse non trovato." });
         }
 
         return Ok(interest);
@@ -655,13 +682,13 @@ public class InterestsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] InterestCreateDto dto)
     {
-        string iserId = GetUserIdFromToken();
+        string userId = GetUserIdFromToken();
 
         InterestDto? result = await _interestService.CreateAsync(dto, userId);
 
         if (result == null)
         {
-            return BadRequest(new { message = "Interesse già presente oppure non valido."});
+            return BadRequest(new { message = "Interesse già presente oppure non valido." });
         }
 
         return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
@@ -676,7 +703,7 @@ public class InterestsController : ControllerBase
 
         if (result == null)
         {
-            return NotFound(new { message = "Interesse non trovato."});
+            return NotFound(new { message = "Interesse non trovato." });
         }
 
         return Ok(result);
@@ -691,7 +718,7 @@ public class InterestsController : ControllerBase
 
         if (!deleted)
         {
-            return NotFound(new { message = "Interesse non trovato."});
+            return NotFound(new { message = "Interesse non trovato." });
         }
 
         return NoContent();
@@ -699,13 +726,14 @@ public class InterestsController : ControllerBase
 
     private string GetUserIdFromToken()
     {
-        //leggiamo l'id utente che abbiamo salvato nel jwt
-        string? userId = User.FindFirstValue(CLaimTypes.NameIdentifier);
+        // Leggiamo l'id utente che abbiamo salvato nel JWT
+        string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         if (string.IsNullOrEmpty(userId))
         {
             throw new Exception("UserId non trovato nel token.");
         }
+
         return userId;
     }
 }
@@ -716,34 +744,34 @@ public class InterestsController : ControllerBase
 ```c#
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNeyCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Rubrica.Api.Data;
-using Rubrica.APi.Dtos;
 using Rubrica.Api.Helpers;
 using Rubrica.Api.Models;
 using Rubrica.Api.Services;
+using Rubrica.Api.Seed;
+/*TEORIA NELLA CARTELLA WEBAPI
+FILE BELLA_appunti-webapi */
+var builder = WebApplication.CreateBuilder(args);
 
-
-var builder = WebApplication.CreateBuilder(args);//
-
-//aggiunge i controller
+// Aggiunge i controller MVC / Web API
 builder.Services.AddControllers();
 
-//configura EntityFramework Core con Sqlite
+// Configura il database SQLite
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-//configura identity per gli utenti
+// Configura Identity per usare ApplicationUser
 builder.Services.AddIdentityCore<ApplicationUser>(options =>
 {
-    //regole password semplici per fare pratica
+    // Regole password semplici per fare pratica
     options.Password.RequireDigit = false;
     options.Password.RequireLowercase = false;
-    options.Password.RequireUppercas = false;
+    options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 6;
 })
@@ -751,105 +779,67 @@ builder.Services.AddIdentityCore<ApplicationUser>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-//configurazione JWT
+// Leggiamo i dati JWT dal file appsettings.json
 string? jwtKey = builder.Configuration["Jwt:Key"];
 string? jwtIssuer = builder.Configuration["Jwt:Issuer"];
 string? jwtAudience = builder.Configuration["Jwt:Audience"];
 
-if (string.IsNullOrEmpty(jwtKey) || string.IsNullOrEmpty(jwtIssuer) || string.IsNullOrEmpty(jwtAudience))
+if (string.IsNullOrWhiteSpace(jwtKey) ||
+    string.IsNullOrWhiteSpace(jwtIssuer) ||
+    string.IsNullOrWhiteSpace(jwtAudience))
 {
     throw new Exception("Configurazione JWT mancante in appsettings.json");
 }
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = nel TokenValidationParameters
-        {
-            ValidateIssuer = true, //Controlla che il token sia stato emesso dall'issuer corretto
-            ValidateAudience = true, //Controlla che il token sia destinato all'audience corretta
-            ValidateLifetime = true, //Controlla che il token non sia scaduto
-            ValidateIssuerSigningKey = true, //Controlla la firma del token
-            ValidIssuer = jwtIssuer,
-            ValidAudience = jwtAudience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
-        };
-    });
-///[leggiamo la chiave JWT da appsettings] (tutto commento per non inficiare nel codice se venisse copiato per intero). è LA VERSIONE ABBREVIATA DEL PUNTO "configurazione JWT":
-//var jwtKey = builder.Configuration["Jwt:Key"]
-//             ?? throw new Exception("Jwt:Key mancante in appsettings.json");
-
-
-
-//abilita autorizzazione
-builder.Services.AddAuthorization();
-
-//configura CORS per permettere ad Angular in locale di chiamare l'API
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAngularApp", policy =>
-    {
-        policy.WithOrigins("http://localhost:4200")
-        .AllowAnyHeader()
-        .AllowAnyMethod();
-    });
-});
-
-
-
-//registrazione servizi custom
-builder.Services.AddScoped<AuthService>();
-builder.Services.AddScoped<InterestService>();
-builder.Services.AddScoped<JwtHelper>();
-
-var app = builder.Builde();
-
-app.UseCors("AllowAngularApp");
-
-app.UseHttpsRedirection();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapControllers();
-
-//Applica automaticamente le migration all'avvio
-using (var scope = app.Services.CreateScope())
-{
-    var db = scoper.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    db.Database.Migrate();
-}
-
-//richiama il seed iniziale con alcuni utenti demo e i loro interessi.
-//se i dati esistono già, non vengono duplicati.
-await DataSeeder.SeedAsync(app.Services);
-
-
-app.Run();
-```
-DA VEDERE:: //Configurazione autenticazione JWT
+// Configura l'autenticazione con token JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            
             ValidateIssuer = true,
-
-            
             ValidateAudience = true,
-
-            
             ValidateLifetime = true,
-
-            
             ValidateIssuerSigningKey = true,
-
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
+            ValidIssuer = jwtIssuer,
+            ValidAudience = jwtAudience,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
         };
     });
+
+builder.Services.AddAuthorization();
+
+// Permette ad Angular locale di chiamare l'API
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+// Registrazione dei servizi custom
+builder.Services.AddScoped<JwtHelper>();
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<InterestService>();
+
+var app = builder.Build();
+
+app.UseCors("AllowAngularApp");
+app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+
+// Richiama il seed iniziale con alcuni utenti demo e i loro interessi.
+// Se i dati esistono già, non vengono duplicati.
+await DataSeeder.SeedAsync(app.Services);
+
+app.Run();
+```
+
 
 
 
@@ -866,52 +856,52 @@ namespace Rubrica.Api.Seed;
 
 public static class DataSeeder
 {
-    //questo metodo crea utenti e interessi iniziali. se i dati esistono già, non li duplica
+    // Questo metodo crea utenti e interessi iniziali.
+    // se i dati esistono già, non li duplica.
     public static async Task SeedAsync(IServiceProvider serviceProvider)
     {
-        using IServiceScope scope = service.Provider.CreateScope();
+        using IServiceScope scope = serviceProvider.CreateScope();
 
         ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         UserManager<ApplicationUser> userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-        //creiamo il database se non esiste ancora
+        // Creiamo il database se non esiste ancora
         await context.Database.EnsureCreatedAsync();
 
-        //creiamo alcuni utenti demo
-        ApplicationUSer utente1 = await CreateUserIfNotExistAsync(
+        // Creiamo alcuni utenti demo
+        ApplicationUser utente1 = await CreateUserIfNotExistsAsync(
             userManager,
             "utente1@email.com",
             "123456",
             "Utente uno",
-            "1234567898765432");
+            "3331234567");
 
-        ApplicationUSer utente2 = await CreateUserIfNotExistAsync(
+        ApplicationUser utente2 = await CreateUserIfNotExistsAsync(
             userManager,
             "utente2@email.com",
             "123456",
             "Utente due",
-            "12345678765432");
+            "3337654321");
 
-        ApplicationUSer utente3 = await CreateUserIfNotExistAsync(
+        ApplicationUser utente3 = await CreateUserIfNotExistsAsync(
             userManager,
             "utente3@email.com",
             "123456",
             "Utente tre",
-            "12345765432");
+            "3331112222");
 
+        // Creiamo alcuni interessi per ogni utente
+        await CreateInterestIfNotExistsAsync(context, utente1.Id, "Calcio");
+        await CreateInterestIfNotExistsAsync(context, utente1.Id, "CSharp");
+        await CreateInterestIfNotExistsAsync(context, utente1.Id, "Cinema");
 
-        //creiamo alcuni interessi per ogni utente
-        await CreateInterestIfNotExistsAsync(context, utente1.Id, "calcio");
-        await CreateInterestIfNotExistsAsync(context, utente1.Id, "cinema");
-        await CreateInterestIfNotExistsAsync(context, utente1.Id, "kratos");
+        await CreateInterestIfNotExistsAsync(context, utente2.Id, "Nuoto");
+        await CreateInterestIfNotExistsAsync(context, utente2.Id, "Angular");
+        await CreateInterestIfNotExistsAsync(context, utente2.Id, "Musica");
 
-        await CreateInterestIfNotExistsAsync(context, utente2.Id, "F1");
-        await CreateInterestIfNotExistsAsync(context, utente2.Id, "auto");
-        await CreateInterestIfNotExistsAsync(context, utente2.Id, "simulatore");
-
-        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Hulk");
-        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Superman");
-        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Lex Luthor");
+        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Lettura");
+        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Viaggi");
+        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Fotografia");
     }
 
     private static async Task<ApplicationUser> CreateUserIfNotExistsAsync(
@@ -921,7 +911,7 @@ public static class DataSeeder
         string nomeCompleto,
         string? phoneNumber)
     {
-        //controlliamo se l'utente esiste già tramite email
+        // Controlliamo se l'utente esiste già tramite email
         ApplicationUser? existingUser = await userManager.FindByEmailAsync(email);
 
         if (existingUser != null)
@@ -929,11 +919,11 @@ public static class DataSeeder
             return existingUser;
         }
 
-        ApplicationUSer user = new ApplicationUser();
+        ApplicationUser user = new ApplicationUser();
         user.UserName = email;
-        user.Email = email,
-        user.NomeCompleto = nomeCompleto,
-        user.PhoneNumber = phoneNumber,
+        user.Email = email;
+        user.NomeCompleto = nomeCompleto;
+        user.PhoneNumber = phoneNumber;
         user.CreatedAt = DateTime.UtcNow;
 
         IdentityResult result = await userManager.CreateAsync(user, password);
@@ -948,19 +938,22 @@ public static class DataSeeder
             }
 
             string message = string.Join(" | ", errors);
-            throw new Exception($"Errore durante la creazione dell'utente {email} : {message}");
+            throw new Exception($"Errore durante la creazione dell'utente {email}: {message}");
         }
+
         return user;
     }
+
     private static async Task CreateInterestIfNotExistsAsync(
         ApplicationDbContext context,
         string userId,
         string nome)
     {
-        //leggiamo tutti gli interessi e controlliamo a mano se questo interesse esiste già per quell'utente.
+        // Leggiamo tutti gli interessi e controlliamo a mano
+        // se questo interesse esiste già per quell'utente.
         List<Interest> interests = await context.Interests.ToListAsync();
 
-        for (int = 0; i < interests.Count; i++)
+        for (int i = 0; i < interests.Count; i++)
         {
             Interest currentInterest = interests[i];
 
@@ -978,7 +971,7 @@ public static class DataSeeder
         interest.Nome = nome;
 
         context.Interests.Add(interest);
-        await context.SaveChanges.Async();
+        await context.SaveChangesAsync();
     }
 }
 ```
@@ -1004,3 +997,4 @@ public static class DataSeeder
 }
 ```
 
+verifica update e confronta con le repositories del prof!!!!!!!
