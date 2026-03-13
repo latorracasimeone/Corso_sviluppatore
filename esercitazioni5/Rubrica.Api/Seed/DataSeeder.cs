@@ -42,17 +42,17 @@ public static class DataSeeder
             "3331112222");
 
         // Creiamo alcuni interessi per ogni utente
-        await CreateInterestIfNotExistsAsync(context, utente1.Id, "Calcio");
+        await CreateInterestIfNotExistsAsync(context, utente1.Id, "F1");
         await CreateInterestIfNotExistsAsync(context, utente1.Id, "CSharp");
         await CreateInterestIfNotExistsAsync(context, utente1.Id, "Cinema");
 
-        await CreateInterestIfNotExistsAsync(context, utente2.Id, "Nuoto");
+        await CreateInterestIfNotExistsAsync(context, utente2.Id, "Dragon Ball");
         await CreateInterestIfNotExistsAsync(context, utente2.Id, "Angular");
         await CreateInterestIfNotExistsAsync(context, utente2.Id, "Musica");
 
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "Lettura");
-        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Viaggi");
-        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Fotografia");
+        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Spider-Man");
+        await CreateInterestIfNotExistsAsync(context, utente3.Id, "il SAAAAAS!");
     }
 
     private static async Task<ApplicationUser> CreateUserIfNotExistsAsync(
