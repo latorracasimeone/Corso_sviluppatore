@@ -1,8 +1,10 @@
-SCARICA ESTENSIONE SQLITE VIEWER estensione e AGGIORNA PROGRAMMI BASH DOPO AVERLI TESTATI IN RUBRICA.API!!!!
+TUTTO TESTATO IN RUBRICA.API!!!!
+(CERCARE Chocolatey)
 
 # WEBAPI RUBRICA COMPLETA V1
 
 # Passaggi per l'installazione di Variabili di ambiente:
+- Scaricare l'estensione di VisualStudio Code SQLITE VIEWER 
 - Sito SQLite (o almeno in questo caso)
 - Sezione Download
 - Scaricare sqlite-dll-win-x64-3520000.zip
@@ -59,7 +61,6 @@ dotnet ef database update
 ```
 gestiscono modifiche schema database. (tutti i comandi legati ad Entity Framework avranno dopo il dotnet la sigla ef)
 
-CERCARE Chocolatey
 
 VERIFICARE INSTALLAZIONI SU FILE .CSPROJ
 
@@ -996,5 +997,3 @@ public static class DataSeeder
     "AllowedHosts": "*"
 }
 ```
-
-verifica update e confronta con le repositories del prof!!!!!!!
