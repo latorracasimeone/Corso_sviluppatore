@@ -1,4 +1,5 @@
 TUTTO TESTATO IN RUBRICA.API!!!!
+
 (CERCARE Chocolatey)
 
 # WEBAPI RUBRICA COMPLETA V1
@@ -16,7 +17,6 @@ TUTTO TESTATO IN RUBRICA.API!!!!
 - Vedere il percorso del file .dll appena spostato tramite le Proprietà
 - Copiare il percorso nella sezione PAth aggiungendo una nuova riga es:`C:\Program Files\Sqlite
 - Riavviare il PC
-
 
 
 ## IMPORTANTE
