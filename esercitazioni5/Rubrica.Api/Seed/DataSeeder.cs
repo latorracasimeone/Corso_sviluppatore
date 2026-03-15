@@ -53,6 +53,7 @@ public static class DataSeeder
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "Lettura");
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "Spider-Man");
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "il SAAAAAS!");
+        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Inter");
     }
 
     private static async Task<ApplicationUser> CreateUserIfNotExistsAsync(
