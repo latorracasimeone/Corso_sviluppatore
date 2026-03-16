@@ -3,7 +3,7 @@ using Rubrica.Api.Dtos;
 using Rubrica.Api.Models;
 
 namespace Rubrica.Api.Services;
-
+//gestisce la logica di business per le operazioni CRUD (che sta per "Create, Read, Update, Delete") sugli interessi degli utenti
 public class InterestService
 {
     private readonly ApplicationDbContext _context;
