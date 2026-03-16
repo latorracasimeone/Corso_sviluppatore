@@ -16,9 +16,12 @@ public class AuthController : ControllerBase
     
     public AuthController(AuthService authService)/*costruttore (difatti si chiama uguale alla classe) che
      riceve il servizio (authService) istanziato da ASP.NET core tramite iniezione (Dependency Injection). Riceve 
-     oggetti senza doverli creare, quindi non è necessario scrivere "new authService()", ci pensa il framework come Comportamento automatico*/
+     oggetti senza doverli creare, quindi non è necessario scrivere "new authService()", ci pensa il framework come Comportamento automatico. 
+     Il vantaggio principale è che il Controller non è "accoppiato" strettamente all'implementazione del servizio. 
+     Se un domani volessi cambiare il modo in cui gestisci l'autenticazione, ti basterebbe cambiare la configurazione nel file Program.cs senza
+     toccare il codice del Controller.*/
     {
-        _authService = authService;/*l'underscore sta a significare (per convenzione) che si rifà alla parte privata, privata 
+        _authService = authService;/*l'underscore sta a significare (per convenzione) che si rifà alla parte privata (o campo privato, "private fields"), privata 
         perché solo questa classe deve poter usare quel servizio (_authService), per sicurezza che faccia questa
         cosa dedicata con tali responsabilità) e pulizia (del codice)*/
     }
@@ -27,7 +30,10 @@ public class AuthController : ControllerBase
     /// Endpoint per la registrazione di un nuovo utente.
     [HttpPost("register")] /* mappa un URL a un metodo 
     Risponde all'HTTP METOD "POST"(scrittura/invio), api/auth/register (rotta base(Controller) + specifica(metodo, derivato da [HttpPost("register")]))*/
-    public async Task<IActionResult> Register([FromBody] RegisterDto dto)
+    public async Task<IActionResult> Register([FromBody] RegisterDto dto) /*IActionResult: Questo tipo di ritorno è molto potente perché ti permette di 
+    restituire tipi diversi (un 200 Ok, un 400 BadRequest, un 401 Unauthorized) all'interno dello stesso metodo.
+    Async/Await: Nei tuoi commenti non hai menzionato l'asincronia. Quando vedi async Task<IActionResult> e await, significa che il server non si 
+    "blocca" aspettando il database, ma può gestire altre richieste mentre aspetta che l'operazione di registrazione/login finisca. */
     {
         // Chiama il servizio per creare l'utente nel database
         var result = await _authService.RegisterAsync(dto);
@@ -43,7 +49,7 @@ public class AuthController : ControllerBase
                 errors.Add(error.Description);
             }
 
-            return BadRequest(errors);//Codice di stato HTTP (sbagliato) ERROR 400 BadRequest
+            return BadRequest(errors);//Codice di stato HTTP (richiesta del client presenta errori) ERROR 400 BadRequest
         }
 
         // Restituisce Codice di stato HTTP (corretto) 200 OK in caso di successo
@@ -58,7 +64,10 @@ public class AuthController : ControllerBase
         // Tenta l'accesso tramite il servizio dedicato (authService)
         AuthResponseDto? response = await _authService.LoginAsync(dto); /*response contiene i dati che sono in 
         AuthResponseDto, per poter restituire all'utente le informazioni dopo che è stato effettuato il login. 
-        Quindi per discriminare se siamo dentro o no*/
+        Quindi per discriminare se siamo dentro o no.
+        PS:Il DTO (Data Transfer Object) serve proprio a "filtrare" cosa inviare o ricevere. 
+        Invece di mandare l'intero oggetto "Utente" (che potrebbe avere dati sensibili o inutili),
+        mandi solo ciò che serve (es. Token e Nome).*/
 
         if (response == null)
         {

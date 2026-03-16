@@ -8,8 +8,11 @@ using Rubrica.Api.Services;
 namespace Rubrica.Api.Controllers;
 
 [ApiController] // Indica che la classe risponde alle richieste API e abilita comportamenti automatici
+
 [Route("api/[controller]")]
-[Authorize]
+
+[Authorize]/*Questo attributo a livello di classe dice ad ASP.NET Core: "Nessuno può toccare questi 
+metodi se non ha un token JWT valido". Senza questo, il tuo metodo GetUserIdFromToken fallirebbe quasi sempre.*/
 public class InterestsController : ControllerBase
 {
     private readonly InterestService _interestService; /*L' underscore è una convenzione (non una regola obbligatoria
@@ -50,7 +53,10 @@ public class InterestsController : ControllerBase
     }
 
     //Crea un nuovo interesse per l'utente autenticato
-    [HttpPost] // POST api/interests (?)
+    [HttpPost] /* POST api/interests. :
+    Poiché la rotta base è [Route("api/[controller]")] 
+    (quindi api/interests) e il metodo Create non ha stringhe aggiuntive nel [HttpPost], 
+    l'URL finale sarà esattamente api/interests. */
     public async Task<IActionResult> Create([FromBody] InterestCreateDto dto)
     {
         string userId = GetUserIdFromToken();
@@ -101,12 +107,17 @@ public class InterestsController : ControllerBase
             return NotFound(new { message = "Interesse non trovato." });//ERROR 404
         }
 
-        return NoContent();// Codice di stato HTTP 204 No Content: l'operazione è riuscita ma non c'è nulla da restituire
+        return NoContent();/* Codice di stato HTTP 204 No Content: l'operazione è riuscita ma non c'è nulla da restituire.
+        PS:È lo standard per le DELETE. Se la risorsa è stata eliminata, non ha senso rimandarla indietro nel corpo della 
+        risposta. Il codice 204 conferma al client: "Ho fatto quello che hai chiesto, tutto pulito".*/
     }
 
-    private string GetUserIdFromToken()
+    private string GetUserIdFromToken()/* Leggiamo l'id utente che abbiamo salvato nel JWT. 
+        PS:Quindi l'identità dell'utente non viene passata "per fiducia" dal client (tipo un parametro nella URL che 
+        chiunque potrebbe cambiare), ma viene estratta dal Token criptato e firmato. Questo garantisce che un utente
+         possa vedere/modificare solo i propri interessi e non quelli di altri.*/
     {
-        // Leggiamo l'id utente che abbiamo salvato nel JWT
+
         string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         if (string.IsNullOrEmpty(userId))
