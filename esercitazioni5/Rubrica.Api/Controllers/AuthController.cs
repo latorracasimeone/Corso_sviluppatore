@@ -26,7 +26,7 @@ public class AuthController : ControllerBase
 
     /// Endpoint per la registrazione di un nuovo utente.
     [HttpPost("register")] /* mappa un URL a un metodo 
-    Risponde a POST(scrittura/invio) api/auth/register (rotta base(Controller) + specifica(metodo, derivato da [HttpPost("register")]))*/
+    Risponde all'HTTP METOD "POST"(scrittura/invio), api/auth/register (rotta base(Controller) + specifica(metodo, derivato da [HttpPost("register")]))*/
     public async Task<IActionResult> Register([FromBody] RegisterDto dto)
     {
         // Chiama il servizio per creare l'utente nel database
@@ -56,7 +56,9 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Login([FromBody] LoginDto dto)
     {
         // Tenta l'accesso tramite il servizio dedicato (authService)
-        AuthResponseDto? response = await _authService.LoginAsync(dto);
+        AuthResponseDto? response = await _authService.LoginAsync(dto); /*response contiene i dati che sono in 
+        AuthResponseDto, per poter restituire all'utente le informazioni dopo che è stato effettuato il login. 
+        Quindi per discriminare se siamo dentro o no*/
 
         if (response == null)
         {
@@ -65,6 +67,6 @@ public class AuthController : ControllerBase
         }
 
         // Restituisce 200 OK con i dati dell'utente e il token JWT
-        return Ok(response);
+        return Ok(response);//quindi login effettuato con successo
     }
 }
