@@ -1,5 +1,3 @@
-il modo in cui comunicano frontend e backend è proprio l'endpoint, endpoint che può essere un file json o un url locale che parte dal backend per poi passare al frontend per il corretto funzionamento del tutto
-await è un metodo??
 
 
 
@@ -21,19 +19,8 @@ await è un metodo??
 
 
 
-/*CHOCOLATEY da scaricare dal sitop sotto products, poi pricying, open source, individual 
-/// e copia il comando dentro al powershell. Questo però dopo aver aperto C:/ProgramData e cancellato
-/// la cartella chocolatey. Dopodiché, aprire visual atudio code come amministratore e come verifica 
-nel terminal powershell scrivere "choco". Subito dopo "choco install jq" su powershell. Poi "jq --version".
-Ulteriore verifica con <<echo '{"token":"abc"}' | jq -r '.token'>>
-poi 
-bash:
-TOKEN=$(curl -s -X POST "http://localhost:5062/api/Auth/login" \
-  -H "Content-Type: application/json" \
-  -d '{"email":"utente1@email.com","password:"123456"}' | jq -r '.token')
 
- 
-/// scrivi cmd su barra windows e apri prompt dei comandi (?)*/
+
 
 
 
