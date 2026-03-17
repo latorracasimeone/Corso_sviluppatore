@@ -1,5 +1,6 @@
 # CHOCOLATEY
-- Da scaricare dal sitop sotto products, poi pricying, open source, individual e copia il comando dentro al powershell. 
+- Da scaricare dal sito sotto products, poi pricying, open source, individual e copia il comando dentro al powershell.
+ 
 `Se questo non dovesse andare riprovare dopo aver aperto C:/ProgramData e cancellato la cartella chocolatey.` 
 - Dopodiché, aprire Visual Studio Code come amministratore
 - Verifica nel terminal powershell scrivendo "choco" l'avvenuta installazione. 
