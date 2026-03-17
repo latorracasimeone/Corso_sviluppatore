@@ -5,17 +5,17 @@ using Microsoft.IdentityModel.Tokens;
 using Rubrica.Api.Models;
 
 namespace Rubrica.Api.Helpers;
-
+//riceve dati e crea un token sicuro e firmato.
 public class JwtHelper
 {
-    private readonly IConfiguration _configuration;
+    private readonly IConfiguration _configuration;//_configuration viene usato per accedere ai dati di configurazione JWT (?) 
 
     public JwtHelper(IConfiguration configuration)
     {
         _configuration = configuration;
     }
 
-    public string GenerateToken(ApplicationUser user)
+    public string GenerateToken(ApplicationUser user)///riceviamo un'istnaza di ApplicationUser perché il token che dobbiamo creare deve contenere le informaizoni dell'utente
     {
         // Leggiamo i dati dal file appsettings.json
         string? key = _configuration["Jwt:Key"];
@@ -35,7 +35,8 @@ public class JwtHelper
             new Claim(ClaimTypes.Email, user.Email ?? "")
         };
 
-        SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+        //secret key generata in automatico(?)
+        SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));//UTF8 encoding europeo, solo quei caratteri (es: non c'è "è" accentata)
         SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         JwtSecurityToken token = new JwtSecurityToken(

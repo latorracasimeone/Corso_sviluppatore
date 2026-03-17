@@ -12,6 +12,7 @@ public static class DataSeeder
     public static async Task SeedAsync(IServiceProvider serviceProvider)
     {
         using IServiceScope scope = serviceProvider.CreateScope();
+        {
         //lo scope serve a garantire che i servizi vengano rilasciati correttamente. Using di validità di applicazione pipeline. 
         //In particolare ApplicationDbContext e UserManager<ApplicationUser> (models?)
 
@@ -60,6 +61,8 @@ public static class DataSeeder
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "HULK");
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "Pippo");
         //prova a cercare awiat per aggiornare invece di creare un interesse se non esiste async!!!!!
+        /////Forse con un metodo tipo UpdateInterestIfNotPiripillo???????
+        }
     }
 
     private static async Task<ApplicationUser> CreateUserIfNotExistsAsync(
