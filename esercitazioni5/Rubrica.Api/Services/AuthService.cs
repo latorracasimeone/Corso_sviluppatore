@@ -22,7 +22,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly JwtHelper _jwtHelper; // Nostra classe helper per generare il "biglietto d'ingresso" (Token)
 
-// Anche qui usiamo la Dependency Injection: il framework ci passa gli strumenti già pronti all'uso.
+    // Anche qui usiamo la Dependency Injection: il framework ci passa gli strumenti già pronti all'uso.
     public AuthService(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
@@ -106,5 +106,80 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         response.NomeCompleto = user.NomeCompleto;
 
         return response;
+    }
+
+    //aggiunta
+
+    public async Task<UpdateUserDto?> UpdateAsync(UpdateUserDto dto, string userId)
+    {
+        // Cerchiamo l'utente nel database usando l'ID
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
+        {
+            return null; // Utente non trovato
+        }
+
+        // Aggiorniamo i dati dell'utente con quelli provenienti dal DTO
+        user.NomeCompleto = dto.NomeCompleto;
+        user.PhoneNumber = dto.PhoneNumber;
+        // Se l'email è cambiabile, potresti aggiornare anche user.Email, 
+        // ma di solito richiede una logica di conferma più complessa.
+
+        // Salviamo le modifiche nel database
+        var result = await _userManager.UpdateAsync(user);
+
+        if (!result.Succeeded)
+        {
+            // Se l'aggiornamento fallisce (es. validazione fallita), gestisci l'errore
+            return null;
+        }
+
+        // Ritorniamo il DTO con i dati aggiornati per conferma
+        return dto;
+    }
+
+    //ULTERIORE aggiunta
+    public async Task<IdentityResult?> DeleteAsync(string userId)
+    {
+        //Cerchiamo l'utente
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
+        {
+            return null; // Utente non trovato
+        }
+
+        // 2. Eliminiamo l'utente
+        // DeleteAsync si occupa di rimuovere i record relativi nelle tabelle di Identity
+        var result = await _userManager.DeleteAsync(user);
+
+        return result;
+    }
+
+    //AGGIUNTA 11:47 18/03 STAMPA
+    // AGGIUNTA 11:47 18/03 STAMPA
+    public async Task<UserStampDto?> GetUserProfile(string userId)
+    {
+        // Cerchiamo l'utente nel database tramite UserManager
+        var user = await _userManager.FindByIdAsync(userId);
+
+        // Se l'utente non esiste, restituiamo null 
+        // (il Controller gestirà il null restituendo un 404 Not Found)
+        if (user == null)
+        {
+            return null;
+        }
+
+        // Mappatura: trasformiamo il modello del DB (ApplicationUser) nel DTO (UserStampDto)
+        UserStampDto dto = new UserStampDto();
+
+
+        dto.Id = user.Id;
+        dto.NomeCompleto = user.NomeCompleto;
+        dto.Email = user.Email;
+        dto.PhoneNumber = user.PhoneNumber;
+
+        return dto;
     }
 }
