@@ -20,4 +20,7 @@ public class ApplicationUser : IdentityUser
     // Un utente può avere molti interessi (Relazione uno-a-molti)
     public List<Interest> Interests { get; set; } = new List<Interest>();
     public bool NumeroInternazionale { get; set; } 
+    
+    [DataType(DataType.Date)] // Suggerisce al front-end di usare un selettore di date
+    public DateTime? Birthday { get; set; }//il punto interrogativo indica che è nullable, ovvero può essere null se l'utente non ha inserito la data di nascita
 }

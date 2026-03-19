@@ -66,6 +66,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         user.PhoneNumber = dto.PhoneNumber;
         user.CreatedAt = DateTime.UtcNow;
         user.NumeroInternazionale = dto.NumeroInternazionale;
+        user.Birthday = dto.Birthday;
 
         /* Identity salva l'utente e CreateAsync si occupa di validare la password, criptarla (hashing) 
         e salvare l'utente. Non salviamo mai la password in chiaro per motivi di sicurezza*/
@@ -107,6 +108,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         response.Email = user.Email ?? "";
         response.NomeCompleto = user.NomeCompleto;
         response.NumeroInternazionale = user.NumeroInternazionale;
+        response.Birthday = user.Birthday;
 
         return response;
     }
@@ -184,6 +186,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         dto.Email = user.Email;
         dto.PhoneNumber = user.PhoneNumber;
         dto.NumeroInternazionale = user.NumeroInternazionale;
+        dto.Birthday = user.Birthday;
 
         return dto;
     }

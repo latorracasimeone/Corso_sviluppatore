@@ -100,13 +100,15 @@ La Migrazione è il "progetto del muratore": un file che dice al database esatta
 1. Requisiti
 Assicurati di avere installato il tool di Entity Framework. Apri il terminale nella cartella del progetto e digita:
 
-Bash
+```Bash
 dotnet tool install --global dotnet-ef
+```
 2. Creare la Migrazione
 Ora devi generare i file che descrivono i cambiamenti. Esegui questo comando:
 
-Bash
+```Bash
 dotnet ef migrations add AggiungiCampiPersonalizzatiUser
+```
 AggiungiCampiPersonalizzatiUser è solo un nome descrittivo, puoi chiamarlo come vuoi.
 
 EF Core confronterà il tuo ApplicationUser.cs con lo stato precedente e creerà una cartella Migrations nel progetto.
@@ -114,6 +116,7 @@ EF Core confronterà il tuo ApplicationUser.cs con lo stato precedente e creerà
 3. Aggiornare il Database
 Ora che il "progetto" è pronto, devi applicarlo fisicamente al database:
 
-Bash
+```Bash
 dotnet ef database update
+```
 Questo comando legge le migrazioni e crea/modifica le tabelle (inclusa la tabella Users con la colonna NumeroInternazionale).

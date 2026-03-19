@@ -8,4 +8,7 @@ public class AuthResponseDto
     public string Email { get; set; } = string.Empty;
     public string NomeCompleto { get; set; } = string.Empty;
     public bool NumeroInternazionale { get; set; }
+    
+    
+    public DateTime? Birthday { get; set; }
 }

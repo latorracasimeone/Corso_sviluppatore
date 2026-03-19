@@ -18,4 +18,6 @@ public class RegisterDto
 
     public string PhoneNumber { get; set; } = string.Empty;
     public bool NumeroInternazionale { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime? Birthday { get; set; }
 }
