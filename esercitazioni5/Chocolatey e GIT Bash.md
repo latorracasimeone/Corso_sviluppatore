@@ -57,7 +57,7 @@ curl -X DELETE "http://localhost:5062/api/Interests/2" \
 ```bash
 curl -X POST "http://localhost:5062/api/Auth/register" \
 -H "Content-Type: application/json" \
--d '{"email":"forzaempoli36@email.com","password":"1234567","nomeCompleto":"Fabio Tammaro","phoneNumber":"+1800","numeroInternazionale":true}'
+-d '{"email":"forzaempoli1@email.com","password":"12345678","nomeCompleto":"Arianna","phoneNumber":"+397800","numeroInternazionale":false,"birthday":"1997-05-21"}'
 ```
 c'è il numero internazionale perché abbiamo aggiunto il valore booleano. `A quanto pare, non fa differenza se scrivi numeroInternazionale o NumeroInternazionale. Chiedere come mai.`
 
@@ -120,3 +120,6 @@ Ora che il "progetto" è pronto, devi applicarlo fisicamente al database:
 dotnet ef database update
 ```
 Questo comando legge le migrazioni e crea/modifica le tabelle (inclusa la tabella Users con la colonna NumeroInternazionale).
+
+
+PERCHé APPARE `QUESTO SQLite Error 1: 'table "AspNetUsers" already exists'.` dopo Migrazioni??????????
