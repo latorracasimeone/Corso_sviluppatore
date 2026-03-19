@@ -57,9 +57,10 @@ curl -X DELETE "http://localhost:5062/api/Interests/2" \
 ```bash
 curl -X POST "http://localhost:5062/api/Auth/register" \
 -H "Content-Type: application/json" \
--d '{"email":"forzaempoli36@email.com","password":"1234567","nomeCompleto":"Fabio Tammaro2.0","phoneNumber":"+1800","numeroInternazionale":true}'
+-d '{"email":"forzaempoli36@email.com","password":"1234567","nomeCompleto":"Fabio Tammaro","phoneNumber":"+1800","numeroInternazionale":true}'
 ```
-c'è il numero internazionale perché abbiamo aggiunto il valore booleano, TESTA CON MAIUSCOLA COSA SUCCEDE
+c'è il numero internazionale perché abbiamo aggiunto il valore booleano. `A quanto pare, non fa differenza se scrivi numeroInternazionale o NumeroInternazionale. Chiedere come mai.`
+
 ## Modifica utente (non implementato, ma si potrebbe fare aggiungendo un endpoint PUT in AuthController).
 `interfaccia dell'utente, quindi ovviamente lui può modificare solo se stesso e non gli altri! Stiamo vedendo il tutto dal punto di vista dell'utente, non dello sviluppatore/amministratore!!!!`
 ```bash
@@ -68,6 +69,8 @@ curl -X PUT "http://localhost:5062/api/Auth/update" \
 -H "Authorization: Bearer $TOKEN" \
 -d '{"nomeCompleto":"Fabio Tammaro Updated", "phoneNumber":"333333333332"}'
 ```
+
+
 ## Elimina Utente
 ```bash
 curl -X DELETE "http://localhost:5062/api/Auth/delete" \
