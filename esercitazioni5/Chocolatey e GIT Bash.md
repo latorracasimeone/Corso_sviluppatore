@@ -47,7 +47,7 @@ curl -X PUT "http://localhost:5062/api/Interests/1" \
 ```
 ## Cancella interesse
 ```bash
-curl -X DELETE "http://localhost:5062/api/Interests/1" \
+curl -X DELETE "http://localhost:5062/api/Interests/2" \
 -H "Authorization: Bearer $TOKEN" 
 ```
 
@@ -85,3 +85,31 @@ curl -X GET "http://localhost:5062/api/Auth/profile" \
 .../Auth/profile
 [HttpGet("profile")]
 ```
+
+
+# MIGRATIONS
+
+La Teoria: Cos'è una Migrazione?
+Immagina il database come una casa e le tue classi C# (ApplicationUser) come la planimetria. Se modifichi la planimetria aggiungendo una stanza (NumeroInternazionale), la casa reale non si modifica da sola.
+La Migrazione è il "progetto del muratore": un file che dice al database esattamente quali muri spostare o quali colonne aggiungere per allinearsi al codice.
+
+1. Requisiti
+Assicurati di avere installato il tool di Entity Framework. Apri il terminale nella cartella del progetto e digita:
+
+Bash
+dotnet tool install --global dotnet-ef
+2. Creare la Migrazione
+Ora devi generare i file che descrivono i cambiamenti. Esegui questo comando:
+
+Bash
+dotnet ef migrations add AggiungiCampiPersonalizzatiUser
+AggiungiCampiPersonalizzatiUser è solo un nome descrittivo, puoi chiamarlo come vuoi.
+
+EF Core confronterà il tuo ApplicationUser.cs con lo stato precedente e creerà una cartella Migrations nel progetto.
+
+3. Aggiornare il Database
+Ora che il "progetto" è pronto, devi applicarlo fisicamente al database:
+
+Bash
+dotnet ef database update
+Questo comando legge le migrazioni e crea/modifica le tabelle (inclusa la tabella Users con la colonna NumeroInternazionale).

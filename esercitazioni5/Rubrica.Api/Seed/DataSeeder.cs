@@ -28,21 +28,24 @@ public static class DataSeeder
             "utente1@email.com",
             "123456",
             "Utente uno",
-            "3331234567");
+            "3331234567",
+            false);
 
         ApplicationUser utente2 = await CreateUserIfNotExistsAsync(
             userManager,
             "utente2@email.com",
             "123456",
             "Utente due",
-            "3337654321");
+            "3337654321",
+            true);
 
         ApplicationUser utente3 = await CreateUserIfNotExistsAsync(
             userManager,
             "utente3@email.com",
             "123456",
             "Utente tre",
-            "3331112222");
+            "3331112222",
+            true);
 
         // Creiamo alcuni interessi per ogni utente
         await CreateInterestIfNotExistsAsync(context, utente1.Id, "F1");
@@ -70,7 +73,8 @@ public static class DataSeeder
         string email,
         string password,
         string nomeCompleto,
-        string? phoneNumber)
+        string? phoneNumber,
+        bool NumeroInternazionale)
     {
         // Controlliamo se l'utente esiste già tramite email
         ApplicationUser? existingUser = await userManager.FindByEmailAsync(email);
@@ -86,6 +90,7 @@ public static class DataSeeder
         user.NomeCompleto = nomeCompleto;
         user.PhoneNumber = phoneNumber;
         user.CreatedAt = DateTime.UtcNow;
+        user.NumeroInternazionale = NumeroInternazionale;
 
         IdentityResult result = await userManager.CreateAsync(user, password);
 

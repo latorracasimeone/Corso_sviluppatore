@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using Microsoft.AspNetCore.Identity;
 using Rubrica.Api.Dtos;
 using Rubrica.Api.Helpers;
@@ -64,6 +65,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         user.NomeCompleto = dto.NomeCompleto;
         user.PhoneNumber = dto.PhoneNumber;
         user.CreatedAt = DateTime.UtcNow;
+        user.NumeroInternazionale = dto.NumeroInternazionale;
 
         /* Identity salva l'utente e CreateAsync si occupa di validare la password, criptarla (hashing) 
         e salvare l'utente. Non salviamo mai la password in chiaro per motivi di sicurezza*/
@@ -104,6 +106,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         response.UserId = user.Id;
         response.Email = user.Email ?? "";
         response.NomeCompleto = user.NomeCompleto;
+        response.NumeroInternazionale = user.NumeroInternazionale;
 
         return response;
     }
@@ -123,6 +126,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         // Aggiorniamo i dati dell'utente con quelli provenienti dal DTO
         user.NomeCompleto = dto.NomeCompleto;
         user.PhoneNumber = dto.PhoneNumber;
+        user.NumeroInternazionale = dto.NumeroInternazionale;
         // Se l'email è cambiabile, potresti aggiornare anche user.Email, 
         // ma di solito richiede una logica di conferma più complessa.
 
@@ -179,6 +183,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         dto.NomeCompleto = user.NomeCompleto;
         dto.Email = user.Email;
         dto.PhoneNumber = user.PhoneNumber;
+        dto.NumeroInternazionale = user.NumeroInternazionale;
 
         return dto;
     }

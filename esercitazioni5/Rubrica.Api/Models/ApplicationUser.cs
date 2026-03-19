@@ -19,4 +19,5 @@ public class ApplicationUser : IdentityUser
 
     // Un utente può avere molti interessi (Relazione uno-a-molti)
     public List<Interest> Interests { get; set; } = new List<Interest>();
+    public bool NumeroInternazionale { get; set; } 
 }
