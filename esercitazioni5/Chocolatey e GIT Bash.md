@@ -123,3 +123,8 @@ Questo comando legge le migrazioni e crea/modifica le tabelle (inclusa la tabell
 
 
 PERCHé APPARE `QUESTO SQLite Error 1: 'table "AspNetUsers" already exists'.` dopo Migrazioni??????????
+
+
+Migrations funziona anche solo modificando i models, però ovviamente servono i Services e Dtos per gli input e Seeder per gli esempi.
+
+Prima migrare e poi eseguire.

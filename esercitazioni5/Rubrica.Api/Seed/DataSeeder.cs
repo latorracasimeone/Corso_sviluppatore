@@ -19,8 +19,8 @@ public static class DataSeeder
         ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         UserManager<ApplicationUser> userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-        // Creiamo il database se non esiste ancora
-        await context.Database.EnsureCreatedAsync();
+        
+        
 
         // Creiamo alcuni utenti demo
         ApplicationUser utente1 = await CreateUserIfNotExistsAsync(

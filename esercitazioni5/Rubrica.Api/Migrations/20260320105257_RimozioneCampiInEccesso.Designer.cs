@@ -11,8 +11,8 @@ using Rubrica.Api.Data;
 namespace Rubrica.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260319144421_AggiuntaDataiNascitaUser")]
-    partial class AggiuntaDataiNascitaUser
+    [Migration("20260320105257_RimozioneCampiInEccesso")]
+    partial class RimozioneCampiInEccesso
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

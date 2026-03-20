@@ -11,4 +11,5 @@ public class AuthResponseDto
     
     
     public DateTime? Birthday { get; set; }
+    
 }

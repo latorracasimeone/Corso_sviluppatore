@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rubrica.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class AggiungiCampiPersonalizzatiNumeroInternazionaleUser : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,6 +19,9 @@ namespace Rubrica.Api.Migrations
                     NomeCompleto = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     NumeroInternazionale = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Birthday = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Cap = table.Column<string>(type: "TEXT", nullable: false),
+                    Film = table.Column<string>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
