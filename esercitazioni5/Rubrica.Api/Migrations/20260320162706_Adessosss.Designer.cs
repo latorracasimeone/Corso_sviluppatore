@@ -11,8 +11,8 @@ using Rubrica.Api.Data;
 namespace Rubrica.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260320105257_RimozioneCampiInEccesso")]
-    partial class RimozioneCampiInEccesso
+    [Migration("20260320162706_Adessosss")]
+    partial class Adessosss
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,6 +93,10 @@ namespace Rubrica.Api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("Birthday")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Cap")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ConcurrencyStamp")

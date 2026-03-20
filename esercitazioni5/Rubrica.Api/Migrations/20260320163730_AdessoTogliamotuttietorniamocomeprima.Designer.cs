@@ -11,8 +11,8 @@ using Rubrica.Api.Data;
 namespace Rubrica.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260320095907_AggiuntaCanzonePreferita")]
-    partial class AggiuntaCanzonePreferita
+    [Migration("20260320163730_AdessoTogliamotuttietorniamocomeprima")]
+    partial class AdessoTogliamotuttietorniamocomeprima
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,14 +95,6 @@ namespace Rubrica.Api.Migrations
                     b.Property<DateTime?>("Birthday")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Canzone")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Cap")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
@@ -116,10 +108,6 @@ namespace Rubrica.Api.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Film")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");

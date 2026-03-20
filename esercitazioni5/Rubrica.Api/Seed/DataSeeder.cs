@@ -40,7 +40,6 @@ public static class DataSeeder
             "3337654321",
             true,
             new DateTime(1985, 5, 15));
-
         ApplicationUser utente3 = await CreateUserIfNotExistsAsync(
             userManager,
             "utente3@email.com",
@@ -96,6 +95,7 @@ public static class DataSeeder
         user.CreatedAt = DateTime.UtcNow;
         user.NumeroInternazionale = NumeroInternazionale;
         user.Birthday = Birthday;
+        
 
         IdentityResult result = await userManager.CreateAsync(user, password);
 

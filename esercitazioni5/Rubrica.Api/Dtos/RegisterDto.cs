@@ -20,4 +20,5 @@ public class RegisterDto
     public bool NumeroInternazionale { get; set; }
     [DataType(DataType.Date)]
     public DateTime? Birthday { get; set; }
+    
 }

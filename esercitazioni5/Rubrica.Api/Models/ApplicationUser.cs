@@ -23,4 +23,6 @@ public class ApplicationUser : IdentityUser
     
     [DataType(DataType.Date)] // Suggerisce al front-end di usare un selettore di date
     public DateTime? Birthday { get; set; }//il punto interrogativo indica che è nullable, ovvero può essere null se l'utente non ha inserito la data di nascita
+
+    
 }
