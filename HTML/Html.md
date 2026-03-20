@@ -24,9 +24,9 @@ Esempio di tag con attributo:
 ```html
 <p class="testo">Questo è un paragrafo.</p>
 ```
-- P è il nome del tag
-- class è il nome dell'attributo
-- "testo" è il valore dell'attributo
+- *P* è il nome del tag
+- *class* è il nome dell'attributo
+- *"testo"* è il valore dell'attributo
 
 # Pagina HTML
 La struttura di una pagina HTML è composta da diversi elementi, tra cui head e body.
