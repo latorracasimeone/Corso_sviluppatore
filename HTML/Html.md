@@ -20,8 +20,8 @@ NON COSì!!!!!!!!
 Cioè l'ultimo aperto è il primo a chiudersi, come in matematica con {[()]} o su whatsapp per grassetto e corsivo _*sas*_
 
 ```html
-< Alcuni tag hanno un valore semantico, cioè indicano al browser ed ai motori di ricerca il significato del contenuto, ad esempio <h1> indica un titolo principale, mentre <strong> indica un testo importante
-    
+> Alcuni tag hanno un valore semantico, cioè indicano al browser ed ai motori di ricerca il significato del contenuto, ad esempio <h1> indica un titolo principale, mentre <strong> indica un testo importante
+
 ```
 Altri tag invece sono utilizzati principalmente per la formattazione del testo, come <b> per il grassetto e <i> per il corsivo.
 
