@@ -67,7 +67,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         user.CreatedAt = DateTime.UtcNow;
         user.NumeroInternazionale = dto.NumeroInternazionale;
         user.Birthday = dto.Birthday;
-      
+
 
         /* Identity salva l'utente e CreateAsync si occupa di validare la password, criptarla (hashing) 
         e salvare l'utente. Non salviamo mai la password in chiaro per motivi di sicurezza*/
@@ -111,9 +111,14 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
             return null;//Password Errata
         }
 
+        // --- AGGIUNTA FONDAMENTALE PER RISOLVERE GLI ERRORI ---
+        // Recuperiamo i ruoli dell'utente dal database
+        IList<string> userRoles = await _userManager.GetRolesAsync(user);
+        // ------------------------------------------------------
+
         /*Se tutto va bene creiamo un JWT (JSON Web Token).Il token permetterà all'utente 
         di fare chiamate protette senza reinserire la password ogni volta.*/
-        string token = _jwtHelper.GenerateToken(user);
+        string token = _jwtHelper.GenerateToken(user, userRoles);
 
         //Prepariamo la risposta con solo i dati necessari da rimandare al frontend. (pacchetto unico con dati precedenti+ token e nome completo)
         AuthResponseDto response = new AuthResponseDto();
@@ -137,7 +142,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         {
             response.Role = "";
         }
-       
+
 
         return response;
     }
@@ -216,7 +221,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         dto.PhoneNumber = user.PhoneNumber;
         dto.NumeroInternazionale = user.NumeroInternazionale;
         dto.Birthday = user.Birthday;
-        
+
 
         return dto;
     }
