@@ -12,5 +12,4 @@ public class UpdateUserDto
     public string PhoneNumber { get; set; } = string.Empty;
     public bool NumeroInternazionale { get; set; }
     
-    public string Role { get; set; } = string.Empty;
 }

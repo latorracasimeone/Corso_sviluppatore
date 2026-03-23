@@ -21,5 +21,4 @@ public class RegisterDto
     [DataType(DataType.Date)]
     public DateTime? Birthday { get; set; }
     
-    public string Role { get; set; } = string.Empty;
 }
