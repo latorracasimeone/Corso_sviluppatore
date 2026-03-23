@@ -79,8 +79,11 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
             return result;
         }
 
+        // MODIFICA: Usa il ruolo dal DTO, se vuoto usa "User" come default
+        string roleToAssign = string.IsNullOrWhiteSpace(dto.Role) ? "User" : dto.Role;
+
         //Ogni utente registrato normalmente entra come User
-        IdentityResult addRoleResult = await _userManager.AddToRoleAsync(user, "User");
+        IdentityResult addRoleResult = await _userManager.AddToRoleAsync(user, roleToAssign);
 
         if (!addRoleResult.Succeeded)
         {
@@ -175,6 +178,21 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
             return null;
         }
 
+        // --- LOGICA AGGIORNAMENTO RUOLO ---
+        if (!string.IsNullOrWhiteSpace(dto.Role))
+        {
+            // 1. Recupera i ruoli attuali
+            var currentRoles = await _userManager.GetRolesAsync(user);
+
+            // 2. Rimuovi i ruoli vecchi (per mantenere la logica "un solo ruolo per utente")
+            await _userManager.RemoveFromRolesAsync(user, currentRoles);
+
+            // 3. Aggiungi il nuovo ruolo
+            await _userManager.AddToRoleAsync(user, dto.Role);
+        }
+
+
+
         // Ritorniamo il DTO con i dati aggiornati per conferma
         return dto;
     }
@@ -199,21 +217,23 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
 
     //AGGIUNTA 11:47 18/03 STAMPA
     // AGGIUNTA 11:47 18/03 STAMPA
+    // AGGIUNTA ULTERIORMENTE nuova
     public async Task<UserStampDto?> GetUserProfile(string userId)
     {
         // Cerchiamo l'utente nel database tramite UserManager
         var user = await _userManager.FindByIdAsync(userId);
 
         // Se l'utente non esiste, restituiamo null 
-        // (il Controller gestirà il null restituendo un 404 Not Found)
         if (user == null)
         {
             return null;
         }
 
+        // --- AGGIUNTA: Recuperiamo i ruoli associati all'utente ---
+        var userRoles = await _userManager.GetRolesAsync(user);
+
         // Mappatura: trasformiamo il modello del DB (ApplicationUser) nel DTO (UserStampDto)
         UserStampDto dto = new UserStampDto();
-
 
         dto.Id = user.Id;
         dto.NomeCompleto = user.NomeCompleto;
@@ -222,6 +242,15 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         dto.NumeroInternazionale = user.NumeroInternazionale;
         dto.Birthday = user.Birthday;
 
+        // --- AGGIUNTA: Inseriamo il primo ruolo trovato nella risposta ---
+        if (userRoles.Count > 0)
+        {
+            dto.Role = userRoles[0]; // Restituisce il primo (es: "User" o "Admin")
+        }
+        else
+        {
+            dto.Role = "User"; // Default se non ha ruoli assegnati
+        }
 
         return dto;
     }

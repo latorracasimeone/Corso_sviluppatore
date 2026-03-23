@@ -14,5 +14,5 @@ public class UserStampDto
     public bool NumeroInternazionale { get; set; }
     [DataType(DataType.Date)]
     public DateTime? Birthday { get; set; }
-    //public string Role { get; set; } = string.Empty;
+    public string Role { get; set; } = string.Empty;
 }
