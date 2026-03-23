@@ -2,6 +2,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rubrica.Api.Dtos;
+using Rubrica.Api.Models;
 using Rubrica.Api.Services;
 
 //si occupa di gedstione richieste HTTP e restituisce risposte agli endpoint interessati
@@ -57,6 +58,7 @@ public class InterestsController : ControllerBase
     Poiché la rotta base è [Route("api/[controller]")] 
     (quindi api/interests) e il metodo Create non ha stringhe aggiuntive nel [HttpPost], 
     l'URL finale sarà esattamente api/interests. */
+    [Authorize(Roles = UserRoles.AdminOrEditor)]
     public async Task<IActionResult> Create([FromBody] InterestCreateDto dto)
     {
         string userId = GetUserIdFromToken();
@@ -79,6 +81,7 @@ public class InterestsController : ControllerBase
     /// 
     /// </example>
     [HttpPut("{id}")] // PUT api/interests/{id}
+    [Authorize(Roles = UserRoles.AdminOrEditor)]
     public async Task<IActionResult> Update(int id, [FromBody] InterestCreateDto dto)
     {
         string userId = GetUserIdFromToken();
@@ -96,6 +99,7 @@ public class InterestsController : ControllerBase
 
     /// Elimina un interesse specifico.
     [HttpDelete("{id}")] // DELETE api/interests/{id}
+    [Authorize(Roles = UserRoles.AdminOrEditor)]
     public async Task<IActionResult> Delete(int id)
     {
         string userId = GetUserIdFromToken();

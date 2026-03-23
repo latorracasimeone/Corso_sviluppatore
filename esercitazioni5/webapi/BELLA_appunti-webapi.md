@@ -1271,7 +1271,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         }
 
         //Ogni utente registrato normalmente entra come User
-        IdentityResult addRoleResult = await _userManager.AddToRoleAsync(user, userRoles.user)
+        IdentityResult addRoleResult = await _userManager.AddToRoleAsync(user, userRoles.user);
 
         if (!addRoleResult.Succeeded)
         {
@@ -1413,7 +1413,7 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
 ## Services/UserRoleService.cs.
 Questo servizio serve per cambiare il ruolo a un utente esistente. Lo facciamo semplice: rimuoviamo gli eventuali ruoli classici già presenti e assegnamo quello nuovo.
 ```c#
-using Microsoft.AspeNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Rubrica.Api.Dtos;
 using Rubrica.Api.Models;
 
@@ -1425,7 +1425,7 @@ public class UserRoleService
 
     public UserRoleService(UserManager<ApplicationUser> userManager)
     {
-        _userManager = userManager
+        _userManager = userManager;
     }
     public async Task<string?> ChangeUserRoleAsync(ChangeUserRoleDto dto)//ci sarà un modulo dove l'admin può cambiare i ruoli
     {
@@ -1454,7 +1454,7 @@ public class UserRoleService
                 currentRole == UserRoles.Editor ||
                 currentRole == UserRoles.User)
             {
-                await _userManager.RemoveFromRoleAsync(user, currentRole)
+                await _userManager.RemoveFromRoleAsync(user, currentRole);
             }
         }
 
@@ -1463,7 +1463,7 @@ public class UserRoleService
 
         if (!addResult.Succeeeded)
         {
-            return null
+            return null;
         }
         return dto.NewRole;
     }
@@ -1982,3 +1982,5 @@ await DataSeeder.SeedAsync(app.Services);//seed ruoli + utenti + interessi
 
 app.Run();
 ```
+
+

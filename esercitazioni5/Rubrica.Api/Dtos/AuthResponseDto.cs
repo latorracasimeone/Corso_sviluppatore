@@ -9,9 +9,7 @@ public class AuthResponseDto
     public string UserId { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string NomeCompleto { get; set; } = string.Empty;
-    public bool NumeroInternazionale { get; set; }
-    
-    
+    public bool NumeroInternazionale { get; set; }        
     public DateTime? Birthday { get; set; }
-    
+    public string Role { get; set; } = string.Empty;    
 }

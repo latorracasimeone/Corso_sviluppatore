@@ -15,7 +15,7 @@ public class JwtHelper
         _configuration = configuration;
     }
 
-    public string GenerateToken(ApplicationUser user)///riceviamo un'istnaza di ApplicationUser perché il token che dobbiamo creare deve contenere le informaizoni dell'utente
+    public string GenerateToken(ApplicationUser user, IList<string> roles)///riceviamo un'istnaza di ApplicationUser perché il token che dobbiamo creare deve contenere le informaizoni dell'utente
     {
         // Leggiamo i dati dal file appsettings.json
         string? key = _configuration["Jwt:Key"];
@@ -27,13 +27,27 @@ public class JwtHelper
             throw new Exception("Configurazione JWT mancante.");
         }
 
+        /*questo è un array, per farlo un po' più bellino lo facciamo con una lista
         // Dentro il token mettiamo alcune informazioni utili
         Claim[] claims = new Claim[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(ClaimTypes.Name, user.UserName ?? ""),
             new Claim(ClaimTypes.Email, user.Email ?? "")
-        };
+        };*/
+
+        List<Claim> claims = new List<Claim>();
+
+        //claim base utente
+        claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
+        claims.Add(new Claim(ClaimTypes.Name, user.UserName ?? ""));
+        claims.Add(new Claim(ClaimTypes.Email, user.Email ?? ""));
+
+        //Claim di ruolo
+        for (int i = 0; i < roles.Count; i++)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, roles[i]));
+        }
 
         //secret key generata in automatico(?)
         SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));//UTF8 encoding europeo, solo quei caratteri (es: non c'è "è" accentata)

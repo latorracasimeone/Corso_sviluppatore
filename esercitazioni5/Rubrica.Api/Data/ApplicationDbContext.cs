@@ -1,11 +1,18 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Rubrica.Api.Models;
 
 namespace Rubrica.Api.Data;
 
-public class ApplicationDbContext : IdentityUserContext<ApplicationUser>
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
 {
+    /// Questo DbContext ora gestisce:
+    /// - utenti
+    /// - ruoli
+    /// - user-roles
+    /// - claims, logins, tokens di Identity
+    /// - la nostra tabella custom Interests
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }

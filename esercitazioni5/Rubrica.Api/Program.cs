@@ -6,8 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 using Rubrica.Api.Data;
 using Rubrica.Api.Helpers;
 using Rubrica.Api.Models;
-using Rubrica.Api.Services;
 using Rubrica.Api.Seed;
+using Rubrica.Api.Services;
+
 /*TEORIA NELLA CARTELLA WEBAPI
 FILE BELLA_appunti-webapi */
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,7 @@ builder.Services.AddIdentityCore<ApplicationUser>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 6;
 })
+.AddRoles<IdentityRole>() // <-- fondamentale per i ruoli
 .AddSignInManager<SignInManager<ApplicationUser>>()
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
@@ -80,13 +82,18 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<JwtHelper>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<InterestService>();
+builder.Services.AddScoped<UserRoleService>();//<-- nuovo servizio per gestire i ruoli degli utenti
+
 
 var app = builder.Build();
 
 app.UseCors("AllowAngularApp");
+
 app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
@@ -98,6 +105,6 @@ using (var scope = app.Services.CreateScope())
 
 // Richiama il seed iniziale con alcuni utenti demo e i loro interessi.
 // Se i dati esistono già, non vengono duplicati.
-await DataSeeder.SeedAsync(app.Services);
+await DataSeeder.SeedAsync(app.Services);//seed ruoli + utenti + interessi
 
 app.Run();

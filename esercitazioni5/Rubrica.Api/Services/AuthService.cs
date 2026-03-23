@@ -1,4 +1,4 @@
-using System.Reflection.Metadata;
+//using System.Reflection.Metadata;
 using Microsoft.AspNetCore.Identity;
 using Rubrica.Api.Dtos;
 using Rubrica.Api.Helpers;
@@ -74,6 +74,19 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         // await fa restare in attesa il thread finché l'operazione non è completata, ma senza bloccarlo
         IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
 
+        if (!result.Succeeded)
+        {
+            return result;
+        }
+
+        //Ogni utente registrato normalmente entra come User
+        IdentityResult addRoleResult = await _userManager.AddToRoleAsync(user, "User");
+
+        if (!addRoleResult.Succeeded)
+        {
+            return addRoleResult;
+        }
+
         return result;
     }
 
@@ -110,6 +123,20 @@ che gestiscono tutta la sicurezza complessa (es. hash password).*/
         response.NomeCompleto = user.NomeCompleto;
         response.NumeroInternazionale = user.NumeroInternazionale;
         response.Birthday = user.Birthday;
+
+        //gestione sicura del ruolo nella risposta
+        /////////response.Role = ResolveEventArgs.FirstOrDefault() ?? "User";
+
+        ///nel progetto scegliamo un solo ruolo "user"
+        /// quindi se c'è almeno un ruolo restituiamo il primo
+        if (userRoles.Count > 0)
+        {
+            response.Role = userRoles[0];
+        }
+        else
+        {
+            response.Role = "";
+        }
        
 
         return response;
