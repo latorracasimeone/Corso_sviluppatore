@@ -997,3 +997,524 @@ public static class DataSeeder
     "AllowedHosts": "*"
 }
 ```
+
+# RUOLI con Identity
+
+Per aggiungere i ruoli "classici" con Identity:
+- I DbContext deve supportare i ruoli, quindi non più IdentityUserContext ma IdentityDbContext<ApplicationUser, IdentityRole, string>
+- in Program.cs si deve registrare Identity con .AddRoles()
+- fare il seed di ruoli Admin, Editor, User con RoleManager
+- quando registri o crei utenti, evi assegnarli ad un ruolo con UserManager.AddToRoleAsync(...)
+- visto che nella tua API usi un JWT custom, devi mettere anche i ruoli dentro al token, altrimenti [Authorize(Roles="...")] non funzionerà con il bearer token che emetti tu. In ASP.NET Core i ruoli vengono usati dall'autorizzazione role-based tramite il parametro Roles di [Authorize] e i servizi ruolo si attivano con AddRoles.
+- non serve creare una classe ApplicationRole: per i ruoli classici Admin, Editor, User basta IdentityRole.
+## Cosa cambia nella pratica
+Con queste modifiche succede questo:
+- chi si registra normalmente entra nel ruolo User
+il seed crea i 3 ruoli:
+- Admin
+- Editor
+- User
+- il seed crea utenti demo e assegna il ruolo giusto
+- il login genera un token che contiene anche il ruolo
+puoi proteggere endpoint così:
+- solo admin: [Authorize(Roles = UserRoles.Admin)]
+- admin o editor:  [Authorize(Roles = UserRoles.AdminOrEditor)]
+## Models/UserRoles.cs
+```c#
+namespace Rubrica.Api.Models;
+
+public static class UserRoles
+{
+    // costanti semplici per evitare errori di scrittura nei nomi ruolo
+    public const string Admin = "Admin";
+    public const string Editor = "Editor";
+    public const string User = "User";
+
+    //Comoda costante da usare in [Authorize(Roles = ...)]
+    public const string AdminOrEditor = "Admin,Editor";
+}
+```
+## Data/ApplicationDbContext.cs (modificato)
+Prima usavamo IdentityUserContext, che va bene per utenti senza ruoli. Per usare i ruoli serve passare a IdentityDbContext<ApplicationUser, IdentityRole, string>
+```c#
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Rubrica.Api.Models;
+
+namespace Rubrica.Api.Data;
+
+public class ApplicationDbContext : IdentityUserContext<ApplicationUser, IdentityRole, string>
+{
+    /// Questo DbContext ora gestisce:
+    /// - utenti
+    /// - ruoli
+    /// - user-roles
+    /// - claims, logins, tokens di Identity
+    /// - la nostra tabella custom Interests
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+    }
+
+    public DbSet<Interest> Interests { get; set; }
+
+    // Configura le relazioni tra tabelle
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        // Prima lasciamo a Identity configurare le sue tabelle standard
+        base.OnModelCreating(builder);
+
+        // Configura il collegamento tra utente e interessi
+        builder.Entity<Interest>()
+            .HasOne(i => i.User)
+            .WithMany(u => u.Interests)
+            .HasForeignKey(i => i.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+    }
+}
+```
+## DTOs
+- **AuthResponseDto.cs** (modificato):
+Per includere i ruoli nel token, dobbiamo modificare il DTO di risposta del login per restituire anche i ruoli dell'utente.
+
+Aggiungiamo Role così al login vedi anche il ruolo corrente.
+```c#
+using System.Text;
+
+namespace Rubrica.Api.Dtos;
+/* i DTO raccolgono i dati che appariranno in FrontEnd grazie 
+a TypeScript(?), quindi viene usato come input per l'endpoint di registrazione e login nell'AuthController*/
+public class AuthResponseDto
+{
+    public string Token { get; set; } = string.Empty;
+    public string UserId { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string NomeCompleto { get; set; } = string.Empty;
+    public bool NumeroInternazionale { get; set; }        
+    public DateTime? Birthday { get; set; }
+    public string Role { get; set; } = string.Empty;    
+}
+```
+- **ChangeUserRoleDto.cs**:
+Questo DTO serve per cambiare ruolo a un utente da un endpoint admin.
+```c#
+using System.ComponentModel.DataAnnotations;
+
+namespace Rubrica.Api.Dtos;
+
+public class ChangUserRoleDto
+{
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; } = string.Empty;
+
+    [Required]
+    public string NewRole { get; set; } = string.Empty;
+}
+```
+## Helper/JwtHelper.cs (modificato):
+Il cambiamento importante è che il metodo ora riceve anche i ruoli e li inserisce nel token come claim di ruolo. Con l'autorizzazione role-based di ASP.NET Core, [Authorize(Roles = "...")] funziona in base ai role claims presenti nel principal/ticket; nel tuo caso, dato che il principal arriva da un JWT custom emesso dalla tua API, i ruoli devono essere inclusi nel JWT al login.
+```c#
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Rubrica.Api.Models;
+
+namespace Rubrica.Api.Helpers;
+//riceve dati e crea un token sicuro e firmato.
+public class JwtHelper
+{
+    private readonly IConfiguration _configuration;//_configuration viene usato per accedere ai dati di configurazione JWT (?) 
+
+    public JwtHelper(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
+    public string GenerateToken(ApplicationUser user, IList<string> roles)///riceviamo un'istnaza di ApplicationUser perché il token che dobbiamo creare deve contenere le informaizoni dell'utente
+    {
+        // Leggiamo i dati dal file appsettings.json
+        string? key = _configuration["Jwt:Key"];
+        string? issuer = _configuration["Jwt:Issuer"];
+        string? audience = _configuration["Jwt:Audience"];
+
+        if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(issuer) || string.IsNullOrEmpty(audience))
+        {
+            throw new Exception("Configurazione JWT mancante.");
+        }
+
+        /*questo è un array, per farlo un po' più bellino lo facciamo con una lista
+        // Dentro il token mettiamo alcune informazioni utili
+        Claim[] claims = new Claim[]
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id),
+            new Claim(ClaimTypes.Name, user.UserName ?? ""),
+            new Claim(ClaimTypes.Email, user.Email ?? "")
+        };*/
+
+        List<Claim> claims = new List<Claim>();
+
+        //claim base utente
+        claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
+        claims.Add(new Claim(ClaimTypes.Name, iser.UserName ?? ""));
+        claims.Add(new Claim(ClaimTypes.Email, user.Email ?? ""));
+
+        //Claim di ruolo
+        for (int i = 0; i < roles.Count; i++)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, roles[i]));
+        }
+
+        //secret key generata in automatico(?)
+        SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));//UTF8 encoding europeo, solo quei caratteri (es: non c'è "è" accentata)
+        SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+        JwtSecurityToken token = new JwtSecurityToken(
+            issuer: issuer,
+            audience: audience,
+            claims: claims,
+            expires: DateTime.UtcNow.AddHours(1),
+            signingCredentials: credentials
+        );
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+}
+```
+
+## Services/AuthService.cs (modificato):
+Qui facciamo due cose:
+- in register assegniamo sempre il ruolo User
+- in login leggiamo i ruoli con GetRolesAsync e li mettimao nel token
+UserManager.AddToRoleAsync è il metodo standard per aggiungere un utente a un ruolo.
+```c#
+//using System.Reflection.Metadata;
+using Microsoft.AspNetCore.Identity;
+using Rubrica.Api.Dtos;
+using Rubrica.Api.Helpers;
+using Rubrica.Api.Models;
+
+/*I SERVICES contengono la "Logica di Business". Mentre il Controller gestisce le 
+richieste HTTP, il Service si sporca le mani con i dati, decide se un'operazione è 
+permessa e comunica con il database tramite Identity.
+
+AuthService gestisce la logica di registrazione e login degli utenti, utilizzando 
+UserManager e SignInManager di Identity per interagire con il database degli 
+utenti e JwtHelper per generare i token JWT.*/
+
+namespace Rubrica.Api.Services;
+
+public class AuthService
+// Campi privati per gestire utenti, accessi e creazione Token.
+/* UserManager e SignInManager sono classi fornite da ASP.NET Core Identity (framework) 
+che gestiscono tutta la sicurezza complessa (es. hash password).*/
+{
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly JwtHelper _jwtHelper; // Nostra classe helper per generare il "biglietto d'ingresso" (Token)
+
+    // Anche qui usiamo la Dependency Injection: il framework ci passa gli strumenti già pronti all'uso.
+    public AuthService(
+        UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> signInManager,
+        JwtHelper jwtHelper)
+    {
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _jwtHelper = jwtHelper;
+    }
+
+    /*Questo è un metodo asincrono che restituisce un IdentityResult, che indica se 
+    la registrazione è riuscita o no e contiene eventuali errori e un metodo asincrono 
+    che è un metodo che può essere eseguito in modo non bloccante cioè può fare 
+    operazioni che richiedono tempo (come accedere al database) senza bloccare il 
+    thread principale dell'applicazione (grazie a await)*/
+    public async Task<IdentityResult> RegisterAsync(RegisterDto dto)
+    {
+        // Controlliamo se esiste già un utente con questa email
+        // await fa restare in attesa il thread "congelandolo" finché l'operazione non è completata, ma senza bloccarlo
+        ApplicationUser? existingUser = await _userManager.FindByEmailAsync(dto.Email);
+
+        if (existingUser != null)
+        {
+            IdentityError error = new IdentityError();
+            error.Description = "Email già registrata.";/* Se esiste già, creiamo noi un 
+            errore personalizzato da restituire al Controller.*/
+
+            List<IdentityError> errors = new List<IdentityError>();
+            errors.Add(error);
+
+            return IdentityResult.Failed(errors.ToArray());//errore specifico di Identity
+        }
+
+        // Mappatura: trasformiamo i dati ricevuti dal DTO (quelli che arrivano dal web) 
+        // nel modello ApplicationUser (quello che verrà salvato sul database).
+        ApplicationUser user = new ApplicationUser();
+        user.UserName = dto.Email;// usiamo la mail anche come username per semplificare
+        user.Email = dto.Email;
+        user.NomeCompleto = dto.NomeCompleto;
+        user.PhoneNumber = dto.PhoneNumber;
+        user.CreatedAt = DateTime.UtcNow;
+        user.NumeroInternazionale = dto.NumeroInternazionale;
+        user.Birthday = dto.Birthday;
+      
+
+        /* Identity salva l'utente e CreateAsync si occupa di validare la password, criptarla (hashing) 
+        e salvare l'utente. Non salviamo mai la password in chiaro per motivi di sicurezza*/
+        // await fa restare in attesa il thread finché l'operazione non è completata, ma senza bloccarlo
+        IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
+
+        if (!result.Succeeded)
+        {
+            return result;
+        }
+
+        //Ogni utente registrato normalmente entra come User
+        IdentityResult addRoleResult = await _userManager.AddToRoleAsync(user, userRoles.user)
+
+        if (!addRoleResult.Succeeded)
+        {
+            return addRoleResult;
+        }
+
+        return result;
+    }
+
+    /// Metodo asincrono per il login. Riceve il DTO del Login (LoginDto) dei dati inseriti dall'utente e Restituisce 
+    /// un DTO con il Token (AuthResponseDto) se le credenziali sono corrette, altrimenti null.
+    public async Task<AuthResponseDto?> LoginAsync(LoginDto dto)
+    {
+        // Cerchiamo l'utente per l'email fornita
+        ApplicationUser? user = await _userManager.FindByEmailAsync(dto.Email);
+
+        if (user == null)
+        {
+            return null;//utente non trovato
+        }
+
+        /*Verifica password: CheckPasswordSignInAsync confronta la password inserita con l'hash nel DB. 
+        Il terzo parametro "false" indica che non vogliamo bloccare l'account dopo troppi tentativi falliti (lockout)*/
+        SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
+
+        if (!result.Succeeded)
+        {
+            return null;//Password Errata
+        }
+
+        /*Se tutto va bene creiamo un JWT (JSON Web Token).Il token permetterà all'utente 
+        di fare chiamate protette senza reinserire la password ogni volta.*/
+        string token = _jwtHelper.GenerateToken(user);
+
+        //Prepariamo la risposta con solo i dati necessari da rimandare al frontend. (pacchetto unico con dati precedenti+ token e nome completo)
+        AuthResponseDto response = new AuthResponseDto();
+        response.Token = token;
+        response.UserId = user.Id;
+        response.Email = user.Email ?? "";
+        response.NomeCompleto = user.NomeCompleto;
+        response.NumeroInternazionale = user.NumeroInternazionale;
+        response.Birthday = user.Birthday;
+
+        ///nel progetto scegliamo un solo ruolo "user"
+        /// quindi se c'è almeno un ruolo restituiamo il primo
+        if (roles.Count > 0)
+        {
+            response.Role = roles[0];
+        }
+        else
+        {
+            response.Role = "";
+        }
+       
+
+        return response;
+    }
+
+    //aggiunta
+
+    public async Task<UpdateUserDto?> UpdateAsync(UpdateUserDto dto, string userId)
+    {
+        // Cerchiamo l'utente nel database usando l'ID
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
+        {
+            return null; // Utente non trovato
+        }
+
+        // Aggiorniamo i dati dell'utente con quelli provenienti dal DTO
+        user.NomeCompleto = dto.NomeCompleto;
+        user.PhoneNumber = dto.PhoneNumber;
+        user.NumeroInternazionale = dto.NumeroInternazionale;
+        // Se l'email è cambiabile, potresti aggiornare anche user.Email, 
+        // ma di solito richiede una logica di conferma più complessa.
+
+        // Salviamo le modifiche nel database
+        var result = await _userManager.UpdateAsync(user);
+
+        if (!result.Succeeded)
+        {
+            // Se l'aggiornamento fallisce (es. validazione fallita), gestisci l'errore
+            return null;
+        }
+
+        // Ritorniamo il DTO con i dati aggiornati per conferma
+        return dto;
+    }
+
+    //ULTERIORE aggiunta
+    public async Task<IdentityResult?> DeleteAsync(string userId)
+    {
+        //Cerchiamo l'utente
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
+        {
+            return null; // Utente non trovato
+        }
+
+        // 2. Eliminiamo l'utente
+        // DeleteAsync si occupa di rimuovere i record relativi nelle tabelle di Identity
+        var result = await _userManager.DeleteAsync(user);
+
+        return result;
+    }
+
+    //AGGIUNTA 11:47 18/03 STAMPA
+    // AGGIUNTA 11:47 18/03 STAMPA
+    public async Task<UserStampDto?> GetUserProfile(string userId)
+    {
+        // Cerchiamo l'utente nel database tramite UserManager
+        var user = await _userManager.FindByIdAsync(userId);
+
+        // Se l'utente non esiste, restituiamo null 
+        // (il Controller gestirà il null restituendo un 404 Not Found)
+        if (user == null)
+        {
+            return null;
+        }
+
+        // Mappatura: trasformiamo il modello del DB (ApplicationUser) nel DTO (UserStampDto)
+        UserStampDto dto = new UserStampDto();
+
+
+        dto.Id = user.Id;
+        dto.NomeCompleto = user.NomeCompleto;
+        dto.Email = user.Email;
+        dto.PhoneNumber = user.PhoneNumber;
+        dto.NumeroInternazionale = user.NumeroInternazionale;
+        dto.Birthday = user.Birthday;
+        
+
+        return dto;
+    }
+}
+``` 
+## Services/UserRoleService.cs.
+Questo servizio serve per cambiare il ruolo a un utente esistente. Lo facciamo semplice: rimuoviamo gli eventuali ruoli classici già presenti e assegnamo quello nuovo.
+```c#
+using Microsoft.AspeNetCore.Identity;
+using Rubrica.Api.Dtos;
+using Rubrica.Api.Models;
+
+namespace Rubrica.Api.Services;
+
+public class UserRoleService
+{
+    private readonly UserManager<ApplicationUser> _userManager;
+
+    public UserRoleService(UserManager<ApplicationUser> userManager)
+    {
+        _userManager = userManager
+    }
+    public async Task<string?> ChangeUserRoleAsync(ChangeUserRoleDto dto)//ci sarà un modulo dove l'admin può cambiare i ruoli
+    {
+        //controllo base sul nome ruolo
+        if (dto.NewRole != UserRoles.Admin &&
+            dto.NewRole != UserRoles.Editor &&
+            dto.NewRole != UserRoles.User)
+        {
+            return null;
+        }
+
+        ApplicationUser? user = await _userManager.FindByEmailAsync(dto.Email);
+
+        if (user == null)
+        {
+            return null;
+        }
+        IList<string> currentRoles = await _userManager.GetRolesAsync(user);
+
+        //rimuoviamo i ruoli classici già presenti
+        for (int i = 0; i < currentRoles.Count; i++)
+        {
+            string currentRole = currentRoles[i];
+
+            if (currentRole == UserRoles.Admin ||
+                currentRole == UserRoles.Editor ||
+                currentRole == UserRoles.User)
+            {
+                await _userManager.RemoveFromRoleAsync(user, currentRole)
+            }
+        }
+
+        //assegnamo il nuovo ruolo
+        IdentityResult addResult = await _userManager.AddToRoleAsync(user, dto.NewRole);
+
+        if (!addResult.Succeeeded)
+        {
+            return null
+        }
+        return dto.NewRole;
+    }
+}
+```
+## Controllers/AdminUserController.cs:
+Questo controller serve per gestire gli utenti da parte di un admin, in particolare per cambiare il ruolo di un utente.
+```c#
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Rubrica.Api.Dtos;
+using Rubrica.Api.Models;
+using Rubrica.Api.Services;
+
+namespace Rubrica.Api.Controllers;
+
+ [ApiController]
+ [Route("api/[controller]")]
+ [Authorize(Roles = UserRoles.Admin)]
+ public class AdmiinUsersController : ControllerBase
+ {
+    private readonly UserRoleService _userRoleService;
+
+    public AdminUsersController(userRoleService userRoleService)
+    {
+        _userRoleService = userRoleService;
+    }
+
+    [HttpPut("change-role")]
+    public async Task<IActionResult> ChangeRole([FromBody] ChangeUserRoleDto dto)
+    {
+        string? newRole = await _userRoleService.ChangeUserRoleAsync(dto);
+
+        if (newRole == null)
+        {
+            return BadRequest(new { message = "Utente o ruolo non valido. " });//400
+        }
+
+        return OK(new
+        {
+            message = "Ruolo aggiornato correttamente.  ",
+            email = dto.Email,
+            role = newRole
+        });
+    }
+ }
+```
+## Controllers/InterestsController.cs (modificato);
+- GET lo lasciamo a tutti gli utenti autenticati
+- POST, PUT, DELETE li facciamo fare solo ad Admin o Editor
+Questo è solo un esempio di uso dei ruoli; la sintassi Roles = "Admin,Editor" consente accesso a uno dei due ruoli.
+```c#
+
+```
