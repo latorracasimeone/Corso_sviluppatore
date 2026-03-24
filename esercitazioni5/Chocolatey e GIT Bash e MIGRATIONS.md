@@ -81,14 +81,41 @@ curl -X DELETE "http://localhost:5062/api/Auth/delete" \
 curl -X GET "http://localhost:5062/api/Auth/profile" \
 -H "Authorization: Bearer $TOKEN"
 ```
+`**PROVARE MODIFICHE RUOLI SIA CON ADMIN CHE CON ALTRI UTENTI (NON DOVREBBE PERMETTERLO), DOPODICHè PROVARE SE UTENTI RESI ADMIN DALL'ADMIN ORIGINALE POSSONO MODIFICARE GLI ALTRI UTENTI SEMPRE DAL PORTALE BASH E VEDI SE L'ADMIN ORIGINALE è RIASTO ADMIN O SE LA QUESTIONE è UNIVOCA.**`
+
+## Modifica Ruolo Utenti (DA PROVARE!)
+Possibile solo ed esclusivamente se in possesso di token d'accesso di un Admin.
 ```bash
-//CIO CHE C'è DOPO .../Auth/ DEVE ESSERE CIò CHE NEL CODICE DI AuthController è in [HttpGet("..")], esempio:
-
-
-
-.../Auth/profile
-[HttpGet("profile")]
+curl -X PUT "http://localhost:5062/api/Auth/change-role" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "forzaempoli1@email.com",
+    "newRole": "Admin"
+  }'
 ```
+
+## Comando Logout (NON IMPLMENETATO ANCORA!)
+```bash
+curl -X POST "http://localhost:5062/api/Auth/logout" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+## "Svuotare" variabile Token (DA PROVARE)
+```bash
+unset TOKEN
+```
+
+
+(rivedi parte qui sotto)
+
+
+
+> //CIO CHE C'è DOPO .../Auth/ DEVE ESSERE CIò CHE NEL CODICE DI AuthController è in [HttpGet("..")], esempio:
+
+>.../Auth/profile
+
+>[HttpGet("profile")]`
 
 
 # MIGRATIONS
