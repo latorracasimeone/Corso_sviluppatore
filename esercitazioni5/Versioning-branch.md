@@ -32,5 +32,3 @@
 - Risolvi i conflitti in locale, poi aggiorna la PR.
 - Niente push forzati su developer o main.
 - Elimina i branch feature dopo il marge (locale e remoto).
-
-prova sync
