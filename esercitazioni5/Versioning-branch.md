@@ -14,6 +14,7 @@
 - `git revert <SHA>` : annulla un commit già pubblicato creando un commit inverso
 - `git merge origin/<branch>` : unisce nel tuo branch le ultime modifiche del branch remoto
 - `git tag -a vX.Y.Z -m "note"` : crea un tag "di versione" con descrizione
+- `git branch -a` : ti fa visualizzare i branch in locale in verde e in remoto in rosso
 
 ## Regole semplici per non pestarsi i piedi
 - Solo una persona crea il repository e i branch prinicpali (main, developer).
