@@ -83,7 +83,7 @@ public class AuthController : ControllerBase
     }
     //AGGIUNTE
     [HttpPut("update")]
-    public async Task<IActionResult> Update([FromBody] UpdateUserDto dto)
+    public async Task<IActionResult> Update([FromBody] UpdateUserDto dto)/*Mettendo [FromBody], stai dicendo al tuo backend: "Ehi, prendi il JSON che si trova nel corpo della richiesta HTTP, decodificalo e usalo per riempire l'oggetto UpdateUserDto che ho chiamato dto."*/
     {
         string userId = GetUserIdFromToken();
 
