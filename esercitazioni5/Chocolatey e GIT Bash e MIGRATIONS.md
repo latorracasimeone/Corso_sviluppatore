@@ -1,3 +1,8 @@
+installare chocolatey (vedi se da broswer o se da stensione di visual studio code)
+
+cercare powershell su windows
+
+utilizzare scrivendo il comando "choco" e poi "install" e il nome dell'applicazione (esempio: "postman") per intallare un programma nella versione corretta per essere implementata correttamente e funzionare.
 # CHOCOLATEY e GIT Bash
 - Da scaricare dal sito sotto products, poi pricying, open source, individual e copia il comando dentro al powershell.
  
