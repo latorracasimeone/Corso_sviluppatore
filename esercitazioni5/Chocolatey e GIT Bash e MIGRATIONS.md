@@ -3,6 +3,11 @@ installare chocolatey (vedi se da broswer o se da stensione di visual studio cod
 cercare powershell su windows
 
 utilizzare scrivendo il comando "choco" e poi "install" e il nome dell'applicazione (esempio: "postman") per intallare un programma nella versione corretta per essere implementata correttamente e funzionare.
+
+
+
+
+se ho una webapi scritta in c# su visual studio code ed ho dei comandi c url da utilizzarci ed ho postman scaricato tramite windows powershell nella versione consona per essere implementato grazie a chocolatey, mi spiegheresti passo passo come utilizzare postman? non mi è per niente chiaro. Magari potrebbe servire che ti mandassi il readme con i comandi curl
 # CHOCOLATEY e GIT Bash
 - Da scaricare dal sito sotto products, poi pricying, open source, individual e copia il comando dentro al powershell.
  
