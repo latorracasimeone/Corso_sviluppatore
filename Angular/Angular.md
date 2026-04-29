@@ -8,6 +8,8 @@ ng serve --proxy-config proxy.conf.json
 ```
 ma noi usiamo `npm start`
 
+ng serve -o
+
 ## PARTE 3 - CREAZIONE DEL PROGETTO ANGULAR 21
 ### 9. Come creare il progetto nel modo giusto
 Per ricreare un progetto coerente con quello che hai caricato, usa un comando come questo:
