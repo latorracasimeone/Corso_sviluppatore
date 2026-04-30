@@ -11,14 +11,14 @@ using Rubrica.Api.Data;
 namespace Rubrica.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260430081143_InitialCreate")]
+    [Migration("20260430103649_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "10.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.7");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
