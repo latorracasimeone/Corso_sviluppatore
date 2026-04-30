@@ -66,7 +66,8 @@ export class AuthService {
   }
 
   private readStoredUser(): SessionUser | null {
-  
+    
+
     // 2. Da qui in poi, il tuo codice originale rimane identico
     const raw = localStorage.getItem(this.storagekey);
 
