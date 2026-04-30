@@ -1,4 +1,4 @@
-import { inject, Injectable,signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
@@ -17,7 +17,6 @@ export class AuthService {
   private readonly router = inject(Router);
   private readonly storagekey = 'rubrica_auth';
 
-
   readonly currentUser = signal<SessionUser | null>(this.readStoredUser());
 
   login(payload: LoginRequest): Observable<AuthResponse> {
@@ -28,7 +27,6 @@ export class AuthService {
 
   register(payload: RegisterRequest): Observable<{ message: string }> {
     return this.http.post<{ message: string }>(`${environment.apiBaseUrl}/Auth/register`, payload);
-
   }
 
   logout(): void {
@@ -42,13 +40,12 @@ export class AuthService {
   }
 
   hasAnyRole(roles: string[]): boolean {
-    const role = this.currentUser()?.role ?? "";
+    const role = this.currentUser()?.role ?? '';
     return roles.includes(role);
   }
 
   hasRole(role: string): boolean {
     return this.currentUser()?.role === role;
-
   }
 
   getToken(): string | null {
@@ -61,26 +58,32 @@ export class AuthService {
       userId: response.userId,
       email: response.email,
       nomeCompleto: response.nomeCompleto,
-      role: response.role
-    }
+      role: response.role,
+    };
 
     localStorage.setItem(this.storagekey, JSON.stringify(sessionUser));
     this.currentUser.set(sessionUser);
   }
 
   private readStoredUser(): SessionUser | null {
+    // 1. Controllo fondamentale per il Server-Side Rendering (SSR)
+    // Se non siamo nel browser, usciamo subito restituendo null
+    if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+      return null;
+    }
+
+    // 2. Da qui in poi, il tuo codice originale rimane identico
     const raw = localStorage.getItem(this.storagekey);
 
     if (!raw) {
       return null;
     }
-    
-    try{
+
+    try {
       return JSON.parse(raw) as SessionUser;
-      
-    } catch{
+    } catch {
       localStorage.removeItem(this.storagekey);
-      return null
+      return null;
     }
   }
 }
