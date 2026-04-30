@@ -66,12 +66,7 @@ export class AuthService {
   }
 
   private readStoredUser(): SessionUser | null {
-    // 1. Controllo fondamentale per il Server-Side Rendering (SSR)
-    // Se non siamo nel browser, usciamo subito restituendo null
-    if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
-      return null;
-    }
-
+  
     // 2. Da qui in poi, il tuo codice originale rimane identico
     const raw = localStorage.getItem(this.storagekey);
 
