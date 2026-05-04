@@ -11,8 +11,8 @@ using Rubrica.Api.Data;
 namespace Rubrica.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260430103649_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260504070848_In")]
+    partial class In
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
