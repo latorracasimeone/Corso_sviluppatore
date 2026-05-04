@@ -69,11 +69,10 @@ public static class DataSeeder
 
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "Lettura");
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "Spider-Man");
-        await CreateInterestIfNotExistsAsync(context, utente3.Id, "AOAOAOAaoaoaoAOAOAO!");
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "Inter");
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "Timone");
         await CreateInterestIfNotExistsAsync(context, utente3.Id, "HULK");
-        await CreateInterestIfNotExistsAsync(context, utente3.Id, "Pippo");
+        
         //prova a cercare awiat per aggiornare invece di creare un interesse se non esiste async!!!!!
         /////Forse con un metodo tipo UpdateInterestIfNotPiripillo???????
         }
