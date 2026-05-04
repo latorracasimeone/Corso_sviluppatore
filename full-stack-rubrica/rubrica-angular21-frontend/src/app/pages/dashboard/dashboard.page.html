@@ -16,6 +16,8 @@
         <article class="card">
             <h2>Azioni disponibili</h2>
             <div class="list">
+                
+                <!-- Bottone 1: Interessi (Visibile a tutti) -->
                 <div class="list-item">
                     <div>
                         <strong>Gestione interessi</strong>
@@ -24,6 +26,18 @@
                     <a class="btn btn-primary" routerLink="/interests">Apri</a>
                 </div>
 
+                <!-- Bottone 2: Lista Utenti (NUOVO - Solo Admin ed Editor) -->
+                @if (canEditInterests()) {
+                <div class="list-item">
+                    <div>
+                        <strong>Lista Utenti</strong>
+                        <div class="muted">Visualizza tutti gli utenti del sistema</div>
+                    </div>
+                    <a class="btn btn-primary" routerLink="/users">Apri</a>
+                </div>
+                }
+
+                <!-- Bottone 3: Cambio Ruolo (Solo Admin) -->
                 @if (isAdmin()) {
                 <div class="list-item">
                     <div>
@@ -33,6 +47,7 @@
                     <a class="btn btn-primary" routerLink="/admin/change-role">Apri</a>
                 </div>
                 }
+
             </div>
 
             <div class="alert alert-warning" style="margin-top: 1rem;">

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Rubrica.Api.Dtos;
 using Rubrica.Api.Helpers;
@@ -9,7 +10,7 @@ public class AuthService
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly JwtHelper _jwtHelper; 
+    private readonly JwtHelper _jwtHelper;
 
     public AuthService(
         UserManager<ApplicationUser> userManager,
@@ -102,7 +103,7 @@ public class AuthService
 
         if (user == null)
         {
-            return null; 
+            return null;
         }
 
         user.NomeCompleto = dto.NomeCompleto;
@@ -128,7 +129,7 @@ public class AuthService
 
         if (user == null)
         {
-            return null; 
+            return null;
         }
 
         var result = await _userManager.DeleteAsync(user);
@@ -158,5 +159,29 @@ public class AuthService
         };
 
         return dto;
+    }
+
+    // Ricordati di aggiungere in alto: using Microsoft.EntityFrameworkCore;
+    public async Task<List<UserStampDto>> GetAllUsersProfileAsync()
+    {
+        // Prende tutti gli utenti dal database
+        var users = await _userManager.Users.ToListAsync();
+        var result = new List<UserStampDto>();
+
+        // Mappa ogni ApplicationUser nel DTO
+        foreach (var user in users)
+        {
+            result.Add(new UserStampDto
+            {
+                Id = user.Id,
+                NomeCompleto = user.NomeCompleto,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                NumeroInternazionale = user.NumeroInternazionale,
+                Birthday = user.Birthday
+            });
+        }
+
+        return result;
     }
 }

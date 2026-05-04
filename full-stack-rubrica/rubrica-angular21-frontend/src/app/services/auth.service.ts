@@ -52,6 +52,11 @@ export class AuthService {
     return this.currentUser()?.token ?? null;
   }
 
+  ///aggiunta!!!!!!
+  getAllUsers() {
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/AdminOrEditor/all`);
+  }
+
   private setSession(response: AuthResponse): void {
     const sessionUser: SessionUser = {
       token: response.token,
@@ -66,8 +71,6 @@ export class AuthService {
   }
 
   private readStoredUser(): SessionUser | null {
-    
-
     // 2. Da qui in poi, il tuo codice originale rimane identico
     const raw = localStorage.getItem(this.storagekey);
 
