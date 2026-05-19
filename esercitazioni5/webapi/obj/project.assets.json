@@ -2829,19 +2829,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sviluppatore\\.nuget\\packages\\": {}
+    "C:\\Users\\wahab\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\webapi\\webapi.csproj",
+      "projectUniqueName": "C:\\Users\\wahab\\Documents\\Corso_sviluppatore\\Corso\\esercitazioni5\\webapi\\webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\webapi\\webapi.csproj",
-      "packagesPath": "C:\\Users\\sviluppatore\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\webapi\\obj\\",
+      "projectPath": "C:\\Users\\wahab\\Documents\\Corso_sviluppatore\\Corso\\esercitazioni5\\webapi\\webapi.csproj",
+      "packagesPath": "C:\\Users\\wahab\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wahab\\Documents\\Corso_sviluppatore\\Corso\\esercitazioni5\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sviluppatore\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\wahab\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -2927,7 +2927,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.108/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
