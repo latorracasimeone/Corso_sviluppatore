@@ -2834,11 +2834,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\webapi\\webapi.csproj",
+      "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni5\\webapi\\webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\webapi\\webapi.csproj",
+      "projectPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni5\\webapi\\webapi.csproj",
       "packagesPath": "C:\\Users\\sviluppatore\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\webapi\\obj\\",
+      "outputPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni5\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sviluppatore\\AppData\\Roaming\\NuGet\\NuGet.Config"

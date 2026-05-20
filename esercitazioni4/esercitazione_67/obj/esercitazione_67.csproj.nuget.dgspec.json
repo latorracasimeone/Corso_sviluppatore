@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\esercitazione_67.csproj": {}
+    "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\esercitazione_67.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\esercitazione_67.csproj": {
+    "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\esercitazione_67.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\esercitazione_67.csproj",
+        "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\esercitazione_67.csproj",
         "projectName": "esercitazione_67",
-        "projectPath": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\esercitazione_67.csproj",
+        "projectPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\esercitazione_67.csproj",
         "packagesPath": "C:\\Users\\sviluppatore\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\obj\\",
+        "outputPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_67\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sviluppatore\\AppData\\Roaming\\NuGet\\NuGet.Config"

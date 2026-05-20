@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni\\esercitazione_19\\esercitazione_19.csproj",
+      "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni\\esercitazione_19(gemini)\\esercitazione_19.csproj",
       "projectName": "esercitazione_19",
-      "projectPath": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni\\esercitazione_19\\esercitazione_19.csproj",
+      "projectPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni\\esercitazione_19(gemini)\\esercitazione_19.csproj",
       "packagesPath": "C:\\Users\\sviluppatore\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni\\esercitazione_19\\obj\\",
+      "outputPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni\\esercitazione_19(gemini)\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sviluppatore\\AppData\\Roaming\\NuGet\\NuGet.Config"

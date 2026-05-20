@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W7Y/KBVJrlA=",
+  "dgSpecHash": "HNsa7dP5+RM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\webapi\\webapi.csproj",
+  "projectFilePath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni5\\webapi\\webapi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sviluppatore\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\sviluppatore\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.3\\microsoft.aspnetcore.authentication.jwtbearer.10.0.3.nupkg.sha512",

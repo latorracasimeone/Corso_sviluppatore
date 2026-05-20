@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\rubrica_console\\rubrica_console.csproj",
+      "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni5\\rubrica_console\\rubrica_console.csproj",
       "projectName": "rubrica_console",
-      "projectPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\rubrica_console\\rubrica_console.csproj",
+      "projectPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni5\\rubrica_console\\rubrica_console.csproj",
       "packagesPath": "C:\\Users\\sviluppatore\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\rubrica_console\\obj\\",
+      "outputPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni5\\rubrica_console\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sviluppatore\\AppData\\Roaming\\NuGet\\NuGet.Config"
