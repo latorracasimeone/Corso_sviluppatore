@@ -22,6 +22,8 @@ echo '{"token":"abc"}' | jq -r '.token'
 # Tornando sul file WEBAPI (Rubrica.Api in questo caso) e generare TOKEN SU GIT BASH
 ## Copiare questo su GIT Bash, dopo aver fatto dotnet run in PowerShell per Login e Salvataggio del token 
 `SARà UGUALE LOCAL HOST SU ENTRAMBI I PC????♠`
+- Risposta postuma: tendenzialmente sì, in ogni caso basta verificarlo una volta effettuate le migrations e runnato il programma vedendo che http compare.
+## Accedi come utente (Login)
 ```bash
 TOKEN=$(curl -s -X POST "http://localhost:5062/api/Auth/login" \
   -H "Content-Type: application/json" \
@@ -63,7 +65,7 @@ curl -X DELETE "http://localhost:5062/api/Interests/2" \
 
 # Utenti 
 `COPIA CODICI CHE HAI CAMBIATO SU AGGIUNTA!!!!!`
-## Crea Utente
+## Crea Utente (Registrati)
 ```bash
 curl -X POST "http://localhost:5062/api/Auth/register" \
 -H "Content-Type: application/json" \
