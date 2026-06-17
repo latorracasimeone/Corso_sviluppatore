@@ -30,4 +30,4 @@ gemini logout
 
 
 
-fare rebase
+fare rebase al posto di merge
