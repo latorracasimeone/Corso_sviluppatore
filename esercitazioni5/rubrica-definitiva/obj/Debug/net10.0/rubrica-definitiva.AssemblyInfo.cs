@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("rubrica-definitiva")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f5022c8993ffb1d97e5a2e0d95e9a1a05c52ade")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5b2302a650308de2ccd808862b4639afa5442a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("rubrica-definitiva")]
 [assembly: System.Reflection.AssemblyTitleAttribute("rubrica-definitiva")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
