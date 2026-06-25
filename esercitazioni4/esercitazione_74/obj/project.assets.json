@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_74\\esercitazione_74.csproj",
+      "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_74\\esercitazione_74.csproj",
       "projectName": "esercitazione_74",
-      "projectPath": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_74\\esercitazione_74.csproj",
+      "projectPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_74\\esercitazione_74.csproj",
       "packagesPath": "C:\\Users\\sviluppatore\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sviluppatore\\Documents\\projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_74\\obj\\",
+      "outputPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_74\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sviluppatore\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -395,5 +395,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\esercitazioni4\\esercitazione_74\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
+    }
+  ]
 }

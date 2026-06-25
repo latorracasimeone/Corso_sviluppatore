@@ -1,4 +1,4 @@
-﻿//LEZIONE 20 DECORATORS TEORIA
+﻿//LEZIONE 20 DECORATORS TEORIA DIO LEBBROSO
 
 //in c# i decoratori sono implementati utilizzando gli attributi, per usarli:
 using System.ComponentModel.DataAnnotations;

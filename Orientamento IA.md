@@ -31,3 +31,5 @@ gemini logout
 
 
 fare rebase al posto di merge
+
+/usage per vedere numero tokens
