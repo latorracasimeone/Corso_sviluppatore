@@ -33,3 +33,8 @@ gemini logout
 fare rebase al posto di merge
 
 /usage per vedere numero tokens
+
+puoi anche utilizzare ollama e di conseguenza claude CLI
+
+usa powershell e choco
+.
