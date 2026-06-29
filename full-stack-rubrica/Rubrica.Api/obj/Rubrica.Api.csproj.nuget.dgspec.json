@@ -1,29 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\Rubrica.Api.csproj": {}
+    "C:\\Progetti\\Latorraca-Corso_sviluppatore\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\Rubrica.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\Rubrica.Api.csproj": {
+    "C:\\Progetti\\Latorraca-Corso_sviluppatore\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\Rubrica.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\Rubrica.Api.csproj",
+        "projectUniqueName": "C:\\Progetti\\Latorraca-Corso_sviluppatore\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\Rubrica.Api.csproj",
         "projectName": "Rubrica.Api",
-        "projectPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\Rubrica.Api.csproj",
-        "packagesPath": "C:\\Users\\sviluppatore\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sviluppatore\\Documents\\Projects\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\obj\\",
+        "projectPath": "C:\\Progetti\\Latorraca-Corso_sviluppatore\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\Rubrica.Api.csproj",
+        "packagesPath": "C:\\Users\\Simeone Latorraca\\.nuget\\packages\\",
+        "outputPath": "C:\\Progetti\\Latorraca-Corso_sviluppatore\\Corso_sviluppatore\\full-stack-rubrica\\Rubrica.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\sviluppatore\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Simeone Latorraca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
+            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {}
           }
@@ -38,10 +45,11 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
@@ -76,6 +84,10 @@
               "target": "Package",
               "version": "[10.0.7, )"
             },
+            "SQLitePCLRaw.bundle_e_sqlite3": {
+              "target": "Package",
+              "version": "[3.0.3, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.17.0, )"
@@ -100,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
