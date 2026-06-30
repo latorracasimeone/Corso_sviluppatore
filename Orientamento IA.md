@@ -38,3 +38,8 @@ puoi anche utilizzare ollama e di conseguenza claude CLI
 
 usa powershell e choco
 .
+
+# VERSIONE AGGIORNATA
+```bash
+irm https://antigravity.google/cli/install.ps1 | iex
+```
